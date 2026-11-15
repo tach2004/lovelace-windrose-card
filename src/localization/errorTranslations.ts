@@ -399,5 +399,93 @@ export const germanErrorReplacements: ReadonlyArray<readonly [string, string]> =
     [
         "WindRoseCard: window_period not set",
         "WindRoseCard: window_period wurde nicht festgelegt."
+    ],
+    [
+        "Recognized speed unit ${speedUnit} for entity ${entity}",
+        "Windgeschwindigkeitseinheit ${speedUnit} für Entität ${entity} erkannt."
+    ],
+    [
+        "Entity ${entity} speed unit (${speedUnit}) could not be auto determined, please configure the unit.",
+        "Die Geschwindigkeitseinheit von ${entity} (${speedUnit}) konnte nicht automatisch ermittelt werden. Bitte speed_unit angeben."
+    ],
+    [
+        "Entity ${entity} not found.",
+        "Entität ${entity} nicht gefunden."
+    ],
+    [
+        "Entity ${entity} does not support long term statistics, state_class should be measurement or measurement_angle.",
+        "Entität ${entity} unterstützt keine Langzeitstatistiken. state_class muss measurement oder measurement_angle sein."
+    ],
+    [
+        "Attribute ${attribute} not found in entity ${entity}.",
+        "Attribut ${attribute} wurde in Entität ${entity} nicht gefunden."
+    ],
+    [
+        "No history data found for entity ",
+        "Keine Verlaufsdaten für die Entität gefunden: "
+    ],
+    [
+        "Value from ${entity} ignored: ",
+        "Wert von ${entity} ignoriert: "
+    ],
+    [
+        "More then 10 values from ${entity} are ignored, sest log_level to INFO to investigate.",
+        "Mehr als 10 Werte von ${entity} wurden ignoriert. Zur Analyse log_level auf INFO setzen."
+    ],
+    [
+        "No statistics data found for entity ",
+        "Keine Statistikdaten für die Entität gefunden: "
+    ],
+    [
+        "More then 10 values from ${entity} are ignored, set log_level to INFO to investigate. Count: ${ignoreCounter}",
+        "Mehr als 10 Werte von ${entity} wurden ignoriert. Zur Analyse log_level auf INFO setzen. Anzahl: ${ignoreCounter}"
+    ],
+    [
+        "WindRoseCard: ${configName} should point to a date in the past",
+        "WindRoseCard: ${configName} muss auf einen Zeitpunkt in der Vergangenheit verweisen."
+    ],
+    [
+        "WindRoseCard: wrong ${configName} code, example '-2w-5h' means minus 2 weeks and 5 hours",
+        "WindRoseCard: Ungültiger Zeitraumausdruck für ${configName}; '-2w-5h' bedeutet zwei Wochen und fünf Stunden zurück."
+    ],
+    [
+        "Unknown unit, this is a bug, please report: ",
+        "Unbekannte Einheit. Dies ist ein Programmfehler, bitte melden: "
+    ],
+    [
+        "Invalid preset period: ",
+        "Ungültiger vordefinierter Zeitraum: "
+    ],
+    [
+        "Generate step/max speedranges, step: ${step}, max: ${max}",
+        "Geschwindigkeitsbereiche erstellen, Schrittweite: ${step}, Maximum: ${max}"
+    ],
+    [
+        "Generate Beaufort speedranges for unit ${beaufortType?.name}",
+        "Beaufort-Geschwindigkeitsbereiche für Einheit ${beaufortType?.name} erstellen"
+    ],
+    [
+        "No Bft reanges for type: ",
+        "Keine Beaufort-Bereiche für den Typ: "
+    ],
+    [
+        "Generate speed ranges, average: ${averageSpeed}, config: ",
+        "Geschwindigkeitsbereiche erzeugen, Mittelwert: ${averageSpeed}, Konfiguration: "
+    ],
+    [
+        "Dynamic speed ranges determined: ",
+        "Dynamische Geschwindigkeitsbereiche bestimmt: "
+    ],
+    [
+        "Speed ranges determined: ",
+        "Geschwindigkeitsbereiche bestimmt: "
+    ],
+    [
+        "Speed is not in a speedrange: ",
+        "Geschwindigkeit liegt außerhalb aller Geschwindigkeitsbereiche: "
+    ],
+    [
+        " unit: ",
+        " Einheit: "
     ]
 ];
