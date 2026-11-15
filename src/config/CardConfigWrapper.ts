@@ -15,6 +15,7 @@ import { ButtonsConfig } from "./buttons/ButtonsConfig";
 import { MatchingStrategy } from "./MatchingStrategy";
 import { Period } from "./buttons/Period";
 import { RoseConfig } from "./RoseConfig";
+import { cardinalDirectionLetters, localize } from "../localization/localize";
 
 
 export class CardConfigWrapper {
@@ -43,9 +44,9 @@ export class CardConfigWrapper {
 
     filterEntitiesQueryParameter: string;
 
-    static exampleConfig(): Record<string, unknown>  {
+    static exampleConfig(language: string = "en"): Record<string, unknown>  {
         return {
-            title: 'Wind direction',
+            title: localize(language, "cardTitle"),
             data_period: {
                 period_back: GlobalConfig.defaultPeriodBack
             },
@@ -63,7 +64,7 @@ export class CardConfigWrapper {
             windspeed_entities: [
                 {
                     entity: 'sensor.',
-                    name: 'Wind speed',
+                    name: localize(language, "windSpeed"),
                     speed_unit: GlobalConfig.defaultInputSpeedUnit,
                     use_statistics: false,
                     windspeed_bar_full: GlobalConfig.defaultWindspeedBarFull,
@@ -77,17 +78,17 @@ export class CardConfigWrapper {
                 buttons: [
                     {
                         type: 'period_selector',
-                        button_text: 'Today',
+                        button_text: localize(language, "today"),
                         preset_period: 'today'
                     },
                     {
                         type: 'period_selector',
-                        button_text: 'Last 7 days',
+                        button_text: localize(language, "last7Days"),
                         preset_period: 'last_7_days'
                     },
                     {
                         type: 'period_selector',
-                        button_text: 'Last 30 days',
+                        button_text: localize(language, "last30Days"),
                         preset_period: 'last_30_days',
                         use_analytics: true,
                         analytics_period: 'hour'
@@ -95,7 +96,7 @@ export class CardConfigWrapper {
                 ]
             },
             direction_labels: {
-                cardinal_direction_letters: 'NESW'
+                cardinal_direction_letters: cardinalDirectionLetters(language)
             },
             current_direction: {
                 show_arrow: true
@@ -105,12 +106,12 @@ export class CardConfigWrapper {
             },
             corner_info: {
                 top_left: {
-                    label: "Wind direction",
+                    label: localize(language, "windDirection"),
                     unit: " °",
                     entity: 'sensor.',
                  },
                 top_right: {
-                    label: "Wind speed",
+                    label: localize(language, "windSpeed"),
                     unit: " bft",
                     entity: 'sensor.',
                 },
@@ -119,7 +120,7 @@ export class CardConfigWrapper {
                 top: {
                     text: `      <table>
           <tr>
-              <td>Period:</td><td>\${start-date}, \${start-time} - \${end-date}, \${end-time}</td>
+              <td>${localize(language, "period")}</td><td>\${start-date}, \${start-time} - \${end-date}, \${end-time}</td>
           </tr>
       </table>`
                 },
@@ -127,7 +128,7 @@ export class CardConfigWrapper {
         };
     }
 
-    constructor(private readonly cardConfig: CardConfig) {
+    constructor(private readonly cardConfig: CardConfig, language?: string) {
         this.title = this.cardConfig.title;
         this.checkDeprecations(cardConfig)
         this.windspeedBarLocation = this.checkWindspeedBarLocation();
@@ -141,7 +142,7 @@ export class CardConfigWrapper {
         this.currentDirection = CurrentDirectionConfig.fromConfig(cardConfig.current_direction, this.roseConfig);
         this.disableAnimations = ConfigCheckUtils.checkBooleanDefaultFalse(cardConfig.disable_animations);
         this.hideWindspeedBar = ConfigCheckUtils.checkBooleanDefaultFalse(cardConfig.hide_windspeed_bar);
-        this.directionLabels = DirectionLabels.fromConfig(cardConfig.direction_labels);
+        this.directionLabels = DirectionLabels.fromConfig(cardConfig.direction_labels, language);
         this.matchingStrategy = MatchingStrategy.fromConfig(cardConfig.matching_strategy);
         this.filterEntitiesQueryParameter = this.createEntitiesQueryParameter();
         this.cardWidth = !cardConfig.card_width ? 4 : cardConfig.card_width;

@@ -21,6 +21,8 @@ import { WindRoseSpeedSelectButton } from "../config/buttons/types/WindRoseSpeed
 import { PeriodShiftPlayButton } from "../config/buttons/types/PeriodShiftPlayButton";
 import { MeasurementHolder } from "../measurement-provider/MeasurementHolder";
 import { DateTimeFormatter } from "../formatter/DateTimeFormatter";
+import { getLanguage, localizeError } from "../localization/localize";
+import { DirectionLabels } from "../config/DirectionLabels";
 
 (window as any).customCards = (window as any).customCards || [];
 (window as any).customCards.push({
@@ -39,8 +41,8 @@ console.info(
 @customElement('windrose-card')
 export class WindRoseCard extends LitElement {
 
-    public static getStubConfig(): Record<string, unknown> {
-        return CardConfigWrapper.exampleConfig();
+    public static getStubConfig(hass?: HomeAssistant): Record<string, unknown> {
+        return CardConfigWrapper.exampleConfig(getLanguage(hass));
     }
     
     private readonly log = new Log2("WindRoseCard");
@@ -74,7 +76,7 @@ export class WindRoseCard extends LitElement {
 
     setConfig(config: any): void {
         this.config = config;
-        this.cardConfig = new CardConfigWrapper(config);
+        this.cardConfig = new CardConfigWrapper(config, getLanguage(this._hass));
 
         Log.setLevel(this.cardConfig.logLevel);
         Log2.setLevel(this.cardConfig.logLevel);
@@ -89,6 +91,11 @@ export class WindRoseCard extends LitElement {
     }
 
     set hass(hass: HomeAssistant) {
+        const language = getLanguage(hass);
+        if (this.config && this.cardConfig && getLanguage(this._hass) !== language) {
+            this.cardConfig.directionLabels = DirectionLabels.fromConfig(this.config.direction_labels, language);
+            this.refreshCardConfigOnHass = true;
+        }
         this.log.method('hass', 'refreshCardConfigOnHass', this.refreshCardConfigOnHass, 'connected', this._hass?.connection.connected);
         if (this.refreshCardConfigOnHass) {
             this.refreshCardConfigOnHass = false;
@@ -118,7 +125,7 @@ export class WindRoseCard extends LitElement {
             this.refreshMeasurements(!this.cardConfig.disableAnimations);
         } catch(e) {
             Log.error("Error during init: ", e);
-            this.errorMessage = e as string;
+            this.errorMessage = localizeError(e, getLanguage(this._hass));
             this.svg.remove();
         }
     }
@@ -352,7 +359,7 @@ export class WindRoseCard extends LitElement {
             this.log.debug('refreshData() ready, requesting update.');
             this.windRoseDirigent.renderGraphs(animate);
             this.windRoseDirigent.updateStateRender();
-            this.errorMessage = measurementHolder?.error?.message;
+            this.errorMessage = localizeError(measurementHolder?.error?.message, getLanguage(this._hass));
             this.requestUpdate();
         });
     }
@@ -362,7 +369,7 @@ export class WindRoseCard extends LitElement {
             this.log.debug('refreshData() ready requesting update.');
             this.windRoseDirigent.renderGraphs(false);
             this.windRoseDirigent.updateStateRender();
-            this.errorMessage = measurementHolder?.error?.message;
+            this.errorMessage = localizeError(measurementHolder?.error?.message, getLanguage(this._hass));
             this.requestUpdate();
             setTimeout(() => {
                 const moved = this.cardConfig.activePeriod.movePeriod(playButton.stepPeriod);
