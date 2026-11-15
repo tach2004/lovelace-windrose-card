@@ -13,7 +13,7 @@ export class ButtonBaseConfig {
 
     static fromConfig(config: CardConfigButton, defaultColors: ButtonColors) {
         if (config.button_text === undefined) {
-            throw new Error('WindRoseCard: button_text field not set for button.')
+            throw new Error('WindRoseCard: Für die Schaltfläche fehlt das Feld button_text.')
         }
         return new ButtonBaseConfig(
             config.button_text,

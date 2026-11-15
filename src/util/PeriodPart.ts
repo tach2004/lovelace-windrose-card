@@ -38,7 +38,7 @@ export class PeriodPart {
             case 'm': hours = 31 * 24 * this.value; break;
             case 'q': hours = 3 * 31 * 24 * this.value; break;
             case 'y': hours = 365 * 24 * this.value; break;
-            default: throw new Error("Unknown unit, this is a bug, please report: " + this.unit);
+            default: throw new Error("Unbekannte Einheit. Dies ist ein Programmfehler, bitte melden: " + this.unit);
         }
         if (this.direction === '-') {
             return -hours;
@@ -57,7 +57,7 @@ export class PeriodPart {
                 case 'm': return addMonths(date, this.value);
                 case 'q': return addQuarters(date, this.value);
                 case 'y': return addYears(date, this.value);
-                default: throw new Error("Unknown unit, this is a bug, please report: " + this.unit);
+                default: throw new Error("Unbekannte Einheit. Dies ist ein Programmfehler, bitte melden: " + this.unit);
             }
         } else {
             switch(this.unit) {
@@ -69,7 +69,7 @@ export class PeriodPart {
                 case 'm': return subMonths(date, this.value);
                 case 'q': return subQuarters(date, this.value);
                 case 'y': return subYears(date, this.value);
-                default: throw new Error("Unknown unit, this is a bug, please report: " + this.unit);
+                default: throw new Error("Unbekannte Einheit. Dies ist ein Programmfehler, bitte melden: " + this.unit);
             }
         }
     }

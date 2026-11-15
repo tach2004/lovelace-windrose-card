@@ -28,7 +28,7 @@ export class RoseConfig {
 
         let centerCalmPercentage = ConfigCheckUtils.checkBooleanDefaultUndefined(cardConfig?.center_calm_percentage);
         if (centerCalmPercentage !== undefined) {
-            Log.warn("center_calm_percentage config options is deprecated, use the rose_config.center_cirlce_config configuration options.");
+            Log.warn("Die Option center_calm_percentage ist veraltet; verwende die Einstellungen unter rose_config.center_circle.");
         } else {
             centerCalmPercentage = true;
         }
@@ -47,7 +47,7 @@ export class RoseConfig {
 
     private static checkWindRoseDrawNorthOffset(windrose_draw_north_offset: number | undefined): number {
         if (windrose_draw_north_offset && isNaN(windrose_draw_north_offset)) {
-            throw new Error('WindRoseCard: Invalid render direction offset, should be a number in degress between 0 and 360.');
+            throw new Error('WindRoseCard: Der Nordversatz muss eine Zahl zwischen 0 und 360 Grad sein.');
         } else if (windrose_draw_north_offset) {
             return windrose_draw_north_offset;
         }
@@ -58,7 +58,7 @@ export class RoseConfig {
         if (wind_direction_count) {
             if (isNaN(wind_direction_count) || wind_direction_count < 4 ||
                 wind_direction_count > 32) {
-                throw new Error("Wind direction count can a number between 4 and 32");
+                throw new Error("Die Anzahl der Windrichtungen muss zwischen 4 und 32 liegen.");
             }
             return wind_direction_count;
         }
