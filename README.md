@@ -11,15 +11,15 @@ Wenn eine Funktion für weitere Anwendungsfälle fehlt, kannst du dafür ein Iss
 
 Konfigurationsbeispiele mit Screenshots findest du unter [Beispiele](EXAMPLES.md).
 
-<img alt="Peview bars right" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/example/windrose-example-bottom.png?raw=true" width="482"/>
-<img alt="Peview bars right" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/example/windrose-play-demo-animated.gif?raw=true" width="482"/>
+<img alt="Vorschau: Windrose" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/example/windrose-example-bottom.png?raw=true" width="482"/>
+<img alt="Vorschau: Windrose" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/example/windrose-play-demo-animated.gif?raw=true" width="482"/>
 
 ## Installation
 
 ### HACS (empfohlen)
 
 Diese Karte ist über [HACS](https://hacs.xyz/) (Home Assistant Community Store) verfügbar.
-<small>*HACS is a third party community store and is not included in Home Assistant out of the box.*</small>
+<small>*HACS ist ein Community-Store eines Drittanbieters und gehört nicht zur Standardinstallation von Home Assistant.*</small>
 
 ### Manuelle Installation
 
@@ -195,7 +195,7 @@ Ist eine Schaltfläche dieses Typs aktiv, brauchst du das Objekt `data_period` n
 | new_row                    |             boolean             |  false  |    -     | Beginnt für diese und alle folgenden Schaltflächen eine neue Zeile. |
 | colors                     | [object](#objekt-button_colors) |         |    -     | Individuelle Schaltflächenfarben; überschreiben die Standardfarben aus `buttons_config`. |
 | active                     |             boolean             |  false  |    -     | Ob die Schaltfläche anfänglich aktiv ist und damit den Startzeitraum bestimmt. |
-| The data period properties |                                 |         |    -     | Zeitraumoptionen wie im [Objekt data_period](#objekt-data_period). |
+| Die Zeitraumoptionen |                                 |         |    -     | Zeitraumoptionen wie im [Objekt data_period](#objekt-data_period). |
 
 ```yaml
 buttons_config:
@@ -241,7 +241,7 @@ Für den Wechsel zwischen den Zeitfenstern werden keine zusätzlichen Übergangs
 | type                       |                     string                     |         |    x     | Fester Wert: `period_shift_play`. |
 | button_text                |                     string                     |         |    x     | Text der Schaltfläche. |
 | colors                     |        [object](#objekt-button_colors)         |         |    -     | Individuelle Schaltflächenfarben; überschreiben die Standardfarben aus `buttons_config`. |
-| The data period properties |                                                |         |    x     | Zeitraumoptionen wie im [Objekt data_period](#objekt-data_period); sie bestimmen den gesamten Animationszeitraum. |
+| Die Zeitraumoptionen |                                                |         |    x     | Zeitraumoptionen wie im [Objekt data_period](#objekt-data_period); sie bestimmen den gesamten Animationszeitraum. |
 | step_period                | string [(period code)](#zeitraumcodes-erklärt) |         |    x     | Zeitlicher Abstand zwischen zwei Animationsbildern. |
 | window_period              | string [(period code)](#zeitraumcodes-erklärt) |         |    x     | Dauer des Zeitfensters, für das die Windrose jeweils berechnet wird. |
 | delay                      |                     number                     |         |    x     | Verzögerung zwischen Bildern in Sekunden, ohne Berechnungszeit. |
@@ -403,19 +403,19 @@ Bei numerischen Zuständen nimmt die Karte Gradwerte an. Besteht der Zustand aus
 | use_statistics               |                boolean                 |            false             |    -     | Verwendet Home-Assistant-Statistikdaten in 5-Minuten-Schritten, sofern verfügbar. Kann den Abruf beschleunigen. |
 | statistics_period            |                 string                 |           5minute            |    -     | Statistikintervall: `5minute`, `hour`, `day`, `week`, `month` oder `year`. |
 | statistics_type              |                 string                 |             mean             |    -     | Statistiktyp: `min`, `max` oder `mean`. |
-| use_for_windrose             |                boolean                 |      first entity true       |    -     | Ist diese Option `true`, werden die Messwerte dieser Entität für die Windrose verwendet. Eine Änderung ist über `windrose_speed_selector` möglich. |
+| use_for_windrose             |                boolean                 |      erste Entität: true       |    -     | Ist diese Option `true`, werden die Messwerte dieser Entität für die Windrose verwendet. Eine Änderung ist über `windrose_speed_selector` möglich. |
 | speed_unit                   |   [string](#unterstützte-windgeschwindigkeitseinheiten)    |             auto             |    -     | Eingabeeinheit der Windgeschwindigkeit. Siehe die Tabelle der unterstützten Einheiten. Ist `speed_range_beaufort` nicht angegeben oder `true`, werden Beaufort-Bereiche dargestellt. |
 | windspeed_bar_full           |                boolean                 |             true             |    -     | Bei `true` werden alle Geschwindigkeitsbereiche gezeichnet, bei `false` nur Bereiche mit Messwerten. |
 | output_speed_unit            |                 string                 |             mps              |    -     | Ausgabeeinheit der Karte, siehe die unterstützten Windgeschwindigkeitseinheiten. |
 | output_speed_unit_label      |                 string                 |                              |    -     | Überschreibt den angezeigten Namen der Ausgabeeinheit. |
 | speed_range_beaufort         |                boolean                 |             true             |    -     | Verwendet Beaufort-Bereiche. Deren Grenzen hängen von der Ausgabeeinheit ab. Für andere Bereiche `false` setzen. |
-| speed_range_step             |                 number                 | depends on output speed unit |    -     | Schrittweite der Geschwindigkeitsbereiche. Nicht bei der Ausgabeeinheit `bft` möglich. |
-| speed_range_max              |                 number                 | depends on output speed unit |    -     | Maximaler Bereichswert. Beispiel: Schrittweite 5 und Maximum 20 erzeugen 0–5, 5–10, 10–15, 15–20 und 20–unendlich. |
-| speed_ranges                 |     [object](#objekt-speed_ranges)     | depends on output speed unit |    -     | Individuelle Geschwindigkeitsbereiche und Farben definieren. |
+| speed_range_step             |                 number                 | abhängig von der Ausgabeeinheit |    -     | Schrittweite der Geschwindigkeitsbereiche. Nicht bei der Ausgabeeinheit `bft` möglich. |
+| speed_range_max              |                 number                 | abhängig von der Ausgabeeinheit |    -     | Maximaler Bereichswert. Beispiel: Schrittweite 5 und Maximum 20 erzeugen 0–5, 5–10, 10–15, 15–20 und 20–unendlich. |
+| speed_ranges                 |     [object](#objekt-speed_ranges)     | abhängig von der Ausgabeeinheit |    -     | Individuelle Geschwindigkeitsbereiche und Farben definieren. |
 | dynamic_speed_ranges         | [object](#objekt-dynamic_speed_ranges) |                              |    -     | Dynamische Schrittweite und Obergrenze abhängig von der mittleren Windgeschwindigkeit. |
 | current_speed_arrow          |                boolean                 |            false             |    -     | Animiert einen Pfeil auf dem Balken, der die aktuelle Windgeschwindigkeit zeigt. |
 | current_speed_arrow_size     |                 number                 |              40              |    -     | Größe des Pfeils für die aktuelle Geschwindigkeit. |
-| current_speed_arrow_location |                 string                 |        above or left         |    -     | Position des Pfeils: `above`, `below`, `left` oder `right`; abhängig von der Balkenausrichtung. |
+| current_speed_arrow_location |                 string                 |        above oder left         |    -     | Position des Pfeils: `above`, `below`, `left` oder `right`; abhängig von der Balkenausrichtung. |
 | bar_render_scale             |    [string](#skalierungsoptionen)     |      windspeed_relative      |    -     | Skalierung der Balkensegmente: `absolute`, `windspeed_relative` oder `percentage_relative`. |
 | bar_label_text_size          |                 number                 |              40              |    -     | Schriftgröße für den Balkennamen und die Einheit. |
 | bar_speed_text_size          |                 number                 |              40              |    -     | Schriftgröße der Geschwindigkeitswerte. |
@@ -426,11 +426,11 @@ Bei numerischen Zuständen nimmt die Karte Gradwerte an. Besteht der Zustand aus
 
 ### Skalierungsoptionen:
 
-| Name | Beschreibung | Standard | Default |
+| Name | Beschreibung | Vorschau | Standard |
 |---------------------|-----------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-------:|
-| absolute            | Die Segmente werden gleichmäßig verteilt. | <img alt="Pevriew" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/example/windbar-example-absolute.png?raw=true" width="412"/>            |    | 
-| windspeed_relative  | Renders the segments relative to the speedrange size.     | <img alt="Vorschau" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/example/windbar-example-windspeed-relative.png?raw=true" width="412"/>  | Die Segmentbreite richtet sich nach der Größe des jeweiligen Geschwindigkeitsbereichs. | 
-| percentage_relative | Die Segmentbreite richtet sich nach dem gemessenen Prozentanteil. | <img alt="Pevriew" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/example/windbar-example-percentage-relative.png?raw=true" width="412"/> |    | 
+| absolute            | Die Segmente werden gleichmäßig verteilt. | <img alt="Vorschau" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/example/windbar-example-absolute.png?raw=true" width="412"/>            |    | 
+| windspeed_relative  | Die Segmentbreite richtet sich nach der Größe des jeweiligen Geschwindigkeitsbereichs.     | <img alt="Vorschau" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/example/windbar-example-windspeed-relative.png?raw=true" width="412"/>  | x | 
+| percentage_relative | Die Segmentbreite richtet sich nach dem gemessenen Prozentanteil. | <img alt="Vorschau" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/example/windbar-example-percentage-relative.png?raw=true" width="412"/> |    | 
 
 
 ### Unterstützte Windgeschwindigkeitseinheiten:
@@ -443,12 +443,12 @@ Falls dein Sensor eine Einheit verwendet, die in der folgenden Tabelle fehlt, er
 | Name | Beschreibung | Eingabe | Ausgabe | Erkannte HA-Einheiten |
 |----------|:------------------:|:-----:|:------:|-------------------------------------|
 | auto     | Automatisch. |   x   |        |                                     |
-| Beaufort |      Beaufort      |   x   |        | Beaufort. |
-| mps      | metres per second  |   x   |   x    | Meter pro Sekunde. |
-| kph      | kilometer per hour |   x   |   x    | Kilometer pro Stunde. |
-| mph      |   miles per hour   |   x   |   x    | Meilen pro Stunde. |
-| fps      |  feet per second   |   x   |   x    | Fuß pro Sekunde. |
-| knot     |       knots        |   x   |   x    | Knoten. |
+| Beaufort | Beaufort-Skala. |   x   |        | Beaufort |
+| mps      | Meter pro Sekunde. |   x   |   x    | mps, m/s |
+| kph      | Kilometer pro Stunde. |   x   |   x    | kph, km/h |
+| mph      | Meilen pro Stunde. |   x   |   x    | mps, m/h |
+| fps      | Fuß pro Sekunde. |   x   |   x    | fps, f/s |
+| knot     | Knoten. |   x   |   x    | knots, kts, knts, kn, knot |
 
 
 ### Objekt speed_ranges
@@ -459,7 +459,7 @@ Falls dein Sensor eine Einheit verwendet, die in der folgenden Tabelle fehlt, er
 | color      | string |         |    x     | CSS-Farbwert. |
 
 <details>
-<summary>It can be convenient to generate speed_ranges using Python. Credits to @reidprichard</summary>
+<summary>Mit Python lassen sich speed_ranges bequem erzeugen. Vielen Dank an @reidprichard.</summary>
 
 Gib den Namen einer Farbskala von [dieser Seite](https://matplotlib.org/stable/gallery/color/colormap_reference.html) ein.
 Lege zusätzlich die obere und untere Grenze sowie die Schrittweite der Bereiche fest.
@@ -584,7 +584,7 @@ Einige Sensoren melden beispielsweise `CALM` oder `VRB`, wenn keine eindeutige W
 |----------------------------|:-------:|:-------:|:--------:|-------------------------------------------------------------------------------------------------------------------------------------------------|
 | show_arrow                 | boolean |  false  |    x     | Aktiviert die Anzeige des Pfeils. |
 | arrow_direction            | string  |   in    |          | Pfeilrichtung: `in` nach innen zur Mitte, `out` nach außen. |
-| arrow_locatoin             | string  |  from   |          | Pfeilposition: `from` am Ursprung der Windrichtung, `to` am Ziel (wohin der Wind weht). |
+| arrow_location             | string  |  from   |          | Pfeilposition: `from` am Ursprung der Windrichtung, `to` am Ziel (wohin der Wind weht). |
 | arrow_size                 | number  |   50    |          | Größe des Pfeils. |
 | center_circle_size         | number  |   30    |          | Größe des Mittelkreises, wenn `center_calm_percentage` nicht verwendet wird. Dann erscheint ein roter Kreis um die Prozentangabe. |
 | hide_direction_below_speed | number  |         |          | Wenn die aktuelle Windgeschwindigkeit kleiner oder gleich diesem Wert ist, wird der Pfeil ausgeblendet und stattdessen ein roter Punkt oder Kreis angezeigt. |                                                                                                                                      |
