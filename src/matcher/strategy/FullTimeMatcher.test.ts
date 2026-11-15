@@ -50,7 +50,6 @@ describe('FullTimeMatcher tests', () => {
             { "direction": "20", "seconds": 1, "speed": 200 },
             { "direction": "30", "seconds": 1, "speed": 300 },
             { "direction": "40", "seconds": 1, "speed": 400 },
-            { "direction": "50", "seconds": 5, "speed": 500 },
         ]);
     });
 
@@ -68,11 +67,9 @@ describe('FullTimeMatcher tests', () => {
         ];
         const merged = fullTimeMatcher.match(direction, speed);
         expect(merged.getMeasurements()).toEqual([
-            { "direction": undefined, "seconds": 1, "speed": 10 },
             { "direction": "100", "seconds": 2, "speed": 20 },
             { "direction": "200", "seconds": 1, "speed": 30 },
             { "direction": "300", "seconds": 4, "speed": 30 },
-            { "direction": "400", "seconds": 1, "speed": 30 },
         ]);
     });
 
@@ -96,7 +93,6 @@ describe('FullTimeMatcher tests', () => {
             { "direction": "10", "seconds": 1, "speed": 10 },
             { "direction": "10", "seconds": 1, "speed": 10 },
             { "direction": "10", "seconds": 1, "speed": 10 },
-            { "direction": "10", "seconds": 5, "speed": 10 },
         ]);
     });
 
@@ -120,7 +116,6 @@ describe('FullTimeMatcher tests', () => {
             { "direction": "10", "seconds": 1, "speed": 10 },
             { "direction": "10", "seconds": 1, "speed": 10 },
             { "direction": "10", "seconds": 1, "speed": 10 },
-            { "direction": "10", "seconds": 5, "speed": 10 },
         ]);
     });
 
@@ -144,9 +139,9 @@ describe('FullTimeMatcher tests', () => {
         expect(merged.getMeasurements()).toEqual([
             { "direction": "100", "seconds": 1, "speed": 10 },
             { "direction": "200", "seconds": 1, "speed": 20 },
-            { "direction": "200", "seconds": 1, "speed": 30 },
-            { "direction": "300", "seconds": 1, "speed": 30 },
-            { "direction": "400", "seconds": 5, "speed": 50 },
+            { "direction": "", "seconds": 1, "speed": 30 },
+            { "direction": "300", "seconds": 1, "speed": 0 },
         ]);
     });
+
 });

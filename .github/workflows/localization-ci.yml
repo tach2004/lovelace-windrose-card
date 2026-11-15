@@ -1,7 +1,13 @@
-name: TypeScript and localization tests
+name: TypeScript, full tests, and build
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
+
+permissions:
+  contents: read
 
 jobs:
   test:
@@ -15,5 +21,9 @@ jobs:
       - run: npm ci
       - name: TypeScript typecheck
         run: npm run typecheck
-      - name: German and English localization tests
-        run: npx jest --runInBand src/localization/localize.test.ts
+      - name: All Jest tests
+        run: npm test
+      - name: Production JavaScript build
+        run: npm run esbuild
+      - name: Validate built release asset
+        run: test -s build/windrose-card.js
