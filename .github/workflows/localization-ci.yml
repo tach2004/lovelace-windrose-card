@@ -23,7 +23,9 @@ jobs:
         run: npm run typecheck
       - name: All Jest tests
         run: npm test
-      - name: Production JavaScript build
-        run: npm run esbuild
-      - name: Validate built release asset
-        run: test -s build/windrose-card.js
+      - name: Build the committed Home Assistant JavaScript file
+        run: npm run build:repo
+      - name: Verify committed JS matches the TypeScript source
+        run: |
+          test -s windrose-card.js
+          git diff --exit-code -- windrose-card.js

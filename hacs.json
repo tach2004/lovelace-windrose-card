@@ -1,4 +1,5 @@
 {
   "name": "Wind Rose Card",
-  "filename": "windrose-card.js"
+  "filename": "windrose-card.js",
+  "content_in_root": true
 }
