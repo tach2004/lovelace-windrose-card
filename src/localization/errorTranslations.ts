@@ -487,5 +487,29 @@ export const germanErrorReplacements: ReadonlyArray<readonly [string, string]> =
     [
         " unit: ",
         " Einheit: "
+    ],
+    [
+        "WindRoseCard: button_text field not set for button.",
+        "WindRoseCard: Für die Schaltfläche fehlt das Feld button_text."
+    ],
+    [
+        "Unknown speed unit: ",
+        "Unbekannte Geschwindigkeitseinheit: "
+    ],
+    [
+        "Could not translate cardinal direction, letters not found in config wind_direction_entity.direction_letters",
+        "Windrichtung konnte nicht umgewandelt werden; Buchstaben fehlen in wind_direction_entity.direction_letters."
+    ],
+    [
+        "Can not convert wind direction to cardinal letters, direction: ",
+        "Windrichtung kann nicht in Himmelsrichtungsbuchstaben umgewandelt werden; Wert: "
+    ],
+    [
+        "List to get max from is empty.",
+        "Die Liste zur Bestimmung des Maximalwerts ist leer."
+    ],
+    [
+        "Error during init: ",
+        "Fehler bei der Initialisierung: "
     ]
 ];
