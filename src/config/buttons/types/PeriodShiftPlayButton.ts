@@ -24,19 +24,19 @@ export class PeriodShiftPlayButton
         const baseConfig = ButtonBaseConfig.fromConfig(button, defaultColors);
         const period = Period.fromConfig(button);
         if (!period) {
-            throw new Error("Period not set for period shift play button.");
+            throw new Error("Für die Wiedergabe-Schaltfläche wurde kein Zeitraum festgelegt.");
         }
         let stepPeriod: string;
         if (PeriodCodeHelper.check('step_period', button.step_period)) {
             stepPeriod = button.step_period;
         } else {
-            throw new Error('WindRoseCard: step_period not set');
+            throw new Error('WindRoseCard: step_period wurde nicht festgelegt.');
         }
         let windowPeriod: string = '';
         if (PeriodCodeHelper.check('window_period', button.window_period)) {
             windowPeriod = button.window_period;
         } else {
-            throw new Error('WindRoseCard: window_period not set');
+            throw new Error('WindRoseCard: window_period wurde nicht festgelegt.');
         }
         const delay = ConfigCheckUtils.checkNumber("delay", button.delay);
 

@@ -30,7 +30,7 @@ export class PeriodSelector {
     private static checkLocation(location: string | undefined) {
         if (location) {
             if (location !== 'top' && location !== 'bottom' && location !== 'top-below-text' && location !== 'bottom-above-text') {
-                throw new Error('WindRoseCard: Period selector location should be top, top-below-text, bottom or bottom-above-text, not ' + location);
+                throw new Error('WindRoseCard: Die Position der Zeitraum-Auswahl muss top, top-below-text, bottom oder bottom-above-text sein, nicht ' + location);
             }
             return location;
         }
@@ -44,23 +44,23 @@ export class PeriodSelector {
         const checkedButtons: Button[] = [];
         buttons.forEach((button, index) => {
             if (ConfigCheckUtils.checkNumberOrUndefined('Period ' + index, button.hours) === undefined) {
-                throw new Error('WindRoseCard: Button hours should be filled.');
+                throw new Error('WindRoseCard: Für die Schaltfläche muss hours angegeben werden.');
             }
             if (button.hours < 1) {
-                throw new Error('WindRoseCard: Button hours should be a number above 0');
+                throw new Error('WindRoseCard: hours muss eine Zahl größer als 0 sein.');
             }
             if (ConfigCheckUtils.checkString(button.title) === undefined) {
-                throw new Error('WindRoseCard: Button title should be filled.');
+                throw new Error('WindRoseCard: Der Schaltflächentext darf nicht leer sein.');
             }
             checkedButtons.push(new Button(button.hours, button.title, button.active));
         });
         if (checkedButtons.length < 2) {
-            throw new Error('WindRoseCard: The period_selector should have at least 2 selectable buttons');
+            throw new Error('WindRoseCard: period_selector benötigt mindestens zwei auswählbare Schaltflächen.');
         }
 
         const activeButtons = checkedButtons.filter(button => button.active).length;
         if (activeButtons > 1) {
-            throw new Error('WindRoseCard: Only one button in the period selector should be active.');
+            throw new Error('WindRoseCard: In period_selector darf nur eine Schaltfläche aktiv sein.');
         } else if (activeButtons === 0) {
             checkedButtons[0].active = true;
         }

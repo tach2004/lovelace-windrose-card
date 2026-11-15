@@ -46,7 +46,7 @@ export class PresetPeriodHelper {
                 const lastYearDate = subYears(now, 1);
                 return [startOfYear(lastYearDate), endOfYear(lastYearDate)];
             default:
-                throw new Error('Invalid preset period: ' + preset);
+                throw new Error('Ungültiger vordefinierter Zeitraum: ' + preset);
         }
 
     }

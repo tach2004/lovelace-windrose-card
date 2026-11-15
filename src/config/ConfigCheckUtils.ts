@@ -4,7 +4,7 @@ export class ConfigCheckUtils {
         if (number === null || number === undefined) {
             return undefined;
         } else if (isNaN(+number as any)) {
-            throw new Error(`Cnofiguration ${name} is not a number: ` + number);
+            throw new Error(`Konfigurationswert ${name} ist keine Zahl: ` + number);
         }
         return +number;
     }
@@ -18,7 +18,7 @@ export class ConfigCheckUtils {
 
     public static checkNumber(name: string, number: string | number | undefined): number {
         if (number === null || number === undefined || isNaN(+number as any)) {
-            throw new Error(`Cnofiguration ${name} is not a number: ` + number);
+            throw new Error(`Konfigurationswert ${name} ist keine Zahl: ` + number);
         }
         return +number;
     }
@@ -71,7 +71,7 @@ export class ConfigCheckUtils {
         } else  if (period === '5minute' || period === 'hour' || period === 'day' || period === 'week' || period === 'month' || period === 'year') {
             return period;
         }
-        throw new Error(`statistics_period ${period} is invalid, should be one of 5minute, hour, day, week, month, year`);
+        throw new Error(`Ungültiger Wert für statistics_period (${period}); erlaubt sind 5minute, hour, day, week, month, year.`);
     }
 
     public static checkStatisticsType(statsType: string | undefined | null): string {
@@ -80,7 +80,7 @@ export class ConfigCheckUtils {
         } else  if (statsType === 'min' || statsType === 'mean' || statsType === 'max') {
             return statsType;
         }
-        throw new Error(`statistics_period ${statsType} is invalid, should be one of min, mean or max`);
+        throw new Error(`Ungültiger Statistiktyp (${statsType}); erlaubt sind min, mean oder max.`);
     }
 
     public static checkDateString(date: string): boolean {
