@@ -22,6 +22,17 @@ The card detects the Home Assistant frontend language (`hass.locale.language`): 
 
 New cards created in the card picker include `localize_defaults: true`, which lets built-in default labels (title, period buttons, speed / direction labels and compass directions) follow language changes. To enable this on an existing card, add `localize_defaults: true` in its YAML. It only changes recognized default text; custom wording stays unchanged. The card picker entry itself remains English until Home Assistant provides the card's locale at registration time.
 
+
+### Releases of this fork (German/English)
+
+The default HACS listing points to the **upstream** project, not this fork. To install the localized version, add `tach2004/lovelace-windrose-card` to HACS as a **Dashboard** custom repository. Do not load the upstream and fork JavaScript resources at the same time.
+
+**Publishing:** merging a PR does not create a release. Create a new GitHub Release from the current `main` branch and use a fork-specific tag such as `v2.8.0-de.1` to avoid colliding with upstream version tags. After publishing, GitHub Actions builds `windrose-card.js`, uploads it to that release and runs HACS validation. A release is only ready for HACS when the JS asset is present and validation has succeeded.
+
+The existing `v2.8.0` release was tagged before localization was merged and has no JS asset; it must not be used as the localized version.
+
+**Upstream updates:** merge changes from `aukedejong/lovelace-windrose-card` into a new branch of this fork and open a PR against `main`. Keep the original English code and the fork-specific translations separate to minimize conflicts.
+
 ## Install
 
 ### HACS (recommended)

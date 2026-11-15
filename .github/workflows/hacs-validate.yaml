@@ -1,17 +1,51 @@
-name: HACS Validate
+name: Build Release and HACS Validate
 
+# HACS checks a published JS file, not the source-only branches.
+# The original upstream HACS workflow ran on each push and could never pass
+# there because windrose-card.js is generated and deliberately gitignored.
 on:
-  push:
-  pull_request:
-  schedule:
-    - cron: "0 0 * * *"
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Existing release tag to rebuild (must contain the localized code)'
+        required: true
+        type: string
+
+permissions:
+  contents: write
 
 jobs:
-  validate:
-    runs-on: "ubuntu-latest"
+  build-and-validate:
+    runs-on: ubuntu-latest
     steps:
-      - uses: "actions/checkout@v2"
-      - name: HACS validation
-        uses: "hacs/action@main"
+      - name: Checkout the exact release tag
+        uses: actions/checkout@v4
         with:
-          category: "plugin"
+          ref: ${{ github.event.release.tag_name || inputs.tag }}
+          persist-credentials: false
+      - name: Ensure the tag contains fork localization
+        run: test -f src/localization/localize.ts
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run esbuild
+      - name: Confirm distributable exists
+        run: test -s build/windrose-card.js
+      - name: Upload JavaScript to the GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_TAG: ${{ github.event.release.tag_name || inputs.tag }}
+        run: |
+          gh release upload "$RELEASE_TAG" build/windrose-card.js --clobber
+          gh release view "$RELEASE_TAG" --json assets --jq '.assets[].name' | grep -Fxq 'windrose-card.js'
+      - name: HACS validates published release asset
+        if: github.event_name == 'release'
+        uses: hacs/action@main
+        with:
+          category: plugin

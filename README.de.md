@@ -22,6 +22,17 @@ Die Karte verwendet die in Home Assistant eingestellte Oberflächensprache (`has
 
 Neue Karten aus dem Karten-Dialog erhalten automatisch `localize_defaults: true`. Damit wechseln die **Standardbeschriftungen** für Titel, Zeitraum-Schaltflächen, Windgeschwindigkeit, Windrichtung und Kompass mit der HA-Sprache. Für vorhandene Karten kannst du `localize_defaults: true` in die YAML-Konfiguration aufnehmen. Individuell vergebene Bezeichnungen werden nicht verändert. Die Karte selbst erscheint im Karten-Auswahldialog weiterhin unter ihrem englischen Namen.
 
+
+### Releases dieses Forks (Deutsch/Englisch)
+
+Der reguläre HACS-Katalog verweist auf das **Originalprojekt**, nicht auf diesen Fork. Für die deutsche Version `tach2004/lovelace-windrose-card` als **benutzerdefiniertes Repository** in HACS vom Typ **Dashboard** hinzufügen. Nicht gleichzeitig die JavaScript-Ressourcen von Original und Fork laden.
+
+**Veröffentlichung:** Ein Merge erstellt kein Release. Erstelle ein neues GitHub-Release vom aktuellen Branch `main` und verwende einen eindeutigen Fork-Tag, beispielsweise `v2.8.0-de.1`. So entstehen keine Tag-Konflikte mit dem Originalprojekt. Nach dem Veröffentlichen erstellt GitHub Actions automatisch die `windrose-card.js`, hängt sie ans Release an und führt die HACS-Validierung aus. Erst wenn das JS-Asset vorhanden und die Prüfung erfolgreich ist, ist das Release bereit.
+
+Das vorhandene Release `v2.8.0` wurde vor dem Übersetzungs-Merge getaggt und enthält keine JS-Datei. Es ist **nicht** die lokalisierte Version.
+
+**Updates vom Original:** Änderungen aus `aukedejong/lovelace-windrose-card` zunächst in einen neuen Branch übernehmen und einen PR gegen `main` erstellen. Englische Originaltexte und Übersetzungen bleiben getrennt, um Merge-Konflikte zu minimieren.
+
 ## Installation
 
 ### HACS (empfohlen)
