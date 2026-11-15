@@ -1,29 +1,44 @@
 name: Build Release and HACS Validate
 
-# HACS checks a published JS file, not the source-only branches.
-# The original upstream HACS workflow ran on each push and could never pass
-# there because windrose-card.js is generated and deliberately gitignored.
+# The fork ships compiled JS through its own GitHub Releases, not on source
+# branches. Create a fork-specific tag (vX.Y.Z-de.N); the workflow will make
+# the release with its JS asset before running the HACS validation.
 on:
+  push:
+    tags:
+      - 'v*-de.*'
   release:
     types: [published]
   workflow_dispatch:
     inputs:
       tag:
-        description: 'Existing release tag to rebuild (must contain the localized code)'
+        description: 'Existing fork release tag to rebuild'
         required: true
         type: string
 
 permissions:
   contents: write
 
+concurrency:
+  group: windrose-release-${{ github.event.release.tag_name || inputs.tag || github.ref_name }}
+  cancel-in-progress: false
+
 jobs:
   build-and-validate:
     runs-on: ubuntu-latest
     steps:
+      - name: Check fork release tag format
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name || inputs.tag || github.ref_name }}
+        run: |
+          if [[ ! "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+-de\.[0-9]+$ ]]; then
+            echo "Only fork-specific tags such as v2.8.0-de.1 are supported."
+            exit 1
+          fi
       - name: Checkout the exact release tag
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.release.tag_name || inputs.tag }}
+          ref: ${{ github.event.release.tag_name || inputs.tag || github.ref_name }}
           persist-credentials: false
       - name: Ensure the tag contains fork localization
         run: test -f src/localization/localize.ts
@@ -37,15 +52,26 @@ jobs:
       - run: npm run esbuild
       - name: Confirm distributable exists
         run: test -s build/windrose-card.js
-      - name: Upload JavaScript to the GitHub Release
+      - name: Create or complete GitHub Release with bundled JS
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RELEASE_TAG: ${{ github.event.release.tag_name || inputs.tag }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ github.event.release.tag_name || inputs.tag || github.ref_name }}
         run: |
-          gh release upload "$RELEASE_TAG" build/windrose-card.js --clobber
+          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            if ! gh release view "$RELEASE_TAG" --json assets --jq '.assets[].name' | grep -Fxq 'windrose-card.js'; then
+              gh release upload "$RELEASE_TAG" build/windrose-card.js
+            else
+              echo "Release already contains windrose-card.js; leaving the existing asset untouched."
+            fi
+          else
+            gh release create "$RELEASE_TAG" build/windrose-card.js \
+              --title "$RELEASE_TAG" \
+              --notes "Fork release with automatic German/English Home Assistant localization."
+          fi
+          gh release edit "$RELEASE_TAG" --latest
           gh release view "$RELEASE_TAG" --json assets --jq '.assets[].name' | grep -Fxq 'windrose-card.js'
-      - name: HACS validates published release asset
-        if: github.event_name == 'release'
+      - name: HACS validates released JavaScript
         uses: hacs/action@main
         with:
           category: plugin

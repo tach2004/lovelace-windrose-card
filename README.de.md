@@ -27,7 +27,7 @@ Neue Karten aus dem Karten-Dialog erhalten automatisch `localize_defaults: true`
 
 Der reguläre HACS-Katalog verweist auf das **Originalprojekt**, nicht auf diesen Fork. Für die deutsche Version `tach2004/lovelace-windrose-card` als **benutzerdefiniertes Repository** in HACS vom Typ **Dashboard** hinzufügen. Nicht gleichzeitig die JavaScript-Ressourcen von Original und Fork laden.
 
-**Veröffentlichung:** Ein Merge erstellt kein Release. Erstelle ein neues GitHub-Release vom aktuellen Branch `main` und verwende einen eindeutigen Fork-Tag, beispielsweise `v2.8.0-de.1`. So entstehen keine Tag-Konflikte mit dem Originalprojekt. Nach dem Veröffentlichen erstellt GitHub Actions automatisch die `windrose-card.js`, hängt sie ans Release an und führt die HACS-Validierung aus. Erst wenn das JS-Asset vorhanden und die Prüfung erfolgreich ist, ist das Release bereit.
+**Veröffentlichung:** Ein Merge allein erstellt kein Release. Erstelle einen **eigenen Fork-Tag vom aktuellen `main`**, beispielsweise `v2.8.0-de.1`, und pushe ihn. GitHub Actions erstellt dann **automatisch das GitHub-Release**, baut und ergänzt `windrose-card.js`, markiert es als **Latest Release** und prüft HACS. Alternativ kannst du das Release mit diesem Tag über die GitHub-Oberfläche veröffentlichen; die Automation ergänzt anschließend die JS-Datei. **Nicht** als „Pre-release“ markieren. Der Tag muss auf den bereits gemergten Fork-Code zeigen. Erst wenn Asset und Prüfung erfolgreich sind, ist das Release bereit.
 
 Das vorhandene Release `v2.8.0` wurde vor dem Übersetzungs-Merge getaggt und enthält keine JS-Datei. Es ist **nicht** die lokalisierte Version.
 

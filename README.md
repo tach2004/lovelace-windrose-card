@@ -27,7 +27,7 @@ New cards created in the card picker include `localize_defaults: true`, which le
 
 The default HACS listing points to the **upstream** project, not this fork. To install the localized version, add `tach2004/lovelace-windrose-card` to HACS as a **Dashboard** custom repository. Do not load the upstream and fork JavaScript resources at the same time.
 
-**Publishing:** merging a PR does not create a release. Create a new GitHub Release from the current `main` branch and use a fork-specific tag such as `v2.8.0-de.1` to avoid colliding with upstream version tags. After publishing, GitHub Actions builds `windrose-card.js`, uploads it to that release and runs HACS validation. A release is only ready for HACS when the JS asset is present and validation has succeeded.
+**Publishing:** merging a PR by itself does not create a release. Create a **fork-specific tag from the current `main`** (for example `v2.8.0-de.1`) and push it. GitHub Actions then **automatically creates the GitHub Release**, bundles and attaches `windrose-card.js`, marks it as **Latest** and runs HACS validation. Alternatively, create and publish the same tagged Release in the GitHub interface; the workflow fills its JS asset. Do **not** mark it as a pre-release. The tag must point to the merged fork code. A release is ready for HACS only after the asset is present and validation has succeeded.
 
 The existing `v2.8.0` release was tagged before localization was merged and has no JS asset; it must not be used as the localized version.
 
