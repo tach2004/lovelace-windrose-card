@@ -1,145 +1,144 @@
 ### 2.8.0
 
-Features:
-- New current winddirection arrow options, to render the arrow different. Fixes #230
+**Neue Funktionen:**
+- Zusätzliche Einstellungen für den Pfeil der aktuellen Windrichtung, um seine Darstellung anzupassen. Behebt #230.
 
-Fixes:
-- Fix with statistics data, when the first values are 0. Fixes #228
+**Fehlerbehebungen:**
+- Fehler bei Statistikdaten korrigiert, wenn die ersten Messwerte 0 sind. Behebt #228.
 
 ### 2.7.0
 
-Fix, feature change statistics type config:
-- Type min and max is not supported by wind direction sensors, removed config options. Type mean is always used.
-  More info, see readme paragraph Home Assistant data retention
+**Korrektur der Statistiktyp-Konfiguration:**
+- Die Statistiktypen `min` und `max` werden für Windrichtungssensoren nicht unterstützt. Die entsprechenden Optionen wurden entfernt; hier wird stets `mean` verwendet.
+- Weitere Informationen im README-Abschnitt zur Datenspeicherung in Home Assistant.
 
 ### v2.6.0
-Feature:
-- Adds the possibility to use min and max Home Assistant statistics data. Before only the mean value was used.  
- Thanks sanchobear. Fixes #223
+
+**Neue Funktion:**
+- Unterstützung der Home-Assistant-Statistiktypen `min` und `max` für Windgeschwindigkeiten. Zuvor wurde nur der Mittelwert verwendet.
+
+Vielen Dank an sanchobear. Behebt #223.
 
 ### v2.4.4
-Fix:
-- Adds target ES2017 to esbuld, to support older browsers. Fixes #222
 
-Thanks tikhdm for the PR
+**Fehlerbehebung:**
+- Build-Ziel `ES2017` zu esbuild hinzugefügt, um ältere Browser zu unterstützen. Behebt #222.
+
+Vielen Dank an tikhdm für den Pull Request.
 
 ### v2.4.3
-Fix:
-- Fix errors in introduced in previous build, related to date time formatting and the log_measurement_counts option. Fixes #219
+
+**Fehlerbehebung:**
+- Im vorherigen Build eingeführte Fehler bei der Datums-/Uhrzeitformatierung und der Option `log_measurement_counts` korrigiert. Behebt #219.
 
 ### v2.4.2
-Fix:
-- Support Home Assistant locale and date/time format settings. Fixes #215 #217
+
+**Fehlerbehebung:**
+- Sprach- und Datums-/Uhrzeiteinstellungen von Home Assistant werden berücksichtigt. Behebt #215 und #217.
 
 ### v2.4.1
-Fix:
-- When switching the wind speed sensor used for the windrose, also use the speed range colors configured for that sensor.
 
--------
+**Fehlerbehebung:**
+- Beim Wechsel des für die Windrose verwendeten Geschwindigkeitssensors werden jetzt auch dessen individuell konfigurierte Bereichsfarben übernommen.
+
 ### v2.4.0
-Feature:
-- Center circle, where the calm percentage normally is displayed, can now be configured to show other values. Fixed #78
 
-Fixes:
-- Fixed situations where a lot of log message where logged. Thanks 2bitoperations
-- Auto determining input speed unit when used in corner info. Fixes #203]()
+**Neue Funktion:**
+- Der Mittelkreis, der normalerweise den Windstille-Anteil anzeigt, kann nun auch andere Werte darstellen. Behebt #78.
 
-Other:
-- Switched from rollup to esbuild.
-- Several dependency updates.
+**Fehlerbehebungen:**
+- Übermäßig viele Protokollmeldungen in bestimmten Situationen behoben. Vielen Dank an 2bitoperations.
+- Automatische Erkennung der Eingabeeinheit bei der Verwendung in Eckinformationen. Behebt #203.
 
--------
+**Sonstiges:**
+- Build-System von Rollup auf esbuild umgestellt.
+- Mehrere Abhängigkeiten aktualisiert.
+
 ### v2.3.0
-Feature:
-- When a percentage doesn't fit the windbar segment, a dot is visible. When hovering/touching the segment, a popup shows the percentage. Fixes #193
 
+**Neue Funktion:**
+- Passt eine Prozentangabe nicht in ein Balkensegment, wird ein Punkt angezeigt. Beim Berühren oder Überfahren mit dem Mauszeiger erscheint der Prozentwert in einem Popup. Behebt #193.
 
--------
 ### v2.2.0
-Features:
-- Added Period code options for minutes and seconds. Example -10s (10 seconds back) and -10mi (10 minutes back). Fixes #194
-- Added rose_opacity option, useful if you want the background to be visible. Fixes #198
 
-Fixes:
-- When using relative period config, recalculate the time period when the card auto refreshes. Fixes #199
+**Neue Funktionen:**
+- Zeitraumcodes unterstützen jetzt Minuten und Sekunden, beispielsweise `-10s` (zehn Sekunden zurück) und `-10mi` (zehn Minuten zurück). Behebt #194.
+- Option `rose_opacity` für eine durchscheinende Windrose hinzugefügt, damit Hintergrundbilder sichtbar bleiben. Behebt #198.
 
--------
+**Fehlerbehebung:**
+- Bei relativen Zeiträumen wird der Zeitraum bei automatischen Aktualisierungen der Karte neu berechnet. Behebt #199.
+
 ### v2.1.0
-Fixes:
-- Don't allow data_period and active period_selector button at the same time.. Before the active button was used for the period, the data_period was ignore.
-- Default config for new card still used the hours_to_show option. Fix the default generated config and made it use a more features.
-- Text cleanup in the examples, fixes #192
 
-Features:
-- Added clip_background_image option in rose_config. Hide the background image part outside the outer circle. Fixes #184
-- Added option new_row for button, force the button to the next row. Fixes #178
+**Fehlerbehebungen:**
+- `data_period` und eine aktive `period_selector`-Schaltfläche dürfen nicht gleichzeitig konfiguriert sein. Zuvor wurde `data_period` in diesem Fall ignoriert.
+- Die automatisch erzeugte Standardkonfiguration verwendete noch `hours_to_show`. Sie wurde korrigiert und erweitert.
+- Beispieltexte bereinigt. Behebt #192.
 
+**Neue Funktionen:**
+- Option `clip_background_image` in `rose_config`, die Teile des Hintergrundbilds außerhalb des äußeren Kreises abschneidet. Behebt #184.
+- Option `new_row` für Schaltflächen, um eine neue Zeile zu beginnen. Behebt #178.
 
--------
 ### v2.0.0
-Breaking changes:
-- Changed hours_to_show to period_back with the possibily to use other unit instead of hours. See readme Period code explained.
-- Changed from_hours_ago/to_hours_ago to from_period_ago/to_period_ago with the possibility to use other units instead of hours. See readme Period code explained.
-- Changed data_period object, period_selector is replaced by buttons_config on root level.
-  The data_period object only contains period proeprties.
-  Statistics can also be turned on here.
-- Root level options matching_strategy is a object now, with the following options:
-    - name:  name of matching strategy, the old value.
-    - time_interval:  before this was part of data_period. Only used by strategy time_frame.
-    - log_measurement_counts: before this was part of data_period.
-- Removed deprecated root level options:
-    - hours_to_show
-    - windspeed_bar_full
-    - output_speed_unit
-    - output_speed_unit_label
-    - speed_range_beaufort
-    - speed_range_step
-    - speed_range_max
-    - speed_ranges
-    - cardinal_direction_letters
-- Moved root level options to rose_config object:
-    - wind_direction_count
-    - background_image
-    - circle_legend_text_size
-    - windrose_draw_north_offset
-    - center_calm_percentage
-    - cirlce_count
-    - outer_circle_percentage
-- Removed render_relative_scale in object windspeed_entities, replaced by bar_render_scale with options: absolute, windspeed_relative and percentage_relative.
-  Percentage_relative is the new options.
-- In corner info, when displaying cardinal direction letters, converted from degrees, now default uses only NESW letters, no X.
 
-Features:
-- More options to configure a time period with a period code, exmaple: -200h (200 hours), -2w (2 weeks), -2m+1w (2 month, 1 week)
-- Button to toggle between the speed sensors used for the rose graph, fixes #172.
-- Button to shift the time period hours back or forward in time.
-- Button to start an animation of windrose over time.
-- Windbar scale options added: percentage relative, fixed #167.
-- Rose legend circle percentages configurable, default auto.
-- Added use_for_windrose in windspeed_entities object. Can be changed with a button.
-- New data_period option: preset_period
-  Possible options:
-    - today
-    - yesterday
-    - last_7_days
-    - last_30_days
-    - this_week
-    - last_week
-    - this_month
-    - last_month
-    - last_6_months
-    - this_year
-    - last_year
-- The data_period properties can be used in the buttons config. With a button click you can change the period and statistics config of the data used. Fixes #174
-- New template vars: start_date, start_time, end_date, end_time
-  The exact start and end date time of the active period.
-- Rename template vars: period-hours and period-minutes to match-period-hours and match-period-minutes. 
-- New template vars: period-hours and period-minutes, now containing the whole period, not only that of the first and last matched measurement.
-- When there is no value available for an template variable, the placeholder is removed from the template.
-- Improved error handling, when no measurements are found.
-- Button border color can now be configured. Fixes #176
-- Default generated config uses more features.
-- All removed/moved/changed config options should show an error message with helpful info, to help with the upgrade.
+**Wichtige Änderungen mit Auswirkungen auf bestehende Konfigurationen:**
+- `hours_to_show` durch `period_back` ersetzt. Neben Stunden sind jetzt weitere Zeiteinheiten möglich. Siehe README-Abschnitt zu Zeitraumcodes.
+- `from_hours_ago` und `to_hours_ago` durch `from_period_ago` und `to_period_ago` ersetzt, ebenfalls mit weiteren Zeiteinheiten.
+- Die Zeitraumkonfiguration wurde geändert: `period_selector` ist durch `buttons_config` auf oberster Ebene ersetzt. Das Objekt `data_period` enthält nur noch Zeitraumoptionen und kann zusätzlich Statistikoptionen festlegen.
+- `matching_strategy` ist nun ein Objekt mit folgenden Feldern:
+  - `name`: Name der Zuordnungsstrategie (zuvor der direkte Zeichenfolgenwert).
+  - `time_interval`: bisher Bestandteil von `data_period`, nur für die Strategie `time-frame`.
+  - `log_measurement_counts`: bisher Bestandteil von `data_period`.
+- Veraltete Optionen auf oberster Ebene entfernt:
+  - `hours_to_show`
+  - `windspeed_bar_full`
+  - `output_speed_unit`
+  - `output_speed_unit_label`
+  - `speed_range_beaufort`
+  - `speed_range_step`
+  - `speed_range_max`
+  - `speed_ranges`
+  - `cardinal_direction_letters`
+- Folgende Optionen von der obersten Ebene nach `rose_config` verschoben:
+  - `wind_direction_count`
+  - `background_image`
+  - `circle_legend_text_size`
+  - `windrose_draw_north_offset`
+  - `center_calm_percentage`
+  - `cirlce_count`
+  - `outer_circle_percentage`
+- `render_relative_scale` in `windspeed_entities` wurde durch `bar_render_scale` mit den Werten `absolute`, `windspeed_relative` und `percentage_relative` ersetzt. `percentage_relative` ist neu.
+- Bei der Grad-zu-Buchstaben-Umrechnung in den Eckinformationen werden standardmäßig nur die vier Buchstaben `NESW` verwendet, ohne `X`.
+
+**Neue Funktionen:**
+- Erweiterte Zeitraumcodes mit kombinierbaren Einheiten, z. B. `-200h` (200 Stunden), `-2w` (zwei Wochen), `-2m+1w` (zwei Monate zurück und eine Woche vor).
+- Schaltfläche zum Wechseln des für die Windrose verwendeten Geschwindigkeitssensors. Behebt #172.
+- Schaltflächen zum zeitlichen Vor- und Zurückverschieben des Zeitraums.
+- Schaltfläche zum Abspielen einer Windrosenanimation über einen Zeitraum.
+- Neue Balkenskalierung `percentage_relative`. Behebt #167.
+- Einstellbare Prozentwerte der Windrosenkreise, standardmäßig automatisch.
+- `use_for_windrose` in `windspeed_entities` zum Festlegen des für die Windrose verwendeten Sensors, der per Schaltfläche gewechselt werden kann.
+- Neue Option `data_period.preset_period` mit den möglichen Werten:
+  - `today`
+  - `yesterday`
+  - `last_7_days`
+  - `last_30_days`
+  - `this_week`
+  - `last_week`
+  - `this_month`
+  - `last_month`
+  - `last_6_months`
+  - `this_year`
+  - `last_year`
+- Zeitraum- und Statistikoptionen können auch in Schaltflächen verwendet werden. Per Klick lässt sich die Datenbasis wechseln. Behebt #174.
+- Neue Vorlagenplatzhalter für Beginn und Ende des aktiven Zeitraums: `start-date`, `start-time`, `end-date`, `end-time`.
+- Bisherige Platzhalter `period-hours` und `period-minutes` heißen nun `match-period-hours` und `match-period-minutes`.
+- Neue Platzhalter `period-hours` und `period-minutes` für die gesamte Zeitfensterdauer (nicht nur die Dauer zwischen erster und letzter zugeordneter Messung).
+- Fehlt ein Vorlagenwert, wird dessen Platzhalter aus der Ausgabe entfernt.
+- Verbesserte Fehlermeldungen, wenn keine Messwerte gefunden werden.
+- Einstellbare Rahmenfarbe von Schaltflächen. Behebt #176.
+- Erweiterte automatisch erzeugte Standardkonfiguration.
+- Für entfernte, verschobene und umbenannte Konfigurationsoptionen werden hilfreiche Fehlermeldungen zur Umstellung ausgegeben.
 
 ### v1.26.1
 Fixes:
