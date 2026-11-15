@@ -56,7 +56,7 @@ export class SpeedUnits {
     static getSpeedUnit(unit: string): SpeedUnit {
         const speedUnit = this.units.find(speedUnit => speedUnit.configs.includes(unit));
         if (speedUnit === undefined) {
-            throw new Error("Unknown speed unit: " + unit);
+            throw new Error("Unbekannte Geschwindigkeitseinheit: " + unit);
         } else {
             Log.debug(`Matched speedunit ${speedUnit.name}`);
         }

@@ -88,7 +88,7 @@ export class SvgUtil {
 
     private getMax(values: number[]): number {
         if (values.length === 0) {
-            throw new Error("List to get max from is empty.");
+            throw new Error("Die Liste zur Bestimmung des Maximalwerts ist leer.");
         }
         return values.reduce((prev, current) => (prev > current) ? prev : current);
     }

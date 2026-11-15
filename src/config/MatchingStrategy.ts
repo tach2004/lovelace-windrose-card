@@ -29,7 +29,7 @@ export class MatchingStrategy {
             if (name !== 'direction-first' && name !== 'speed-first'
                 && name !== 'time-frame' && name !== 'full-time') {
                 throw new Error('Ungültige Zuordnungsstrategie: ' + name +
-                    '. Valid options: direction-first, speed-first, time-frame and full-time');
+                    '. Gültige Werte: direction-first, speed-first, time-frame und full-time');
             }
             return name;
         }

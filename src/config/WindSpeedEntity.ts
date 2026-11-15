@@ -85,7 +85,7 @@ export class WindSpeedEntity {
                 && inputSpeedUnit !== 'knots'
                 && inputSpeedUnit !== 'auto') {
                 throw new Error('Ungültige Einheit für die Windgeschwindigkeit: ' + inputSpeedUnit +
-                    '. Valid options: mps, bft, fps, kph, mph, knots, auto');
+                    '. Gültige Werte: mps, bft, fps, kph, mph, knots, auto');
             }
             return inputSpeedUnit;
         }
@@ -100,7 +100,7 @@ export class WindSpeedEntity {
                 && outputSpeedUnit !== 'fps'
                 && outputSpeedUnit !== 'knots') {
                 throw new Error('Ungültige Ausgabeeinheit für die Windgeschwindigkeit: ' + outputSpeedUnit +
-                    '. Valid options: mps, fps, kph, mph, knots');
+                    '. Gültige Werte: mps, fps, kph, mph, knots');
             }
             return outputSpeedUnit;
         }

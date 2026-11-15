@@ -69,7 +69,7 @@ export class Period {
             throw new Error("Keine gültige Einstellung für den Datenzeitraum vorhanden.");
         }
 
-        Log.info('Using time range for data query', this.startTime, this.endTime);
+        Log.info('Verwende Zeitraum für die Datenabfrage', this.startTime, this.endTime);
     }
 
     movePeriod(period: string): boolean {
