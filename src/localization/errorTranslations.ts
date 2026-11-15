@@ -311,5 +311,93 @@ export const germanErrorReplacements: ReadonlyArray<readonly [string, string]> =
     [
         "Cardinal direction letters option should contain 4 letters.",
         "Die Option cardinal_direction_letters muss vier Buchstaben enthalten."
+    ],
+    [
+        "WindRoseCard: arrow_direction ${arrowDirection} is invalid, should be in or out",
+        "WindRoseCard: Ungültiger Wert für arrow_direction (${arrowDirection}); zulässig sind in und out."
+    ],
+    [
+        "WindRoseCard: arrow_location ${arrowLocation} is invalid, should be from or to",
+        "WindRoseCard: Ungültiger Wert für arrow_location (${arrowLocation}); zulässig sind from und to."
+    ],
+    [
+        "WindRoseCard: No wind_direction_entity.entity configured.",
+        "WindRoseCard: wind_direction_entity.entity wurde nicht konfiguriert."
+    ],
+    [
+        "WindRoseCard: No wind_direction_entity configured.",
+        "WindRoseCard: wind_direction_entity wurde nicht konfiguriert."
+    ],
+    [
+        "WindRoseCard: Invalid direction compensation, should be a number in degress between 0 and 360.",
+        "WindRoseCard: direction_compensation muss eine Zahl zwischen 0 und 360 Grad sein."
+    ],
+    [
+        "WindRoseCard: direction_letters config should be 5 letters.",
+        "WindRoseCard: direction_letters muss fünf Buchstaben enthalten."
+    ],
+    [
+        "WindRoseCard: compass direction auto rotate set to true, but no entity configured.",
+        "WindRoseCard: Die automatische Kompassdrehung ist aktiviert, aber keine Entität konfiguriert."
+    ],
+    [
+        "center_calm_percentage config options is deprecated, use the rose_config.center_cirlce_config configuration options.",
+        "Die Option center_calm_percentage ist veraltet; verwende die Einstellungen unter rose_config.center_circle."
+    ],
+    [
+        "WindRoseCard: Invalid render direction offset, should be a number in degress between 0 and 360.",
+        "WindRoseCard: Der Nordversatz muss eine Zahl zwischen 0 und 360 Grad sein."
+    ],
+    [
+        "Wind direction count can a number between 4 and 32",
+        "Die Anzahl der Windrichtungen muss zwischen 4 und 32 liegen."
+    ],
+    [
+        "WindRoseCard: Period selector location should be top, top-below-text, bottom or bottom-above-text, not ",
+        "WindRoseCard: Die Position der Zeitraum-Auswahl muss top, top-below-text, bottom oder bottom-above-text sein, nicht "
+    ],
+    [
+        "WindRoseCard: Button hours should be filled.",
+        "WindRoseCard: Für die Schaltfläche muss hours angegeben werden."
+    ],
+    [
+        "WindRoseCard: Button hours should be a number above 0",
+        "WindRoseCard: hours muss eine Zahl größer als 0 sein."
+    ],
+    [
+        "WindRoseCard: Button title should be filled.",
+        "WindRoseCard: Der Schaltflächentext darf nicht leer sein."
+    ],
+    [
+        "WindRoseCard: The period_selector should have at least 2 selectable buttons",
+        "WindRoseCard: period_selector benötigt mindestens zwei auswählbare Schaltflächen."
+    ],
+    [
+        "WindRoseCard: Only one button in the period selector should be active.",
+        "WindRoseCard: In period_selector darf nur eine Schaltfläche aktiv sein."
+    ],
+    [
+        "WindRoseCard: No buttons configured in buttons_config block.",
+        "WindRoseCard: Im Block buttons_config sind keine Schaltflächen konfiguriert."
+    ],
+    [
+        "WindRoseCard: button type should be period_selector, period_shift, period_shift_play or windrose_speed_selector",
+        "WindRoseCard: Der Schaltflächentyp muss period_selector, period_shift, period_shift_play oder windrose_speed_selector sein."
+    ],
+    [
+        "WindRoseCard: Buttons location should be top, top-below-text, bottom or bottom-above-text, not ",
+        "WindRoseCard: Ungültige Schaltflächenposition; erlaubt sind top, top-below-text, bottom oder bottom-above-text, nicht "
+    ],
+    [
+        "Period not set for period shift play button.",
+        "Für die Wiedergabe-Schaltfläche wurde kein Zeitraum festgelegt."
+    ],
+    [
+        "WindRoseCard: step_period not set",
+        "WindRoseCard: step_period wurde nicht festgelegt."
+    ],
+    [
+        "WindRoseCard: window_period not set",
+        "WindRoseCard: window_period wurde nicht festgelegt."
     ]
 ];
