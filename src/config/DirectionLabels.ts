@@ -1,6 +1,7 @@
 import {CardConfigDirectionLabels} from "../card/CardConfigDirectionLabels";
 import {CardConfigCustomDirectionLabels} from "../card/CardConfigCustomDirectionLabels";
 import {GlobalConfig} from "./GlobalConfig";
+import { cardinalDirectionLetters } from "../localization/localize";
 import {ConfigCheckUtils} from "./ConfigCheckUtils";
 import {SvgUtil} from "../renderer/SvgUtil";
 
@@ -54,7 +55,7 @@ export class DirectionLabels {
         return values.reduce((prev, current) => (prev > current) ? prev : current);
     }
 
-    static fromConfig(config: CardConfigDirectionLabels): DirectionLabels {
+    static fromConfig(config: CardConfigDirectionLabels, language?: string): DirectionLabels {
 
         const showCardinalDirections = ConfigCheckUtils.checkBooleanDefaultTrue(config?.show_cardinal_directions);
         const showIntercardinalDirections = ConfigCheckUtils.checkBooleanDefaultFalse(config?.show_intercardinal_directions);
@@ -64,7 +65,7 @@ export class DirectionLabels {
         const interCardinalLabelSize = ConfigCheckUtils.checkNummerOrDefault(config?.intercardinal_directions_text_size, GlobalConfig.defaultIntercardinalDirectionLabelSize);
         const subInterCardinalLabelSize = ConfigCheckUtils.checkNummerOrDefault(config?.secondary_intercardinal_directions_text_size, GlobalConfig.defaultSubIntercardinalDirectionLabelSize)
 
-        const letters = this.checkCardinalDirectionLetters(config?.cardinal_direction_letters);
+        const letters = this.checkCardinalDirectionLetters(config?.cardinal_direction_letters, language);
         const customLabels = { ...config?.custom_labels } as CardConfigCustomDirectionLabels;
         if (showCardinalDirections) {
             if (!customLabels.n) {
@@ -145,14 +146,14 @@ export class DirectionLabels {
         return GlobalConfig.defaultCardinalDirectionLetters;
     }
 
-    private static checkCardinalDirectionLetters(letters: string | undefined): string[] {
+    private static checkCardinalDirectionLetters(letters: string | undefined, language?: string): string[] {
         if (letters && letters.length > 0) {
             if (letters.length !== 4) {
                 throw new Error("Cardinal direction letters option should contain 4 letters.");
             }
             return letters.split('')
         }
-        return GlobalConfig.defaultCardinalDirectionLetters;
+        return cardinalDirectionLetters(language).split("");
     }
 
 }

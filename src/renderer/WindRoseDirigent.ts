@@ -28,6 +28,7 @@ import { SvgUtil } from "./SvgUtil";
 import { DimensionCalculatorBarRight } from "../dimensions/DimensionCalculatorBarRight";
 import { DimensionCalculatorBarBottom } from "../dimensions/DimensionCalculatorBarBottom";
 import { TemplateParser } from "../textblocks/TemplateParser";
+import { getLanguage } from "../localization/localize";
 import { HtmlRenderer } from "../html-renderer/HtmlRenderer";
 import { HomeAssistant } from "../util/HomeAssistant";
 import { DateTimeFormatter } from "../formatter/DateTimeFormatter";
@@ -95,7 +96,7 @@ export class WindRoseDirigent {
         this.dateTimeFormatter = dateTimeFormatter;
 
         this.measurementMatcher = new MeasurementMatcher(cardConfig, this.dateTimeFormatter);
-        this.templateParser = new TemplateParser(this.dateTimeFormatter);
+        this.templateParser = new TemplateParser(this.dateTimeFormatter, getLanguage(hass));
         this.htmlRenderer = new HtmlRenderer(cardConfig, this.templateParser);
 
         for (const windSpeedEntity of this.cardConfig.windspeedEntities) {

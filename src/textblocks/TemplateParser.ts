@@ -6,13 +6,15 @@ import { MatchedMeasurements } from "../matcher/MatchedMeasurements";
 import { EntityState } from "../entity-state-processing/EntityState";
 import { Period } from "../config/buttons/Period";
 import { DateTimeFormatter } from "../formatter/DateTimeFormatter";
+import { localize } from "../localization/localize";
 
 export class TemplateParser {
 
     templateValues: TemplateValue[] = [];
 
     constructor(
-        private readonly dateTimeFormatter: DateTimeFormatter
+        private readonly dateTimeFormatter: DateTimeFormatter,
+        private readonly language: string = "en"
     ) {}
 
     public clearValues() {
@@ -98,7 +100,7 @@ export class TemplateParser {
         
         // Weather-style description using IQR
         const maxSpeed = Math.round(matchedMeasurements.maxSpeed);
-        const gustText = maxSpeed > q3 * 1.3 ? ` gusts to ${maxSpeed}` : '';
+        const gustText = maxSpeed > q3 * 1.3 ? ` ${localize(this.language, "gustsTo")} ${maxSpeed}` : '';
         this.addOrUpdateValue('wind-description', `${Math.round(q1)}-${Math.round(q3)}${gustText}`);
     }
 
