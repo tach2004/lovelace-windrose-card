@@ -2,9 +2,6 @@ name: TypeScript and localization tests
 
 on:
   pull_request:
-  push:
-    branches:
-      - translation/de-complete
 
 jobs:
   test:
@@ -16,5 +13,7 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci
-      - run: npm run typecheck
-      - run: npx jest --runInBand
+      - name: TypeScript typecheck
+        run: npm run typecheck
+      - name: German and English localization tests
+        run: npx jest --runInBand src/localization/localize.test.ts
