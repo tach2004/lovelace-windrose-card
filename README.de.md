@@ -16,6 +16,12 @@ Konfigurationsbeispiele mit Screenshots findest du unter [Beispiele](EXAMPLES.de
 <img alt="Vorschau: Windrose" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/example/windrose-example-bottom.png?raw=true" width="482"/>
 <img alt="Vorschau: Windrose" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/example/windrose-play-demo-animated.gif?raw=true" width="482"/>
 
+### Sprache / Lokalisierung
+
+Die Karte verwendet die in Home Assistant eingestellte Oberflächensprache (`hass.locale.language`). Bei Deutsch (`de`, `de-DE`, `de-AT` usw.) erscheinen die unterstützten Standardbeschriftungen und Laufzeit-Fehlermeldungen auf Deutsch. Andere Sprachen verwenden vorerst Englisch. YAML-Schlüssel, Sensorzustände und Vorlagenplatzhalter bleiben unverändert.
+
+Neue Karten aus dem Karten-Dialog erhalten automatisch `localize_defaults: true`. Damit wechseln die **Standardbeschriftungen** für Titel, Zeitraum-Schaltflächen, Windgeschwindigkeit, Windrichtung und Kompass mit der HA-Sprache. Für vorhandene Karten kannst du `localize_defaults: true` in die YAML-Konfiguration aufnehmen. Individuell vergebene Bezeichnungen werden nicht verändert. Die Karte selbst erscheint im Karten-Auswahldialog weiterhin unter ihrem englischen Namen.
+
 ## Installation
 
 ### HACS (empfohlen)

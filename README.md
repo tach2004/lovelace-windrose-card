@@ -16,6 +16,12 @@ Look here for example configurations with screepcapture: [examples](EXAMPLES.md)
 <img alt="Peview bars right" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/example/windrose-example-bottom.png?raw=true" width="482"/>
 <img alt="Peview bars right" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/example/windrose-play-demo-animated.gif?raw=true" width="482"/>
 
+### Language / localization
+
+The card detects the Home Assistant frontend language (`hass.locale.language`): German (`de`, `de-DE`, etc.) has translated default labels and runtime error messages; English is the fallback for other languages. Configuration keys, sensor states and template placeholders are **not translated**.
+
+New cards created in the card picker include `localize_defaults: true`, which lets built-in default labels (title, period buttons, speed / direction labels and compass directions) follow language changes. To enable this on an existing card, add `localize_defaults: true` in its YAML. It only changes recognized default text; custom wording stays unchanged. The card picker entry itself remains English until Home Assistant provides the card's locale at registration time.
+
 ## Install
 
 ### HACS (recommended)
