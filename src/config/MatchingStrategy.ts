@@ -12,7 +12,7 @@ export class MatchingStrategy {
 
     static fromConfig(config: CardConfigMatchingStrategy) {
         if (typeof (config as unknown) === "string") {
-            throw new Error('matching_strategy is changed to an object, the string value is moved to property name.')
+            throw new Error('matching_strategy ist jetzt ein Objekt; der bisherige Zeichenfolgenwert gehört in die Eigenschaft name.')
         }
         const name = this.checkMatchingStrategy(config?.name);
         const logMeasurementCounts = ConfigCheckUtils.checkBooleanDefaultFalse(config?.log_measurement_counts);
@@ -28,7 +28,7 @@ export class MatchingStrategy {
         if (name) {
             if (name !== 'direction-first' && name !== 'speed-first'
                 && name !== 'time-frame' && name !== 'full-time') {
-                throw new Error('Invalid matching stategy ' + name +
+                throw new Error('Ungültige Zuordnungsstrategie: ' + name +
                     '. Valid options: direction-first, speed-first, time-frame and full-time');
             }
             return name;

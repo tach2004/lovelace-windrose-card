@@ -55,10 +55,10 @@ export class EntityChecker {
         }
         speedUnit = speedUnit?.toLowerCase();
         if (new WindSpeedConvertFunctionFactory().speedUnitRecognized(speedUnit)) {
-            Log.info(`Recognized speed unit ${speedUnit} for entity ${entity}`);
+            Log.info(`Windgeschwindigkeitseinheit ${speedUnit} für Entität ${entity} erkannt.`);
             return speedUnit;
         }
-        throw new Error(`Entity ${entity} speed unit (${speedUnit}) could not be auto determined, please configure the unit.`)
+        throw new Error(`Die Geschwindigkeitseinheit von ${entity} (${speedUnit}) konnte nicht automatisch ermittelt werden. Bitte speed_unit angeben.`)
     }
 
     private checkTextBlock(textBlock: TextBlock | undefined, hass: HomeAssistant) {
@@ -83,17 +83,17 @@ export class EntityChecker {
 
     private checkEntity(entity: string, attribute: string | undefined, statsSupport: boolean, hass: HomeAssistant) {
         if (hass.states[entity] === undefined) {
-            throw new Error(`Entity ${entity} not found.`);
+            throw new Error(`Entität ${entity} nicht gefunden.`);
         }
         if (statsSupport) {
             const stateClass = hass.states[entity].attributes['state_class'];
             if (stateClass !== 'measurement' && stateClass !== 'measurement_angle') {
-                throw new Error(`Entity ${entity} does not support long term statistics, state_class should be measurement or measurement_angle.`);
+                throw new Error(`Entität ${entity} unterstützt keine Langzeitstatistiken. state_class muss measurement oder measurement_angle sein.`);
             }
         }
         if (attribute) {
             if (hass.states[entity].attributes[attribute] == undefined) {
-                throw new Error(`Attribute ${attribute} not found in entity ${entity}.`);
+                throw new Error(`Attribut ${attribute} wurde in Entität ${entity} nicht gefunden.`);
             }
         }
     }

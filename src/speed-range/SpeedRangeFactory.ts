@@ -25,7 +25,7 @@ export class SpeedRangeFactory {
     }
 
     public static generateStepMax(step: number, max: number): SpeedRange[] {
-        Log.info(`Generate step/max speedranges, step: ${step}, max: ${max}`);
+        Log.info(`Geschwindigkeitsbereiche erstellen, Schrittweite: ${step}, Maximum: ${max}`);
         const colors = ColorUtil.getColorArray(Math.floor(max / step) + 1);
         const speedRanges = [] as SpeedRange[];
         let currentSpeed = 0;
@@ -41,7 +41,7 @@ export class SpeedRangeFactory {
 
 
     private static generateBeaufortSpeedRanges(beaufortType: SpeedUnit | undefined): SpeedRange[] {
-        Log.info(`Generate Beaufort speedranges for unit ${beaufortType?.name}`);
+        Log.info(`Beaufort-Geschwindigkeitsbereiche für Einheit ${beaufortType?.name} erstellen`);
         const colors = ColorUtil.getColorArray(13);
         if (beaufortType === undefined || beaufortType === SpeedUnits.mps) {
             return [
@@ -124,6 +124,6 @@ export class SpeedRangeFactory {
                 new SpeedRange(12, 64, -1, colors[12])
             ];
         }
-        throw new Error("No Bft reanges for type: " + beaufortType.name);
+        throw new Error("Keine Beaufort-Bereiche für den Typ: " + beaufortType.name);
     }
 }
