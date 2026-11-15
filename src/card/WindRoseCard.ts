@@ -25,8 +25,8 @@ import { DateTimeFormatter } from "../formatter/DateTimeFormatter";
 (window as any).customCards = (window as any).customCards || [];
 (window as any).customCards.push({
     type: 'windrose-card',
-    name: 'Windrose Card',
-    description: 'A card to show wind speed and direction in a windrose.',
+    name: 'Windrosen-Karte',
+    description: 'Zeigt Windgeschwindigkeit und Windrichtung als Windrose an.',
 });
 
 /* eslint no-console: 0 */
@@ -117,7 +117,7 @@ export class WindRoseCard extends LitElement {
             this.entityStateProcessor.init(this.cardConfig)
             this.refreshMeasurements(!this.cardConfig.disableAnimations);
         } catch(e) {
-            Log.error("Error during init: ", e);
+            Log.error("Fehler bei der Initialisierung: ", e);
             this.errorMessage = e as string;
             this.svg.remove();
         }

@@ -45,7 +45,7 @@ export class CardConfigWrapper {
 
     static exampleConfig(): Record<string, unknown>  {
         return {
-            title: 'Wind direction',
+            title: 'Windrichtung',
             data_period: {
                 period_back: GlobalConfig.defaultPeriodBack
             },
@@ -63,7 +63,7 @@ export class CardConfigWrapper {
             windspeed_entities: [
                 {
                     entity: 'sensor.',
-                    name: 'Wind speed',
+                    name: 'Windgeschwindigkeit',
                     speed_unit: GlobalConfig.defaultInputSpeedUnit,
                     use_statistics: false,
                     windspeed_bar_full: GlobalConfig.defaultWindspeedBarFull,
@@ -77,17 +77,17 @@ export class CardConfigWrapper {
                 buttons: [
                     {
                         type: 'period_selector',
-                        button_text: 'Today',
+                        button_text: 'Heute',
                         preset_period: 'today'
                     },
                     {
                         type: 'period_selector',
-                        button_text: 'Last 7 days',
+                        button_text: 'Letzte 7 Tage',
                         preset_period: 'last_7_days'
                     },
                     {
                         type: 'period_selector',
-                        button_text: 'Last 30 days',
+                        button_text: 'Letzte 30 Tage',
                         preset_period: 'last_30_days',
                         use_analytics: true,
                         analytics_period: 'hour'
@@ -95,7 +95,7 @@ export class CardConfigWrapper {
                 ]
             },
             direction_labels: {
-                cardinal_direction_letters: 'NESW'
+                cardinal_direction_letters: 'NOSW'
             },
             current_direction: {
                 show_arrow: true
@@ -105,12 +105,12 @@ export class CardConfigWrapper {
             },
             corner_info: {
                 top_left: {
-                    label: "Wind direction",
+                    label: "Windrichtung",
                     unit: " °",
                     entity: 'sensor.',
                  },
                 top_right: {
-                    label: "Wind speed",
+                    label: "Windgeschwindigkeit",
                     unit: " bft",
                     entity: 'sensor.',
                 },
@@ -119,7 +119,7 @@ export class CardConfigWrapper {
                 top: {
                     text: `      <table>
           <tr>
-              <td>Period:</td><td>\${start-date}, \${start-time} - \${end-date}, \${end-time}</td>
+              <td>Zeitraum:</td><td>\${start-date}, \${start-time} - \${end-date}, \${end-time}</td>
           </tr>
       </table>`
                 },
@@ -163,7 +163,7 @@ export class CardConfigWrapper {
 
     private checkRefreshInterval(): number {
         if (this.cardConfig.refresh_interval && isNaN(this.cardConfig.refresh_interval)) {
-            throw new Error('WindRoseCard: Invalid refresh_interval, should be a number in seconds.');
+            throw new Error('WindRoseCard: Ungültiges refresh_interval; erwartet wird eine Zahl in Sekunden.');
         } else if (this.cardConfig.refresh_interval) {
             return this.cardConfig.refresh_interval;
         }
@@ -172,7 +172,7 @@ export class CardConfigWrapper {
 
     private checkWindspeedEntities(): WindSpeedEntity[] {
         if (!this.cardConfig.windspeed_entities || this.cardConfig.windspeed_entities.length == 0) {
-            throw new Error('WindRoseCard: No windspeed_entities configured, minimal 1 needed.');
+            throw new Error('WindRoseCard: Keine windspeed_entities konfiguriert; mindestens eine Entität ist erforderlich.');
         }
         const entities:WindSpeedEntity[] = [];
         for (const entityConfig of this.cardConfig.windspeed_entities) {
@@ -187,8 +187,8 @@ export class CardConfigWrapper {
     private checkWindspeedBarLocation(): string {
         if (this.cardConfig.windspeed_bar_location) {
             if (this.cardConfig.windspeed_bar_location !== 'bottom' && this.cardConfig.windspeed_bar_location !== 'right') {
-                throw new Error('Invalid windspeed bar location ' + this.cardConfig.windspeed_bar_location +
-                    '. Valid options: bottom, right');
+                throw new Error('Ungültige Position der Windgeschwindigkeitsbalken: ' + this.cardConfig.windspeed_bar_location +
+                    '. Gültige Werte: bottom, right');
             }
             return this.cardConfig.windspeed_bar_location;
         }
@@ -204,63 +204,63 @@ export class CardConfigWrapper {
     private checkDeprecations(cardConfig: CardConfig) {
         //Not supported
         if (ConfigCheckUtils.checkHasProperty(cardConfig, 'max_width')) {
-            throw new Error('max_width option not supported anymore, since using vector graphics.')
+            throw new Error('Die Option max_width wird nicht mehr unterstützt, da Vektorgrafiken verwendet werden.')
         }
 
         //To data_period
         if (ConfigCheckUtils.checkHasProperty(cardConfig, 'hours_to_show')) {
-            throw new Error('hours_to_show option on root level is replaced with period_back in data_period object.')
+            throw new Error('Die Option hours_to_show auf oberster Ebene wurde durch data_period.period_back ersetzt.')
         }
 
         //To windspeed_entities
         if (ConfigCheckUtils.checkHasProperty(cardConfig, 'windspeed_bar_full')) {
-            throw new Error('windspeed_bar_full option on root level is moved to windspeed_entities object.')
+            throw new Error('Die Option windspeed_bar_full wurde von der obersten Ebene nach windspeed_entities verschoben.')
         }
         if (ConfigCheckUtils.checkHasProperty(cardConfig, 'output_speed_unit')) {
-            throw new Error('output_speed_unit option on root level is moved to windspeed_entities object.')
+            throw new Error('Die Option output_speed_unit wurde von der obersten Ebene nach windspeed_entities verschoben.')
         }
         if (ConfigCheckUtils.checkHasProperty(cardConfig, 'output_speed_unit_label')) {
-            throw new Error('output_speed_unit_label option on root level is moved to windspeed_entities object.')
+            throw new Error('Die Option output_speed_unit_label wurde von der obersten Ebene nach windspeed_entities verschoben.')
         }
         if (ConfigCheckUtils.checkHasProperty(cardConfig, 'speed_range_beaufort')) {
-            throw new Error('speed_range_beaufort option on root level is moved to windspeed_entities object.')
+            throw new Error('Die Option speed_range_beaufort wurde von der obersten Ebene nach windspeed_entities verschoben.')
         }
         if (ConfigCheckUtils.checkHasProperty(cardConfig, 'speed_range_step')) {
-            throw new Error('speed_range_step option on root level is moved to windspeed_entities object.')
+            throw new Error('Die Option speed_range_step wurde von der obersten Ebene nach windspeed_entities verschoben.')
         }
         if (ConfigCheckUtils.checkHasProperty(cardConfig, 'speed_range_max')) {
-            throw new Error('speed_range_max option on root level is moved to windspeed_entities object.')
+            throw new Error('Die Option speed_range_max wurde von der obersten Ebene nach windspeed_entities verschoben.')
         }
         if (ConfigCheckUtils.checkHasProperty(cardConfig, 'speed_ranges')) {
-            throw new Error('speed_ranges option on root level is moved to windspeed_entities object.')
+            throw new Error('Die Option speed_ranges wurde von der obersten Ebene nach windspeed_entities verschoben.')
         }
 
         //To direction_labels
         if (ConfigCheckUtils.checkHasProperty(cardConfig, 'cardinal_direction_letters')) {
-            throw new Error('cardinal_direction_letters option on root level is moved to direction_labels object.')
+            throw new Error('Die Option cardinal_direction_letters wurde von der obersten Ebene nach direction_labels verschoben.')
         }
 
         //To rose_config
         if (ConfigCheckUtils.checkHasProperty(cardConfig, 'wind_direction_count')) {
-            throw new Error('wind_direction_count option on root level is moved to rose_config object.')
+            throw new Error('Die Option wind_direction_count wurde von der obersten Ebene nach rose_config verschoben.')
         }
         if (ConfigCheckUtils.checkHasProperty(cardConfig, 'background_image')) {
-            throw new Error('background_image option on root level is moved to rose_config object.')
+            throw new Error('Die Option background_image wurde von der obersten Ebene nach rose_config verschoben.')
         }
         if (ConfigCheckUtils.checkHasProperty(cardConfig, 'circle_legend_text_size')) {
-            throw new Error('circle_legend_text_size option on root level is moved to rose_config object.')
+            throw new Error('Die Option circle_legend_text_size wurde von der obersten Ebene nach rose_config verschoben.')
         }
         if (ConfigCheckUtils.checkHasProperty(cardConfig, 'windrose_draw_north_offset')) {
-            throw new Error('windrose_draw_north_offset option on root level is moved to rose_config object.')
+            throw new Error('Die Option windrose_draw_north_offset wurde von der obersten Ebene nach rose_config verschoben.')
         }
         if (ConfigCheckUtils.checkHasProperty(cardConfig, 'center_calm_percentage')) {
-            throw new Error('center_calm_percentage option is deprecated and replaced by rose_config.center_circle and rose_config.first_segment_in_leaves.')
+            throw new Error('Die Option center_calm_percentage ist veraltet und wurde durch rose_config.center_circle und rose_config.first_segment_in_leaves ersetzt.')
         }
         if (ConfigCheckUtils.checkHasProperty(cardConfig, 'cirlce_count')) {
-            throw new Error('cirlce_count option on root level is moved to rose_config object.')
+            throw new Error('Die Option cirlce_count wurde von der obersten Ebene nach rose_config verschoben.')
         }
         if (ConfigCheckUtils.checkHasProperty(cardConfig, 'outer_circle_percentage')) {
-            throw new Error('outer_circle_percentage option on root level is moved to rose_config object.')
+            throw new Error('Die Option outer_circle_percentage wurde von der obersten Ebene nach rose_config verschoben.')
         }
 
         if (ConfigCheckUtils.checkHasProperty(cardConfig, 'rose_config') &&
@@ -268,7 +268,7 @@ export class CardConfigWrapper {
             (ConfigCheckUtils.checkHasProperty(cardConfig.rose_config, 'center_circle') ||
             ConfigCheckUtils.checkHasProperty(cardConfig.rose_config, 'first_segment_in_leaves'))) {
 
-            throw new Error("when using rose_config.center_circle or first_segment_in_leaves properties, center_calm_percentage should be removed.");
+            throw new Error("Bei Verwendung von rose_config.center_circle oder first_segment_in_leaves muss center_calm_percentage entfernt werden.");
         }
     }
 }
