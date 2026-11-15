@@ -141,100 +141,113 @@ Vielen Dank an tikhdm für den Pull Request.
 - Für entfernte, verschobene und umbenannte Konfigurationsoptionen werden hilfreiche Fehlermeldungen zur Umstellung ausgegeben.
 
 ### v1.26.1
-Fixes:
-- When current speed arrow is disabled, the current direction arrow did not work. Fixed. Thanks @rocket
+
+**Fehlerbehebung:**
+- Der Pfeil für die aktuelle Windrichtung funktionierte nicht, wenn der Pfeil für die aktuelle Windgeschwindigkeit deaktiviert war. Korrigiert. Vielen Dank an @rocket.
 
 ### v1.26.0
-Features:
-- Added time period option, from hours ago to a hours ago.
-- Added statistics to be used in text blocks:
-  - median-speed
-  - q1-speed
-  - q3-speed
-  - iqr-range
-  - p90-speed
-  - wind-description
 
-Fixes:
-- Rounding of speed values in the windbar.
+**Neue Funktionen:**
+- Zeitfensteroption für einen Zeitraum von einem zurückliegenden Zeitpunkt bis zu einem zweiten zurückliegenden Zeitpunkt.
+- Zusätzliche Statistikwerte für Textblöcke:
+  - `median-speed`
+  - `q1-speed`
+  - `q3-speed`
+  - `iqr-range`
+  - `p90-speed`
+  - `wind-description`
 
-All credits go to David Marton, thanks for your work!
+**Fehlerbehebung:**
+- Rundung der Geschwindigkeitswerte in den Balken korrigiert.
 
-### ### v1.25.1
-Fix:
-- Fix problem: Multiple background image elements added to HTML, when using period buttons.
+Vielen Dank an David Marton für die Arbeit an diesen Funktionen!
+
+### v1.25.1
+
+**Fehlerbehebung:**
+- Bei der Verwendung von Zeitraum-Schaltflächen wurden mehrere Hintergrundbildelemente in das HTML eingefügt.
 
 ### v1.25.0
-Feature:
-- Add text above and below the windrose with entity states or specific values about the data used for the windrose.
+
+**Neue Funktion:**
+- Anzeige von Texten oberhalb und unterhalb der Windrose mit Entitätszuständen oder berechneten Werten der zugrunde liegenden Daten.
 
 ### v1.24.1
-Fix:
-- Possible fix for older HA versions.
+
+**Fehlerbehebung:**
+- Mögliche Korrektur für ältere Home-Assistant-Versionen.
 
 ### v1.24.0
-Feature:
-- Added auto option for rose percentage text color, this is also the default.
-  The text color depends on the background, making the text more readable when a windrose leave is the text background.
+
+**Neue Funktion:**
+- Option `auto` für die Textfarbe der Prozentangaben in der Windrose hinzugefügt; sie ist jetzt auch Standard. Die Textfarbe passt sich dem Hintergrund an, damit sie auf Windrosensegmenten besser lesbar ist.
 
 ### v1.23.5
-Fixes:
-- Current wind direction center circle is now drawn on top.
-- Current wind direction hide_direction_below_speed option was not working in some cases because the direction was not updated when the speed changes.
-- Improved efficiency during card start up.
+
+**Fehlerbehebungen:**
+- Der Mittelkreis für die aktuelle Windrichtung wird jetzt im Vordergrund gezeichnet.
+- `hide_direction_below_speed` funktionierte teilweise nicht, weil die Richtung bei Änderungen der Geschwindigkeit nicht aktualisiert wurde.
+- Effizienz beim Start der Karte verbessert.
 
 ### v1.23.4
-Fixes:
-- Auto text color switching when light/dark theme switches automatically. Refresh was needed before.
+
+**Fehlerbehebung:**
+- Automatischer Wechsel der Textfarbe bei einem Wechsel zwischen hellem und dunklem Theme; zuvor war eine Aktualisierung erforderlich.
 
 ### v1.23.3
-Fixes:
-- Current direction arrow position fixe d.
-- Fixed error in console when not using actions.~~
+
+**Fehlerbehebungen:**
+- Position des Pfeils für die aktuelle Windrichtung korrigiert.
+- Konsolenfehler behoben, wenn keine Aktionen konfiguriert sind.
 
 ### v1.23.2
-Fixes:
-- Touch actions not working correctly for the speed bars.
+
+**Fehlerbehebung:**
+- Touch-Aktionen bei den Geschwindigkeitsbalken korrigiert.
 
 ### v1.23.1
-Fixes:
-- Cropping of speed labels in certain conditions when using vertical bars.
+
+**Fehlerbehebung:**
+- Abschneiden von Geschwindigkeitsbeschriftungen unter bestimmten Bedingungen bei vertikalen Balken behoben.
 
 ### v1.23.0
-Feature:
-- Animated rendering of the windrose leaves and the windbars. (can be disabled)
-- Wind speed compensation using a factor or shift. Fixes #138
-- Circle percentages text size configurable.
-Fixes:
-- Speed label space calculation fix when using vertical speed bars.
+
+**Neue Funktionen:**
+- Animierte Darstellung der Windrosensegmente und Geschwindigkeitsbalken (deaktivierbar).
+- Korrektur der Windgeschwindigkeit durch Faktor oder additive Verschiebung. Behebt #138.
+- Einstellbare Textgröße der Kreis-Prozentangaben.
+
+**Fehlerbehebung:**
+- Platzberechnung für die Geschwindigkeitsbeschriftung bei vertikalen Balken korrigiert.
 
 ### v1.22.0
-Features:
-- Hold action support
-- Support for new state_class for directional sensors.
-  Since HA 2025.4 the new state class measurement_angle is introduced.
-  With this change we have long term statistics (LTS) for wind direction data.
+
+**Neue Funktionen:**
+- Unterstützung von Aktionen durch langes Drücken.
+- Unterstützung der neuen `state_class` für Richtungssensoren. Seit Home Assistant 2025.4 steht `measurement_angle` zur Verfügung; damit sind Langzeitstatistiken für Windrichtungsdaten möglich.
 
 ### v1.21.1
-Fix:
-- Top margin for corner info label text increased.
+
+**Fehlerbehebung:**
+- Oberen Abstand der Beschriftungen in den Eckinformationen vergrößert.
 
 ### v1.21.0
-Features:
-- Text sizes in speed bars configurable, fixes #132
-- Current speed arrow location can now also be rendered on the other side of the bar, fixes #139
 
-Fix:
-- Refactoring dimension calculation code, fixes #143
-- When using more than 16 rose leaves, render the space between the leaves smaller.
-- When there is no history data returned by HA, a clear error message is logged in the console.
+**Neue Funktionen:**
+- Konfigurierbare Textgrößen in den Geschwindigkeitsbalken. Behebt #132.
+- Der Pfeil für die aktuelle Geschwindigkeit kann nun auf der jeweils anderen Seite des Balkens angezeigt werden. Behebt #139.
 
-Example configuration with new options:
+**Fehlerbehebungen:**
+- Berechnung der Abmessungen überarbeitet. Behebt #143.
+- Bei mehr als 16 Windrosensegmenten wird der Abstand zwischen den Segmenten verkleinert.
+- Werden von Home Assistant keine Verlaufsdaten geliefert, erscheint eine verständliche Fehlermeldung in der Konsole.
 
- ```yaml
+Beispielkonfiguration mit neuen Optionen:
+
+```yaml
 windspeed_entities:
   - entity: sensor.wind_speed
-    name: Speed
+    name: Geschwindigkeit
     speed_unit: auto
     output_speed_unit: kph
     windspeed_bar_full: false
@@ -246,207 +259,238 @@ windspeed_entities:
     bar_label_text_size: 40
     bar_speed_text_size: 40
     bar_percentage_text_size: 40
-  ```
+```
 
-Thank you all for reporting the issues and feature requests.
+Vielen Dank für alle Fehlermeldungen und Funktionswünsche.
 
 ### v1.20.1
-Fix:
-- Compass direction as heading, now the current wind direction is also compensated.
+
+**Fehlerbehebung:**
+- Bei einer Kompassrichtung als Kursrichtung wird nun auch die aktuelle Windrichtung entsprechend korrigiert.
 
 ### v1.20.0
-Feature:
-- Using compass auto rotation, it's now also possible to use it as heading direction instead of north direction. Thanks @alnavasa
-  ```
-  compass_direction:
-    auto_rotate: true
-    as_heading: true
-    entity: input_number.compass
-  ```
-Fixes:
-- Added speed unit alias mi/h for auto recognition.
-- Made speed unit recognition case-insensitive.
 
+**Neue Funktion:**
+- Bei automatischer Kompassdrehung kann der Winkel auch als Kursrichtung statt als Nordrichtung interpretiert werden. Vielen Dank an @alnavasa.
+
+```yaml
+compass_direction:
+  auto_rotate: true
+  as_heading: true
+  entity: input_number.compass
+```
+
+**Fehlerbehebungen:**
+- Einheitenalias `mi/h` für die automatische Erkennung ergänzt.
+- Die Einheitenerkennung unterscheidet jetzt nicht mehr zwischen Groß- und Kleinschreibung.
 
 ### v1.19.1
-Fixes:
-- The second windspeedbar used the wrong speed unit converter.
 
-Finally implemented a feature requested back in 2023. It was a big one, needed a lot of code changes.
+**Fehlerbehebung:**
+- Für den zweiten Geschwindigkeitsbalken wurde der falsche Einheitenumrechner verwendet.
+
+Damit wurde endlich eine bereits 2023 angefragte Funktion umgesetzt. Dafür waren umfangreiche Codeänderungen erforderlich.
 
 ### v1.19.0
-Feature:
-- Show current wind speed arrow on the legend bars, implements #49 
-Fixes:
-- When not showing all speed ranges in the legend bar (windspeed_bar_full: false), render_relative_scale did not work.
-- Refactored bar render code.
+
+**Neue Funktion:**
+- Pfeil für die aktuelle Windgeschwindigkeit auf den Legendenbalken. Setzt #49 um.
+
+**Fehlerbehebungen:**
+- `render_relative_scale` funktionierte nicht, wenn bei `windspeed_bar_full: false` nur verwendete Bereiche angezeigt wurden.
+- Code zum Zeichnen der Balken überarbeitet.
 
 ### v1.18.1
-Fix:
-- In corner info, when converting degrees to cardinal direction letters, some direction where not converted correctly. Thanks deanfourie1. Fixes #137
+
+**Fehlerbehebung:**
+- Fehler bei der Umwandlung bestimmter Winkel in Himmelsrichtungsbuchstaben in den Eckinformationen korrigiert. Vielen Dank an deanfourie1. Behebt #137.
 
 ### v1.18.0
-Feature:
-- Background and text color configurable for the inactive data period select buttons.
-- Card width options for use in sections layout. Experimental, please give me feedback. I don't completely understand the inner workings of the sections layout view.
+
+**Neue Funktionen:**
+- Hintergrund- und Textfarbe inaktiver Zeitraum-Schaltflächen einstellbar.
+- Einstellbare Kartenbreite für das Abschnittslayout. Experimentell; Rückmeldungen sind willkommen, da das interne Verhalten des Abschnittslayouts noch nicht vollständig geklärt ist.
 
 ### v1.17.0
-Features:
-- Current wind direction arrow hidden and show center circle/dot when wind speed is below configured value.
+
+**Neue Funktion:**
+- Wenn die Windgeschwindigkeit unter einem konfigurierten Wert liegt, wird der Richtungspfeil ausgeblendet und ein Mittelkreis oder Punkt angezeigt.
 
 ### v1.16.2
-Fix:
-- deprecated root level hours_to_show property works again.
+
+**Fehlerbehebung:**
+- Die veraltete Option `hours_to_show` auf oberster Ebene funktioniert wieder.
 
 ### v1.16.1
-Fix:
-- range selector button layout fixes when using a more buttons that fit on a row.
+
+**Fehlerbehebung:**
+- Layout der Zeitraum-Schaltflächen korrigiert, wenn nicht alle Schaltflächen in eine Zeile passen.
 
 ### v1.16.0
 
-Finally implemented a very long requested feature.
-Please report bugs and feature request in GitHub.
-Feature:
-- Time range selector buttons. Fixes #41
+Eine lange gewünschte Funktion wurde umgesetzt. Bitte melde Fehler und weitere Wünsche auf GitHub.
+
+**Neue Funktion:**
+- Schaltflächen zur Auswahl des Zeitraums. Behebt #41.
 
 ### v1.15.2
-Fixes:
-- Top overflow error, fixes #131
-  Only visible when title is not used.
+
+**Fehlerbehebung:**
+- Überlauf am oberen Kartenrand behoben, der nur ohne Kartentitel sichtbar war. Behebt #131.
 
 ### v1.15.1
-Fixes:
-- Config check for conflicting speed range configurations
-- When the average wind speed is zero, first dynamic speed range was not selected.
-- Readme errors corrected
-- When using log_measurement_counts, also log average wind speed.
+
+**Fehlerbehebungen:**
+- Prüfung auf widersprüchliche Geschwindigkeitsbereich-Konfigurationen.
+- Bei durchschnittlicher Windgeschwindigkeit 0 wurde der erste dynamische Geschwindigkeitsbereich nicht ausgewählt.
+- Fehler in der README korrigiert.
+- Bei `log_measurement_counts` wird jetzt auch die durchschnittliche Windgeschwindigkeit protokolliert.
 
 ### v1.15.0
-Features:
-- Statistics period can be configured. Long-term statistics can now be used by te card.
-- The windspeed unit can be auto determined for weather entity's. Reading attribute wind_speed_unit. Fixes #129
-- When the windspeed unit can not be auto determined, an error message will be display on the card. Fixes #129
-- Measurement and match statistics can be logged to the console (F12), set this property to true: log_measurement_counts in data_period.
-  In a future release these stats and counts can be displayed on the card.
+
+**Neue Funktionen:**
+- Statistikintervall ist konfigurierbar. Die Karte kann nun auch Langzeitstatistiken verwenden.
+- Die Windgeschwindigkeitseinheit von Wetterentitäten lässt sich automatisch aus dem Attribut `wind_speed_unit` ermitteln. Behebt #129.
+- Falls die Einheit nicht automatisch erkannt wird, zeigt die Karte eine Fehlermeldung an. Behebt #129.
+- Messwert- und Zuordnungsstatistiken können in der Browserkonsole (F12) angezeigt werden. Dazu `log_measurement_counts` in `data_period` auf `true` setzen. In einer späteren Version sollten diese Daten auch direkt in der Karte darstellbar sein.
 
 ### v1.14.2
-Fixes:
-- Fix in error message, using wrong property name. Thanks @fishter.
+
+**Fehlerbehebung:**
+- Falscher Optionsname in einer Fehlermeldung korrigiert. Vielen Dank an @fishter.
 
 ### v1.14.1
-Fixes:
-- Windrose circles rendering fixed when not using center calm percentage.
+
+**Fehlerbehebung:**
+- Darstellung der Windrosenkreise ohne Windstille-Anteil im Mittelkreis korrigiert.
 
 ### v1.14.0
-Features:
-- Attribute support for compass, corner info, wind direction and wind speed entities.
-- Improved feedback about configuration errors in the card. Before some error where only reported in the browsers console.
-- Added paragraph about data retention in the readme.
 
+**Neue Funktionen:**
+- Unterstützung von Attributen für Kompass, Eckinformationen, Windrichtungs- und Windgeschwindigkeitsentitäten.
+- Verständlichere Konfigurationsfehlermeldungen direkt auf der Karte; zuvor wurden einige Fehler nur in der Browserkonsole angezeigt.
+- README um einen Abschnitt zur Datenspeicherung ergänzt.
 
 ### v1.13.0
-Features:
-- Intercardinal and secondary intercardinal direction labels can be displayed.
-- Labels based on the four direction letters or custom values for all 16 directions.
-- Colors and sizes adjustable, per direction group: cardinal, intercardinal en secondary intercardinal.
-Fixes:
-- Updates and cleanup libraries/dependencies used by the card.
-  Possibly fixes the Failed to execute 'define' on 'CustomElementRegistry' errors some people get.
+
+**Neue Funktionen:**
+- Zwischen- und Nebenhimmelsrichtungen können eingeblendet werden.
+- Beschriftungen werden aus vier Richtungsbuchstaben oder individuell für alle 16 Richtungen erzeugt.
+- Farbe und Größe der Beschriftungen für Haupt-, Zwischen- und Nebenhimmelsrichtungen getrennt einstellbar.
+
+**Fehlerbehebungen:**
+- Bibliotheken und Abhängigkeiten aktualisiert und bereinigt. Dies könnte den bei manchen Nutzern auftretenden Fehler `Failed to execute 'define' on 'CustomElementRegistry'` beheben.
 
 ### v1.12.8
-Fix:
-- Only animate current winddirection indicator when it's state changes, not when windrose is redrawn or on initial render.
+
+**Fehlerbehebung:**
+- Der Richtungspfeil wird nur bei einer Zustandsänderung des Sensors animiert, nicht bei jedem Neuzeichnen oder beim ersten Anzeigen.
 
 ### v1.12.7
-Fix:
-- 1 Beaufort kph speed limit fix, should be 0 to 1 kph.
+
+**Fehlerbehebung:**
+- Grenzwert für 1 Beaufort in km/h auf 0 bis 1 km/h korrigiert.
 
 ### v1.12.6
-Fixes:
-- Improved error message about cardinal_direction_letters config. Fixes #114
-- Position label windspeed Beaufort 12 is now centered. Fixes #116
+
+**Fehlerbehebungen:**
+- Fehlermeldung zur Konfiguration von `cardinal_direction_letters` verbessert. Behebt #114.
+- Beschriftung von Beaufort 12 in der Geschwindigkeitsleiste zentriert. Behebt #116.
 
 ### v1.12.5
-Fix:
-- fallback to deprecated configuration for speed_range_max (root level)s
+
+**Fehlerbehebung:**
+- Rückfall auf die veraltete Option `speed_range_max` auf oberster Ebene.
 
 ### v1.12.4
-Fix:
-- render background image in the background, not in front of other elements.
+
+**Fehlerbehebung:**
+- Hintergrundbild wird hinter statt vor den anderen Elementen angezeigt.
 
 ### v1.12.3
-Fix:
-- added mouse hoverhand cursor to action area, forgot one.
+
+**Fehlerbehebung:**
+- Fehlenden Hand-Mauszeiger in einem Aktionsbereich ergänzt.
 
 ### v1.12.2
-Fixes:
-- added mouse hover hand cursor to action area's.
-- Readme fix: center_calm_percentage option is not available within speed unit config.
+
+**Fehlerbehebungen:**
+- Hand-Mauszeiger beim Überfahren der Aktionsbereiche ergänzt.
+- README korrigiert: `center_calm_percentage` ist keine Einstellung der Geschwindigkeits-Einheitenkonfiguration.
 
 ### v1.12.1
-Fixes:
-- Dynamic speed range fixes, had multiple bugs adn design errors.
+
+**Fehlerbehebungen:**
+- Mehrere Fehler und Entwurfsprobleme bei dynamischen Geschwindigkeitsbereichen korrigiert.
 
 ### v1.12.0
-Features:
-- New matching strategy 'full-time'. See Readme for details. Fixes #102
-- Corner info label and value text size configurable. Fixes #104
-- Added CSS classes to the corner info labels and values. Can be used to modify CSS with card-mod. Fixes #104
-- Moved a few settings from global to windbar specific. Fixes #60
-  - Speed ranges customizations.
-  - Rendering full or partial.
-  - Using Beaufort scale.
-  - Output speed unit and label.
-- Tap action support for the corners, windrose and speedbars. Fixes #56
-- Corner info sensor unit conversion for direction and speed sensor. Fixes #100, #103
-  - Direction sensor units: degrees, letters
-  - Wind speed sensor units: bft, mps, kph, mph, fps and knots
-- Dynamic speed ranges depending on average wind speed. Fixes #93
+
+**Neue Funktionen:**
+- Neue Zuordnungsstrategie `full-time`. Einzelheiten stehen in der README. Behebt #102.
+- Schriftgröße für Beschriftungen und Werte der Eckinformationen einstellbar. Behebt #104.
+- CSS-Klassen für Beschriftungen und Werte der Eckinformationen hinzugefügt; sie können mit `card-mod` gestaltet werden. Behebt #104.
+- Einige Einstellungen von der globalen Ebene auf einzelne Geschwindigkeitsbalken verschoben. Behebt #60:
+  - Individuelle Geschwindigkeitsbereiche.
+  - Vollständige oder teilweise Darstellung der Bereiche.
+  - Verwendung der Beaufort-Skala.
+  - Ausgabeeinheit und deren Beschriftung.
+- Aktionen durch Tippen auf Eckinformationen, Windrose und Geschwindigkeitsbalken. Behebt #56.
+- Einheitenumrechnung in den Eckinformationen für Richtungs- und Geschwindigkeitssensoren. Behebt #100 und #103:
+  - Richtungen: `degrees`, `letters`.
+  - Geschwindigkeit: `bft`, `mps`, `kph`, `mph`, `fps`, `knots`.
+- Dynamische Geschwindigkeitsbereiche abhängig vom mittleren Tempo. Behebt #93.
 
 ### v1.11.7
-Fixes:
-- Initial cardinal direction letters configuration when adding card now works. Fixes #101
+
+**Fehlerbehebung:**
+- Die anfängliche Konfiguration der Himmelsrichtungsbuchstaben beim Hinzufügen der Karte funktioniert wieder. Behebt #101.
 
 ### v1.11.6
-Fixes:
-- Small fix in measurement matching
-- Margin calculation when speedbars are hidden. Fixes #97
-- Background image position fixed when using longer cardinal direction labels. 
+
+**Fehlerbehebungen:**
+- Kleine Korrektur bei der Zuordnung von Messwerten.
+- Berechnung der Abstände, wenn Geschwindigkeitsbalken ausgeblendet sind. Behebt #97.
+- Position des Hintergrundbilds bei längeren Richtungsbeschriftungen korrigiert.
 
 ### v1.11.5
 
-- Entity config check reverted, check if state is available in states array.
+- Prüfung der Entitätskonfiguration zurückgesetzt: Es wird wieder geprüft, ob der Zustand im Zustandsarray vorhanden ist.
 
 ### v1.11.4
 
-Fixes:
-- Text position error on Safari/MacOS/iOS, Tspan was added by the SVG library, causing padding issues.
+**Fehlerbehebung:**
+- Textposition auf Safari/macOS/iOS korrigiert. Die SVG-Bibliothek hatte zusätzliche `tspan`-Elemente erzeugt, die Abstandsprobleme verursachten.
 
 ### v1.11.3
-Fixes:
-- Changed current wind direction arrow animation to take the shortest route to next wind direction. Fixes #94
-- Change from buggy Snap SVG library to SVG.js library. Needed for above fix.
-- Changed text alignments in the speed bar.
-- Corner info now using configured display precision. Fixes #92
+
+**Fehlerbehebungen:**
+- Der Pfeil für die aktuelle Windrichtung nimmt bei der Animation nun den kürzesten Weg zur nächsten Richtung. Behebt #94.
+- Fehleranfällige Snap-SVG-Bibliothek durch SVG.js ersetzt, um diese Änderung zu ermöglichen.
+- Textausrichtung in den Geschwindigkeitsbalken überarbeitet.
+- Eckinformationen berücksichtigen die konfigurierte Anzeigegenauigkeit. Behebt #92.
 
 ### v1.11.2
-Fix: Data_period Cconfig check fix
+
+**Fehlerbehebung:**
+- Konfigurationsprüfung von `data_period` korrigiert.
 
 ### v1.11.1
 
-Fix: handles no wind periods better. Fixes #86
+**Fehlerbehebung:**
+- Zeiträume ohne Wind werden besser verarbeitet. Behebt #86.
 
 ### v1.11.0
-Feature:
-- Possible to display words instead of letters on the cardinal direction points on the windrose. Fixes #82
-  Its not perfect, because of the margin used in combination with auto rotation and the display of corner info.
-  Some text can overlap.
 
-Fixes:
-- Matching strategy time-frame did not work for direction sensor using letters. Fixes: #64
-- The direction_letters property wasn't used, instead the cardinal_direction_letters property was also used to parse states.
+**Neue Funktion:**
+- An den Haupthimmelsrichtungen der Windrose können ganze Wörter statt einzelner Buchstaben angezeigt werden. Behebt #82.
+- Die Darstellung ist bei gleichzeitiger automatischer Drehung und Eckinformationen noch nicht perfekt; einige Texte können sich überlappen.
+
+**Fehlerbehebungen:**
+- Die Strategie `time-frame` funktionierte nicht bei Richtungssensoren mit Buchstabenwerten. Behebt #64.
+- Zur Interpretation der Sensorzustände wurde fälschlich `cardinal_direction_letters` statt `direction_letters` verwendet.
 
 ### v1.10.0
-Features:
-- Background image support. Fixes #54
-- New match strategy: time_frame. Fixes #64
+
+**Neue Funktionen:**
+- Hintergrundbilder werden unterstützt. Behebt #54.
+- Neue Zuordnungsstrategie `time_frame`. Behebt #64.
