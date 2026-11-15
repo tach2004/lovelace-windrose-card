@@ -321,39 +321,39 @@ buttons_config:
 
 ### Zeitraumcodes erklärt
 
-Old versions, hours_to_show, from_hours_ago and to_hours_ago only supported hours. Now al sorts of periods can be used in combination with each-other.
+In älteren Versionen unterstützten `hours_to_show`, `from_hours_ago` und `to_hours_ago` nur Stunden. Mit den neuen Zeitraumausdrücken lassen sich unterschiedliche Zeiteinheiten kombinieren.
 
-This code is used by the following property's:
+Die Zeitraumausdrücke werden bei folgenden Optionen verwendet:
 
-General period definition for
-- period_back
-- from_period_argo / to_period_ago
-Buttons:
-- Type: period_shift:
-- Config: shift_period
-- Type: period_shift_play
-- Config: step_period, window_period
+Allgemeine Zeitraumdefinitionen:
+- `period_back`
+- `from_period_ago` / `to_period_ago`
+Schaltflächen:
+- Typ `period_shift`:
+  - Option `shift_period`
+- Typ `period_shift_play`:
+  - Optionen `step_period` und `window_period`
 
-| Options     | Example | Description                        |
+| Optionen | Beispiel | Beschreibung |
 |-------------|:-------:|------------------------------------|
-| -ns / +ns   |  -10s   | 10 seconds before now              |
-| -nmi / +nmi |  -10mi  | 10 minutes before now              |
-| -nh / +nh   |  -10h   | 10 hours before now                |
-| -nd / +nd   |  -10d   | 10 days before now                 |
-| -nw / +nw   |   -5w   | 5 week before now                  |
-| -nm / +nm   |   -2m   | 2 month before now                 |
-| -nq / +nq   |   -1q   | 1 year quater before now           |
-| -ny / +ny   |   -1y   | 1 year before now                  |
-| Combination | -5w+2d  | 5 weeks before then 2 days forward |
+| -ns / +ns   |  -10s   | Zehn Sekunden zurück. |
+| -nmi / +nmi |  -10mi  | Zehn Minuten zurück. |
+| -nh / +nh   |  -10h   | Zehn Stunden zurück. |
+| -nd / +nd   |  -10d   | Zehn Tage zurück. |
+| -nw / +nw   |   -5w   | Fünf Wochen zurück. |
+| -nm / +nm   |   -2m   | Zwei Monate zurück. |
+| -nq / +nq   |   -1q   | Ein Quartal zurück. |
+| -ny / +ny   |   -1y   | Ein Jahr zurück. |
+| Combination | -5w+2d  | Fünf Wochen zurück und anschließend zwei Tage vorwärts. |
 
 
 ### Datenspeicherung in Home Assistant
 
-The period_back option does not have a limit yet. When set higher then is available in Home Assistant, the card will not show a message.
-Home Assistant has a default entity state retention of 10 days. This can be changed in the recorder configuration. See [https://www.home-assistant.io/integrations/recorder/#purge_keep_days](https://www.home-assistant.io/integrations/recorder/#purge_keep_days).
+Für `period_back` gibt es derzeit keine feste Obergrenze. Ist der Zeitraum größer als die in Home Assistant gespeicherte Historie, zeigt die Karte dafür keine gesonderte Meldung an.
+Home Assistant speichert Entitätszustände standardmäßig zehn Tage lang. Dieser Wert lässt sich in der Recorder-Konfiguration ändern: [purge_keep_days](https://www.home-assistant.io/integrations/recorder/#purge_keep_days).
 
-Information about the retrieved entity states, counts, dates can be writen to the browser console (F12).
-Set config  log_measurement_counts to true.
+Informationen über die abgerufenen Entitätszustände, ihre Anzahl und Zeitstempel lassen sich in der Browserkonsole (F12) ausgeben.
+Setze dazu `log_measurement_counts` auf `true`.
 
 ```
 matching_strategy:
@@ -362,107 +362,107 @@ matching_strategy:
 ```
 
 #### Zustandsdaten
-When using entity state data, using an period_back of more then 240 hours (10 days, in reality it's a little bit more) will not give the card more measurements.
+Bei Zustandsdaten liefert ein `period_back` von mehr als 240 Stunden (zehn Tagen, tatsächlich geringfügig mehr) normalerweise keine zusätzlichen Messungen.
 
 #### Statistikdaten
-When using statistics data, the card uses 5 minute period by default. This is short-term statistics and will not contain more then 10 days (default) history.
-You can change the default period with the statistics_period config.
-Keep in mind that the measurement interval for the direction and speed sensor should not differ very much for the best results.
-So, using monthly for the direction sensor and a 5minute period for the speed sensor will not give a graph with useful information I think.
+Bei Statistikdaten verwendet die Karte standardmäßig 5-Minuten-Intervalle. Diese Kurzzeitstatistik wird in Home Assistant standardmäßig zehn Tage lang gespeichert.
+Mit `statistics_period` lässt sich ein anderes Intervall festlegen.
+Für ein brauchbares Ergebnis sollten sich die Messintervalle von Richtungs- und Geschwindigkeitssensor nicht zu stark unterscheiden.
+Eine monatliche Richtungsstatistik zusammen mit einer 5-Minuten-Geschwindigkeitsstatistik ergibt beispielsweise kaum ein sinnvolles Diagramm.
 
-The statistics_type options is only supported by the wind speed sensor. More info [https://www.home-assistant.io/integrations/statistics/](https://www.home-assistant.io/integrations/statistics/).
+`statistics_type` wird nur für Windgeschwindigkeitssensoren unterstützt. Weitere Informationen: [Home-Assistant-Statistik](https://www.home-assistant.io/integrations/statistics/).
 
-Info about circular statistics: [https://en.wikipedia.org/wiki/Circular_mean](https://en.wikipedia.org/wiki/Circular_mean).
+Informationen zu zirkulären Statistiken: [Zirkulärer Mittelwert](https://en.wikipedia.org/wiki/Circular_mean).
 
-More info about Home Assistant statistics data: [https://data.home-assistant.io/docs/statistics/](https://data.home-assistant.io/docs/statistics/).
+Weitere Informationen zu Statistikdaten: [Home Assistant Data Science Portal](https://data.home-assistant.io/docs/statistics/).
 
 ### Objekt wind_direction_entity
 
-As of version 1.8.2 the direction unit is determined automatic.
-When the state is numeric, a degree value is assumed. When the state is letters, the direction is determined with the letter combination.
+Seit Version 1.8.2 wird die Einheit der Windrichtung automatisch erkannt.
+Bei numerischen Zuständen nimmt die Karte Gradwerte an. Besteht der Zustand aus Buchstaben, wird die Windrichtung anhand der Buchstabenkombination ermittelt.
 
 | Name                   |  Type   | Default | Required | Description                                                                                                                                                                                                                               |
 |------------------------|:-------:|:-------:|:--------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| entity                 | string  |         |    x     | Wind direction entity                                                                                                                                                                                                                     |
-| attribute              | string  |         |    -     | If used, not the state but the attributes value is displayed.                                                                                                                                                                             |
-| use_statistics         | boolean |  false  |    -     | Use Home Assistant 5 minute statistics data, works only if available for this entity. Can make fetching data faster.                                                                                                                      |
-| statistics_period      | string  | 5minute |    -     | Statistics period, possible options: 5minute, hour, day, week, month and year. More info about [data retention](#datenspeicherung-in-home-assistant)                                                                                           |
-| direction_compensation | number  |    0    |    -     | Compensate the measured direction in degrees.                                                                                                                                                                                             |
-| direction_letters      | string  |  NESWX  |    -     | Only used when the state consists of letters. Some weather integrations use language specific letters. With this property you can change the default letters used. See https://en.wikipedia.org/wiki/Points_of_the_compass for more info. |
+| entity                 | string  |         |    x     | Windrichtungsentität. |
+| attribute              | string  |         |    -     | Bei Angabe eines Attributs wird dessen Wert statt des Entitätszustands verwendet. |
+| use_statistics         | boolean |  false  |    -     | Verwendet Home-Assistant-Statistikdaten in 5-Minuten-Schritten, sofern für die Entität verfügbar. Kann den Datenabruf beschleunigen. |
+| statistics_period      | string  | 5minute |    -     | Statistikintervall: `5minute`, `hour`, `day`, `week`, `month` oder `year`. Siehe [Datenspeicherung](#datenspeicherung-in-home-assistant). |
+| direction_compensation | number  |    0    |    -     | Korrigiert die gemessene Windrichtung um einen Winkel in Grad. |
+| direction_letters      | string  |  NESWX  |    -     | Nur für Sensorzustände aus Buchstaben. Hier lassen sich sprachabhängige Richtungsbuchstaben angeben. Siehe [Kompassrichtungen](https://en.wikipedia.org/wiki/Points_of_the_compass). |
 
 
 ### Objekt windspeed_entities
 
-See [here](#beispiele-mit-eigenen-geschwindigkeitsbereichen) for some example speed ragne configurations.
+[Hier](#beispiele-mit-eigenen-geschwindigkeitsbereichen) findest du Beispiele für die Konfiguration eigener Geschwindigkeitsbereiche.
 
 | Name                         |                  Type                  |           Default            | Required | Description                                                                                                                                                                                          |
 |------------------------------|:--------------------------------------:|:----------------------------:|:--------:|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| entity                       |                 string                 |                              |    x     | Wind speed entity.                                                                                                                                                                                   |
-| attribute                    |                 string                 |                              |    -     | If used, not the state but the attributtes value is deplayed.                                                                                                                                        |
-| name                         |                 string                 |                              |    -     | Label, displayed with the windspeed bar.                                                                                                                                                             |
-| use_statistics               |                boolean                 |            false             |    -     | Use Home Assistant 5 minute statistics data, works only if available for this entity. Can make fetching data faster.                                                                                 |
-| statistics_period            |                 string                 |           5minute            |    -     | Statistics period, possible options: 5minute, hour, day, week, month and year. More info about [data retention](#datenspeicherung-in-home-assistant)                                                      |
-| statistics_type              |                 string                 |             mean             |    -     | Statistics type, possible options: min, max and mean                                                                                                                                                 |
-| use_for_windrose             |                boolean                 |      first entity true       |    -     | If true, this entity's data is used for the windrose graph. Can be changed with button type windrose_speed_selector                                                                                  |
-| speed_unit                   |   [string](#unterstützte-windgeschwindigkeitseinheiten)    |             auto             |    -     | Windspeed unit of measurement, see Windspeed unit options bellow. When the speed_range_beaufort property is not set or set to true, the bars will show Beaufort ranges.                              |
-| windspeed_bar_full           |                boolean                 |             true             |    -     | When true, renders all wind ranges, when false, doesn't render the speed range without measurements.                                                                                                 |
-| output_speed_unit            |                 string                 |             mps              |    -     | Windspeed unit used on card, see Windspeed unit options bellow.                                                                                                                                      |
-| output_speed_unit_label      |                 string                 |                              |    -     | Overwrite the output speed units name, only for display.                                                                                                                                             |
-| speed_range_beaufort         |                boolean                 |             true             |    -     | Uses the Beaufort speed ranges. The exact Beaufort ranges depend on the output windspeed unit. Default is true, when you want to show other speed unit on the bar graph, set this property to false. |
-| speed_range_step             |                 number                 | depends on output speed unit |    -     | Sets the speed range step to use. Not possible for output speed unit bft (Beaufort) .                                                                                                                |
-| speed_range_max              |                 number                 | depends on output speed unit |    -     | Sets the speed range max to use. Not possible for output speed unit bft (Beaufort). For example: step 5, max 20 creates ranges: 0-5, 5-10, 10-15, 15-20, 20-infinity                                 |
-| speed_ranges                 |     [object](#objekt-speed_ranges)     | depends on output speed unit |    -     | Define custom speedranges and colours.                                                                                                                                                               |
-| dynamic_speed_ranges         | [object](#objekt-dynamic_speed_ranges) |                              |    -     | Speed range step and max config, depending on the average wind speed                                                                                                                                 |
-| current_speed_arrow          |                boolean                 |            false             |    -     | Animates an arrow on the windspeed bar indicating the current wind speed.                                                                                                                            |
-| current_speed_arrow_size     |                 number                 |              40              |    -     | Current speed arrow size                                                                                                                                                                             |
-| current_speed_arrow_location |                 string                 |        above or left         |    -     | Current speed arrow location, options: above, below, left and right. Options are valid depending on speed bar location.                                                                              |
-| bar_render_scale             |    [string](#skalierungsoptionen)     |      windspeed_relative      |    -     | Segment scales in the windbar, options: absolute, windspeed_relative and percentage_relative.                                                                                                        |
-| bar_label_text_size          |                 number                 |              40              |    -     | Bar name en unit text size.                                                                                                                                                                          |
-| bar_speed_text_size          |                 number                 |              40              |    -     | Bar speed text size.                                                                                                                                                                                 |
-| bar_percentage_text_size     |                 number                 |              40              |    -     | Bar percentage text size.                                                                                                                                                                            |
-| speed_compensation_factor    |                 number                 |              1               |    -     | Compensation factor of the windspeed after conversion to the output speed unit.                                                                                                                      |
-| speed_compensation_absolute  |                 number                 |              0               |    -     | Increases or decreases the windspeed after conversion to the output speed unit. WHen using both factor and this, this one is first calculated.                                                       |
+| entity                       |                 string                 |                              |    x     | Entität für die Windgeschwindigkeit. |
+| attribute                    |                 string                 |                              |    -     | Bei Angabe eines Attributs wird dessen Wert statt des Zustands angezeigt. |
+| name                         |                 string                 |                              |    -     | Beschriftung neben dem Geschwindigkeitsbalken. |
+| use_statistics               |                boolean                 |            false             |    -     | Verwendet Home-Assistant-Statistikdaten in 5-Minuten-Schritten, sofern verfügbar. Kann den Abruf beschleunigen. |
+| statistics_period            |                 string                 |           5minute            |    -     | Statistikintervall: `5minute`, `hour`, `day`, `week`, `month` oder `year`. |
+| statistics_type              |                 string                 |             mean             |    -     | Statistiktyp: `min`, `max` oder `mean`. |
+| use_for_windrose             |                boolean                 |      first entity true       |    -     | Ist diese Option `true`, werden die Messwerte dieser Entität für die Windrose verwendet. Eine Änderung ist über `windrose_speed_selector` möglich. |
+| speed_unit                   |   [string](#unterstützte-windgeschwindigkeitseinheiten)    |             auto             |    -     | Eingabeeinheit der Windgeschwindigkeit. Siehe die Tabelle der unterstützten Einheiten. Ist `speed_range_beaufort` nicht angegeben oder `true`, werden Beaufort-Bereiche dargestellt. |
+| windspeed_bar_full           |                boolean                 |             true             |    -     | Bei `true` werden alle Geschwindigkeitsbereiche gezeichnet, bei `false` nur Bereiche mit Messwerten. |
+| output_speed_unit            |                 string                 |             mps              |    -     | Ausgabeeinheit der Karte, siehe die unterstützten Windgeschwindigkeitseinheiten. |
+| output_speed_unit_label      |                 string                 |                              |    -     | Überschreibt den angezeigten Namen der Ausgabeeinheit. |
+| speed_range_beaufort         |                boolean                 |             true             |    -     | Verwendet Beaufort-Bereiche. Deren Grenzen hängen von der Ausgabeeinheit ab. Für andere Bereiche `false` setzen. |
+| speed_range_step             |                 number                 | depends on output speed unit |    -     | Schrittweite der Geschwindigkeitsbereiche. Nicht bei der Ausgabeeinheit `bft` möglich. |
+| speed_range_max              |                 number                 | depends on output speed unit |    -     | Maximaler Bereichswert. Beispiel: Schrittweite 5 und Maximum 20 erzeugen 0–5, 5–10, 10–15, 15–20 und 20–unendlich. |
+| speed_ranges                 |     [object](#objekt-speed_ranges)     | depends on output speed unit |    -     | Individuelle Geschwindigkeitsbereiche und Farben definieren. |
+| dynamic_speed_ranges         | [object](#objekt-dynamic_speed_ranges) |                              |    -     | Dynamische Schrittweite und Obergrenze abhängig von der mittleren Windgeschwindigkeit. |
+| current_speed_arrow          |                boolean                 |            false             |    -     | Animiert einen Pfeil auf dem Balken, der die aktuelle Windgeschwindigkeit zeigt. |
+| current_speed_arrow_size     |                 number                 |              40              |    -     | Größe des Pfeils für die aktuelle Geschwindigkeit. |
+| current_speed_arrow_location |                 string                 |        above or left         |    -     | Position des Pfeils: `above`, `below`, `left` oder `right`; abhängig von der Balkenausrichtung. |
+| bar_render_scale             |    [string](#skalierungsoptionen)     |      windspeed_relative      |    -     | Skalierung der Balkensegmente: `absolute`, `windspeed_relative` oder `percentage_relative`. |
+| bar_label_text_size          |                 number                 |              40              |    -     | Schriftgröße für den Balkennamen und die Einheit. |
+| bar_speed_text_size          |                 number                 |              40              |    -     | Schriftgröße der Geschwindigkeitswerte. |
+| bar_percentage_text_size     |                 number                 |              40              |    -     | Schriftgröße der Prozentangaben. |
+| speed_compensation_factor    |                 number                 |              1               |    -     | Korrekturfaktor für die Windgeschwindigkeit nach der Umrechnung in die Ausgabeeinheit. |
+| speed_compensation_absolute  |                 number                 |              0               |    -     | Additive Korrektur nach der Einheitenumrechnung. Wird zusätzlich ein Faktor verwendet, erfolgt die additive Korrektur zuerst. |
 
 
 ### Skalierungsoptionen:
 
-| Name                | Description                                               |                                                                                                                                                                    | Default |
+| Name | Beschreibung | Standard | Default |
 |---------------------|-----------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-------:|
-| absolute            | Evenly distributes the segments.                          | <img alt="Pevriew" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/example/windbar-example-absolute.png?raw=true" width="412"/>            |    | 
-| windspeed_relative  | Renders the segments relative to the speedrange size.     | <img alt="Pevriew" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/example/windbar-example-windspeed-relative.png?raw=true" width="412"/>  | x  | 
-| percentage_relative | Renders the segments relative to the percentage measured. | <img alt="Pevriew" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/example/windbar-example-percentage-relative.png?raw=true" width="412"/> |    | 
+| absolute            | Evenly distributes the segments.                          | <img alt="Pevriew" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/example/windbar-example-absolute.png?raw=true" width="412"/>            | Die Segmente werden gleichmäßig verteilt. | 
+| windspeed_relative  | Renders the segments relative to the speedrange size.     | <img alt="Pevriew" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/example/windbar-example-windspeed-relative.png?raw=true" width="412"/>  | Die Segmentbreite richtet sich nach der Größe des jeweiligen Geschwindigkeitsbereichs. | 
+| percentage_relative | Renders the segments relative to the percentage measured. | <img alt="Pevriew" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/example/windbar-example-percentage-relative.png?raw=true" width="412"/> | Die Segmentbreite richtet sich nach dem gemessenen Prozentanteil. | 
 
 
 ### Unterstützte Windgeschwindigkeitseinheiten:
 
-Default is auto. When no windspeed unit is configured, the unit_of_measurement from Home Assisstant is used.
-When using entity attributes, the speed unit will probably not be auto determined. Then you need to add the speed_unit property.
+Die Standardeinstellung ist `auto`. Ist keine Geschwindigkeitseinheit angegeben, übernimmt die Karte `unit_of_measurement` aus Home Assistant.
+Bei der Verwendung von Entitätsattributen lässt sich die Einheit möglicherweise nicht automatisch bestimmen. Gib in diesem Fall `speed_unit` ausdrücklich an.
 
-When your windspeed entity uses an unit of measurement not mentioned in the table below, please open an issue in GitHub.
+Falls dein Sensor eine Einheit verwendet, die in der folgenden Tabelle fehlt, erstelle bitte ein GitHub-Issue.
 
-| Name     |    Description     | Input | Output | Recognized HA units of measurements |
+| Name | Beschreibung | Eingabe | Ausgabe | Erkannte HA-Einheiten |
 |----------|:------------------:|:-----:|:------:|-------------------------------------|
-| auto     |     automatic      |   x   |        |                                     |
-| Beaufort |      Beaufort      |   x   |        | Beaufort                            |
-| mps      | metres per second  |   x   |   x    | mps, m/s                            |
-| kph      | kilometer per hour |   x   |   x    | kph, km/h                           |
-| mph      |   miles per hour   |   x   |   x    | mps, m/h                            |
-| fps      |  feet per second   |   x   |   x    | fps, f/s                            |
-| knot     |       knots        |   x   |   x    | knots, kts, knts, kn, knot          |
+| auto     |     automatic      |   x   |        | Automatisch. |
+| Beaufort |      Beaufort      |   x   |        | Beaufort. |
+| mps      | metres per second  |   x   |   x    | Meter pro Sekunde. |
+| kph      | kilometer per hour |   x   |   x    | Kilometer pro Stunde. |
+| mph      |   miles per hour   |   x   |   x    | Meilen pro Stunde. |
+| fps      |  feet per second   |   x   |   x    | Fuß pro Sekunde. |
+| knot     |       knots        |   x   |   x    | Knoten. |
 
 
 ### Objekt speed_ranges
 
-| Name       |  Type  | Default | Required | Description                  |
+| Name | Typ | Standard | Pflicht | Beschreibung |
 |------------|:------:|:-------:|:--------:|------------------------------|
-| from_value | number |         |    x     | Start speed of a speed range |
-| color      | string |         |    x     | Color CSS value              |
+| from_value | number |         |    x     | Untere Geschwindigkeitsgrenze des Bereichs. |
+| color      | string |         |    x     | CSS-Farbwert. |
 
 <details>
 <summary>It can be convenient to generate speed_ranges using Python. Credits to @reidprichard</summary>
 
-Just enter in the name of any colormap from [this page](https://matplotlib.org/stable/gallery/color/colormap_reference.html),
-along with your desired upper and lower bounds and the increment from one range to the next.
+Gib den Namen einer Farbskala von [dieser Seite](https://matplotlib.org/stable/gallery/color/colormap_reference.html) ein.
+Lege zusätzlich die obere und untere Grenze sowie die Schrittweite der Bereiche fest.
 
 ```yaml
 windspeed_entities:
@@ -502,13 +502,13 @@ for i in range(count):
 
 ### Objekt dynamic_speed_ranges
 
-When using dynamic speed range, speed_range_beaufort should be false.
+Bei dynamischen Geschwindigkeitsbereichen muss `speed_range_beaufort` auf `false` gesetzt werden.
 
-| Name          |  Type   | Default | Required | Description                                                                                                                                                                      |
+| Name | Typ | Standard | Pflicht | Beschreibung |
 |---------------|:-------:|:-------:|:--------:|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| average_above | number  |         |    x     | Average wind speed above or equal this value. Option with 0 is required. Speed defined here should be in the output speed unit. If none is defined, it's meter per second (mps). |
-| step          | number  |         |    x     | Range steps to be used if average speed is above configurated value.                                                                                                             |
-| max           | number  |         |    x     | Max speed, used to calculate how many steps are used.                                                                                                                            |
+| average_above | number  |         |    x     | Mittlere Windgeschwindigkeit mindestens auf diesem Wert. Eine Variante mit 0 ist erforderlich. Die Werte müssen in der Ausgabeeinheit angegeben werden (standardmäßig m/s). |
+| step          | number  |         |    x     | Schrittweite, wenn der Mittelwert über dem konfigurierten Schwellenwert liegt. |
+| max           | number  |         |    x     | Obergrenze für die Berechnung der Bereichsanzahl. |
 
 ```yaml
 windspeed_entities:
@@ -531,20 +531,20 @@ windspeed_entities:
 
 | Name                                         |  Type   | Default | Required | Description                                                                                                                                                                          |
 |----------------------------------------------|:-------:|:-------:|:--------:|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| cardinal_direction_letters                   | number  |  NESW   |          | The property is used to configure what is displayed on the windrose. Only 4 letters allowed. It is not used to parse sensor states. The direction_letters property is used for that. |
-| show_cardinal_directions                     | boolean |  true   |          | If true, renders the cardinal direction labels.                                                                                                                                      |
-| show_intercardinal_directions                | boolean |  false  |          | If true, renders the intercardinal directions labels.                                                                                                                                |
-| show_secondary_intercardinal_directions      | boolean |  false  |          | If true, renders the secondary intercardinal direction labels.                                                                                                                       |
-| cardinal_directions_text_size                | number  |   50    |          | Cardinal direction label text size.                                                                                                                                                  |
-| intercardinal_directions_text_size           | number  |   40    |          | Intercardinal direction label text size.                                                                                                                                             |
-| secondary_intercardinal_directions_text_size | number  |   30    |          | Secondary intercardinal direction label text size.                                                                                                                                   |
-| custom_labels                                | object  |         |          | Custom labels, to override auto generated labels base on the cardinal_direction_letters property. More info below.                                                                   |
+| cardinal_direction_letters                   | number  |  NESW   |          | Legt die sichtbaren Richtungsbeschriftungen fest. Erlaubt sind vier Buchstaben. Diese Option dient nicht zur Auswertung der Sensorzustände; dafür wird `direction_letters` verwendet. |
+| show_cardinal_directions                     | boolean |  true   |          | Zeigt die Haupthimmelsrichtungen an. |
+| show_intercardinal_directions                | boolean |  false  |          | Zeigt die Zwischenhimmelsrichtungen an. |
+| show_secondary_intercardinal_directions      | boolean |  false  |          | Zeigt die Nebenhimmelsrichtungen an. |
+| cardinal_directions_text_size                | number  |   50    |          | Schriftgröße der Haupthimmelsrichtungen. |
+| intercardinal_directions_text_size           | number  |   40    |          | Schriftgröße der Zwischenhimmelsrichtungen. |
+| secondary_intercardinal_directions_text_size | number  |   30    |          | Schriftgröße der Nebenhimmelsrichtungen. |
+| custom_labels                                | object  |         |          | Eigene Beschriftungen überschreiben die automatisch aus `cardinal_direction_letters` erzeugten Texte. |
 
-The 4 letters of cardinal_direction_letters property are used to construct all direction labels.
-To use custom labels, add the custom_labels property. See example below.
+Aus den vier Buchstaben von `cardinal_direction_letters` erzeugt die Karte die Richtungsbeschriftungen.
+Für eigene Beschriftungen verwende `custom_labels`, wie im folgenden Beispiel gezeigt.
 
-It's not mandatory to define all custom_labels options.
-Just define the ones you want to overwrite with a custom text.
+Es müssen nicht alle Felder von `custom_labels` angegeben werden.
+Gib einfach die Beschriftungen an, die du überschreiben möchtest.
 
 ```yaml
 direction_labels:
@@ -576,84 +576,84 @@ direction_labels:
 
 ### Objekt current_direction
 
-Shows the current wind direction. The arrow is pointing too where to wind is flowing too.
-When the sensor state is not a direction a red center dot is displayed.
-Some sensors can have a value like CALM or VRB, indicating there is no direction measured.
+Zeigt die aktuelle Windrichtung an. Der Pfeil zeigt wahlweise in die eingestellte Richtung.
+Wenn der Sensorzustand keine gültige Richtung enthält, erscheint in der Mitte ein roter Punkt.
+Einige Sensoren melden beispielsweise `CALM` oder `VRB`, wenn keine eindeutige Windrichtung vorliegt.
 
 | Name                       |  Type   | Default | Required | Description                                                                                                                                     |
 |----------------------------|:-------:|:-------:|:--------:|-------------------------------------------------------------------------------------------------------------------------------------------------|
-| show_arrow                 | boolean |  false  |    x     | Start speed of a speed range                                                                                                                    |
-| arrow_direction            | string  |   in    |          | Direction of the arrow: in = pointing inward (toward the center). out = pointing outward (away from the center)                                 |
-| arrow_locatoin             | string  |  from   |          | Location of the arrow: from = wind origin (where the wind comes from), to = wind destination (where the wind blows towards)                     |
-| arrow_size                 | number  |   50    |          | Size of the arrow                                                                                                                               |
-| center_circle_size         | number  |   30    |          | Size of the center circle, only when not using center_calm_percentage. Then a red circle is displayed around the center percentage.             |
-| hide_direction_below_speed | number  |         |          | When current windspeed (output speed unit is used) is equal or below this value, the arrow is hidden and the center red dot or circle is shown. |                                                                                                                                      |
+| show_arrow                 | boolean |  false  |    x     | Aktiviert die Anzeige des Pfeils. |
+| arrow_direction            | string  |   in    |          | Pfeilrichtung: `in` nach innen zur Mitte, `out` nach außen. |
+| arrow_locatoin             | string  |  from   |          | Pfeilposition: `from` am Ursprung der Windrichtung, `to` am Ziel (wohin der Wind weht). |
+| arrow_size                 | number  |   50    |          | Größe des Pfeils. |
+| center_circle_size         | number  |   30    |          | Größe des Mittelkreises, wenn `center_calm_percentage` nicht verwendet wird. Dann erscheint ein roter Kreis um die Prozentangabe. |
+| hide_direction_below_speed | number  |         |          | When current windspeed (output speed unit is used) is equal or below this value, the arrow is hidden and the center red dot or circle is shown. | Wenn die aktuelle Windgeschwindigkeit kleiner oder gleich diesem Wert ist, wird der Pfeil ausgeblendet und stattdessen ein roter Punkt oder Kreis angezeigt. |
 
 
 ### Objekt compass_direction
 
-This configuration is only needed if you want the windrose to rotate on a compass entity.
-Useful on for example a boat.
-You can also make a helper number entity to rotate the windrose on manual input.
+Diese Konfiguration wird nur benötigt, wenn sich die Windrose entsprechend einer Kompassentität drehen soll.
+Dies ist beispielsweise auf einem Boot nützlich.
+Alternativ kannst du über einen Home-Assistant-Zahlenhelfer eine manuelle Drehung vorgeben.
 
 | Name        |  Type   | Default | Required | Description                                                   |
 |-------------|:-------:|:-------:|:--------:|---------------------------------------------------------------|
-| auto_rotate | boolean |         |    x     | Use auto rotation, false to turn off.                         |
-| entity      | string  |         |    x     | Compass or other direction entity, needs degrees as unit.     |
-| attribute   | string  |         |          | If used, not the state but the attributtes value is deplayed. |
-| as_heading  | boolean |  false  |          | Use compass degrees as heading instead of north direction.    |
+| auto_rotate | boolean |         |    x     | Aktiviert die automatische Drehung (`false` zum Deaktivieren). |
+| entity      | string  |         |    x     | Kompass- oder Richtungsentität mit Gradwerten. |
+| attribute   | string  |         |          | Bei Angabe eines Attributs wird dessen Wert statt des Entitätszustands verwendet. |
+| as_heading  | boolean |  false  |          | Verwendet den Kompasswinkel als Kursrichtung statt als Nordrichtung. |
 
 
 ### Objekt corner_info
 
-Configuration for displaying information in the corners around the windrose.
+Konfiguration der Informationen in den Ecken rund um die Windrose.
 
 | Name         |  Type  | Default | Required | Description                          |
 |--------------|:------:|:-------:|:--------:|--------------------------------------|
-| top_left     | object |         |          | Configration for top left corner     |
-| top_right    | object |         |          | Configration for top right corner    |
-| bottom_left  | object |         |          | Configration for bottom left corner  |
-| bottom_right | object |         |          | Configration for bottom right corner |
+| top_left     | object |         |          | Konfiguration für die Ecke oben links. |
+| top_right    | object |         |          | Konfiguration für die Ecke oben rechts. |
+| bottom_left  | object |         |          | Konfiguration für die Ecke unten links. |
+| bottom_right | object |         |          | Konfiguration für die Ecke unten rechts. |
 
 ### Objekt top_left, top_right, bottom_left und bottom_right
 
 | Name              |  Type  |       Default        | Required | Description                                                                                                                   |
 |-------------------|:------:|:--------------------:|:--------:|-------------------------------------------------------------------------------------------------------------------------------|
-| label             | string |                      |          | Label                                                                                                                         |
-| unit              | string |                      |          | Unit, displayed after the state, without a space. If you need space, add it to the config.                                    |
-| color             | string | --primary-text-color |          | Color of the text.                                                                                                            |
-| label_text_size   | number |          50          |          | The text size of the label.                                                                                                   |
-| value_text_size   | number |          80          |          | The text size of the entity's state.                                                                                          |
-| entity            | string |                      |    x     | State of the entity will be displayed                                                                                         |
-| attribute         | string |                      |          | If used, not the state but the attributes value is deplayed.                                                                  |
-| input_unit        | string |                      |          | Input unit, not automatically determined. See for options [Unit conversion](#einheitenumrechnung-in-den-eckinformationen)                     |
-| output_unit       | string |                      |          | Output unit                                                                                                                   |
-| precision         | string |                      |          | Overwrites (if available) the precision of the entity. For rounding the value, for example after converting to an other unit. |
-| direction_letters | string |         NESW         |          | The cardinal direction letters used for winddirection conversion. When using 4 letters, the x directions will not be used.    |
+| label             | string |                      |          | Beschriftung. |
+| unit              | string |                      |          | Einheit, die ohne automatisch eingefügtes Leerzeichen hinter dem Zustand angezeigt wird. Ein benötigtes Leerzeichen muss im Wert enthalten sein. |
+| color             | string | --primary-text-color |          | Textfarbe. |
+| label_text_size   | number |          50          |          | Schriftgröße der Beschriftung. |
+| value_text_size   | number |          80          |          | Schriftgröße des Entitätszustands. |
+| entity            | string |                      |    x     | Zeigt den Zustand der angegebenen Entität an. |
+| attribute         | string |                      |          | Bei Angabe eines Attributs wird dessen Wert statt des Entitätszustands verwendet. |
+| input_unit        | string |                      |          | Eingabeeinheit; wird nicht automatisch erkannt. Siehe [Einheitenumrechnung](#einheitenumrechnung-in-den-eckinformationen). |
+| output_unit       | string |                      |          | Ausgabeeinheit. |
+| precision         | string |                      |          | Überschreibt die Genauigkeit des Entitätszustands, beispielsweise zum Runden nach einer Einheitenumrechnung. |
+| direction_letters | string |         NESW         |          | Richtungsbuchstaben für die Umrechnung. Bei vier Buchstaben werden die zusätzlichen X-Richtungen nicht verwendet. |
 
 ### Einheitenumrechnung in den Eckinformationen
 
-Supported unit types for windspeed sensors:
+Unterstützte Einheiten für Windgeschwindigkeitssensoren:
 
-| Config | Description        |
+| Konfiguration | Beschreibung |
 |--------|--------------------|
-| bft    | Beaufort           |
-| mps    | Meter per second   |
-| kph    | Kilometer per hour |
-| mph    | Miles per hour     |
-| fps    | Feet per second    |
-| knots  | Knots              |
+| bft    | Beaufort. |
+| mps    | Meter pro Sekunde. |
+| kph    | Kilometer pro Stunde. |
+| mph    | Meilen pro Stunde. |
+| fps    | Fuß pro Sekunde. |
+| knots  | Knoten. |
 
-Supported unit types for wind directions sensors:
+Unterstützte Einheiten für Windrichtungssensoren:
 
-| Config  | Description                                 |
+| Konfiguration | Beschreibung |
 |---------|---------------------------------------------|
-| degrees | Direction in degreees, number from 0 to 359 |
-| letters | Cardinal direction letters                  |
+| degrees | Windrichtung in Grad, als Zahl von 0 bis 359. |
+| letters | Himmelsrichtungsbuchstaben. |
 
 
-The units degrees and letters can only be used in combination with each other.
-The card does not check the sensor type you are using. So, converting a light switch from degreees to letters will result in errors in the browsers console.
+Die Einheiten `degrees` und `letters` lassen sich nur miteinander kombinieren.
+Die Karte prüft nicht den Typ des verwendeten Sensors. Wird beispielsweise ein Lichtschalter von Grad in Buchstaben umgerechnet, entstehen Fehlermeldungen in der Browserkonsole.
 
 ### YAML-Beispiel für corner_info
 ```yaml
