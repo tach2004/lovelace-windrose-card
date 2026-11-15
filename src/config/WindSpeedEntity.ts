@@ -84,8 +84,8 @@ export class WindSpeedEntity {
                 && inputSpeedUnit !== 'fps'
                 && inputSpeedUnit !== 'knots'
                 && inputSpeedUnit !== 'auto') {
-                throw new Error('Ungültige Einheit für die Windgeschwindigkeit: ' + inputSpeedUnit +
-                    '. Gültige Werte: mps, bft, fps, kph, mph, knots, auto');
+                throw new Error('Invalid windspeed unit configured: ' + inputSpeedUnit +
+                    '. Valid options: mps, bft, fps, kph, mph, knots, auto');
             }
             return inputSpeedUnit;
         }
@@ -99,8 +99,8 @@ export class WindSpeedEntity {
                 && outputSpeedUnit !== 'mph'
                 && outputSpeedUnit !== 'fps'
                 && outputSpeedUnit !== 'knots') {
-                throw new Error('Ungültige Ausgabeeinheit für die Windgeschwindigkeit: ' + outputSpeedUnit +
-                    '. Gültige Werte: mps, fps, kph, mph, knots');
+                throw new Error('Invalid output windspeed unit configured: ' + outputSpeedUnit +
+                    '. Valid options: mps, fps, kph, mph, knots');
             }
             return outputSpeedUnit;
         }
@@ -116,9 +116,9 @@ export class WindSpeedEntity {
 
     private static checkSpeedRangeStep(speedRangeStep: number): number | undefined {
         if (speedRangeStep && isNaN(speedRangeStep)) {
-            throw new Error('WindRoseCard: speed_range_step muss eine positive Zahl sein.');
+            throw new Error('WindRoseCard: Invalid speed_range_step, should be a positive number.');
         } else if (speedRangeStep <= 0) {
-            throw new Error('WindRoseCard: speed_range_step muss eine positive Zahl sein.')
+            throw new Error('WindRoseCard: Invalid speed_range_step, should be a positive number.')
         } else if (speedRangeStep) {
             return speedRangeStep;
         }
@@ -127,9 +127,9 @@ export class WindSpeedEntity {
 
     private static checkSpeedRangeMax(speedRangeMax: number): number | undefined {
         if (speedRangeMax && isNaN(speedRangeMax)) {
-            throw new Error('WindRoseCard: speed_range_max muss eine positive Zahl sein.');
+            throw new Error('WindRoseCard: Invalid speed_range_max, should be a positive number.');
         } else if (speedRangeMax <= 0) {
-            throw new Error('WindRoseCard: speed_range_max muss eine positive Zahl sein.')
+            throw new Error('WindRoseCard: Invalid speed_range_max, should be a positive number.')
         } else if (speedRangeMax) {
             return speedRangeMax;
         }
@@ -159,11 +159,11 @@ export class WindSpeedEntity {
     private static checkSpeedRangeCombi(speedRanges: SpeedRange[], speedRangeStep: number | undefined, speedRangeMax: number | undefined,
                                         dynamicSpeedRanges: DynamicSpeedRange[], speedRangeBeaufort: boolean): void {
         if (speedRangeBeaufort && (speedRangeStep || speedRangeMax || dynamicSpeedRanges.length > 0 || speedRanges.length > 0)) {
-            throw new Error("WindRoseCard: Bei speed_range_beaufort dürfen speed_range_step, speed_range_max, speed_ranges und dynamic_speed_ranges nicht gesetzt sein. " +
-                "Beaufort verwendet festgelegte Geschwindigkeitsbereiche.");
+            throw new Error("WindRoseCard: speed_range_step, speed_range_max, speed_ranges or dynamic_speed_ranges should not be set when using speed_range_beaufort. " +
+                "Beaufort uses fixed speed ranges.");
         }
         if ((speedRangeStep && !speedRangeMax) || (!speedRangeStep && speedRangeMax)) {
-            throw new Error(`WindRoseCard: speed_range_step und speed_range_max müssen beide angegeben werden; Schritt: ${speedRangeStep}, Maximum: ${speedRangeMax}`)
+            throw new Error(`WindRoseCard: speed_range_step and speed_range_max should both be set, step: ${speedRangeStep}, max: ${speedRangeMax}`)
         }
         let speedRangeOptionCount = 0;
         if (speedRangeStep || speedRangeMax) {
@@ -176,7 +176,7 @@ export class WindSpeedEntity {
             speedRangeOptionCount++;
         }
         if (speedRangeOptionCount > 1) {
-            throw new Error(`WindRoseCard: speed_range_step/max, speed_ranges und dynamic_speed_ranges dürfen nicht gleichzeitig konfiguriert sein.`)
+            throw new Error(`WindRoseCard: speed_range_step/max, speed_ranges and dynamic_speed_ranges should not be configured next to each other.`)
         }
     }
 
@@ -186,17 +186,17 @@ export class WindSpeedEntity {
         }
         const sorted = [...dynamicSpeedRanges].sort((a, b) => a.average_above - b.average_above);
         if (sorted[0].average_above !== 0) {
-            throw new Error("Beim ersten dynamischen Geschwindigkeitsbereich muss average_above den Wert 0 haben.");
+            throw new Error("First dynamic speed config average_above should be 0.");
         }
         for (const dynamicRangeConfig of sorted) {
             if (dynamicRangeConfig.average_above < 0) {
-                throw new Error("Bei dynamischen Geschwindigkeitsbereichen muss average_above eine Zahl größer als 0 sein.");
+                throw new Error("Dynamic speed ranges average_above should be a number higher then 0.");
             }
             if (dynamicRangeConfig.step <= 0 || dynamicRangeConfig.step === undefined) {
-                throw new Error("Bei dynamischen Geschwindigkeitsbereichen muss step eine Zahl größer als 0 sein.");
+                throw new Error("Dynamic speed ranges step should be a number higher then 0.");
             }
             if (dynamicRangeConfig.max <= 0 || dynamicRangeConfig.max === undefined) {
-                throw new Error("Bei dynamischen Geschwindigkeitsbereichen muss max eine Zahl größer als 0 sein.");
+                throw new Error("Dynamic speed ranges max should be a number higher then 0.");
             }
         }
         return sorted;
@@ -204,7 +204,7 @@ export class WindSpeedEntity {
 
     private static checkAttribuutStatsCombi(useStatistics: boolean, attribute: string) {
         if (useStatistics && attribute) {
-            throw new Error("Statistiken werden für Attributwerte nicht unterstützt.");
+            throw new Error("Statistics not supported for attribute values.");
         }
     }
 
@@ -213,13 +213,13 @@ export class WindSpeedEntity {
             if (location === undefined || location === null || location === '') {
                 return 'left';
             } else if (location !== 'left' && location !== 'right') {
-                throw new Error('Bei vertikalen Geschwindigkeitsbalken darf der Pfeil nur links oder rechts angeordnet sein.');
+                throw new Error('Current speed arrow location can only be left or right when speedbars are displayed vertical.');
             }
         } else {
             if (location === undefined || location === null || location === '') {
                 return 'above';
             } else if (location !== 'below' && location !== 'above') {
-                throw new Error('Bei horizontalen Geschwindigkeitsbalken darf der Pfeil nur oberhalb oder unterhalb angeordnet sein.');
+                throw new Error('Current speed arrow location can only be above or below when speedbars are displayed horizontall');
             }
         }
         return location;
@@ -232,12 +232,12 @@ export class WindSpeedEntity {
         if (barRenderScale === 'absolute' || barRenderScale === 'windspeed_relative' || barRenderScale === 'percentage_relative') {
             return barRenderScale;
         }
-        throw new Error('WindRoseCard: Die Skalierung muss absolute, windspeed_relative oder percentage_relative sein.');
+        throw new Error('WindRoseCard: render-scale should be absolute, windspeed_relative or percentage_relative');
     }
 
     private static checkDeprecations(entityConfig: CardConfigWindSpeedEntity) {
         if (ConfigCheckUtils.checkHasProperty(entityConfig, 'render_relative_scale')) {
-            throw new Error('Die Option render_relative_scale heißt jetzt bar_render_scale; gültige Werte: absolute, windspeed_relative, percentage_relative.')
+            throw new Error('render_relative_scale option is renamed to bar_render_scale with options: absolute, windspeed_relative and percentage_relative')
         }
     }
 

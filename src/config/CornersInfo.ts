@@ -46,7 +46,7 @@ export class CornersInfo {
         const found = props.findIndex(prop => prop[0] != 'top_left' && prop[0] != 'top_right'
             && prop[0] != 'bottom_left' && prop[0] != 'bottom_right');
         if (found >= 0) {
-            throw new Error('Ungültiger Wert für corner_info: ' + props[found][0] +
+            throw new Error('Incorrect corner_info value: ' + props[found][0] +
                 " Allowed: top_left, top_right, bottom_left, bottom_right");
         }
     }
@@ -80,7 +80,7 @@ export class CornersInfo {
             if (this.allowedUnits.some((u: string) => u === unit)) {
                 return unit;
             }
-            throw new Error('WindRoseCard: Ungültige Einheit; zulässige Einheiten: ' + this.allowedUnits);
+            throw new Error('WindRoseCard: Invalid unit, allowed units: ' + this.allowedUnits);
         }
         return undefined;
     }
@@ -90,16 +90,16 @@ export class CornersInfo {
             return;
         }
         if (inputUnit === 'degrees' && outputUnit !== 'letters') {
-            throw new Error('WindRoseCard: Ungültige Einheitenkombination: Für input_unit degrees muss output_unit letters verwendet werden.');
+            throw new Error('WindRoseCard: Invalid unit combination, input unit degrees should always have output unit letters.');
         }
         if (inputUnit === 'letters' && outputUnit !== 'degrees') {
-            throw new Error('WindRoseCard: Ungültige Einheitenkombination: Für input_unit letters muss output_unit degrees verwendet werden.');
+            throw new Error('WindRoseCard: Invalid unit combination, input unit letters should always have output unit degrees.');
         }
         if (inputUnit !== 'degrees' && outputUnit === 'letters') {
-            throw new Error('WindRoseCard: Ungültige Einheitenkombination: Für output_unit letters muss input_unit degrees verwendet werden.');
+            throw new Error('WindRoseCard: Invalid unit combination, output unit letters should always have input unit degrees.');
         }
         if (inputUnit !== 'letters' && outputUnit === 'degrees') {
-            throw new Error('WindRoseCard: Ungültige Einheitenkombination: Für output_unit degrees muss input_unit letters verwendet werden.');
+            throw new Error('WindRoseCard: Invalid unit combination, output unit degrees should always have input unit letters.');
         }
     }
 
@@ -108,7 +108,7 @@ export class CornersInfo {
             if (directionLetters.length === 4 || directionLetters.length === 5) {
                 return directionLetters;
             }
-            throw new Error('WindRoseCard: Ungültige Option direction_letters; erwartet werden vier oder fünf Buchstaben.');
+            throw new Error('WindRoseCard: Invalid direction letters option should contain 4 or 5 letters.');
         }
         return undefined;
     }

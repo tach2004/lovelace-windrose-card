@@ -66,7 +66,7 @@ export class WindDirectionLettersConverter {
         for (let i = 0; i < direction.length; i++) {
             const index = this.windDirectionLetters!.indexOf(direction[i])
             if (index < 0) {
-                Log.info('Windrichtung konnte nicht umgewandelt werden; Buchstaben fehlen in wind_direction_entity.direction_letters.');
+                Log.info('Could not translate cardinal direction, letters not found in config wind_direction_entity.direction_letters');
             }
             convertedDirection += this.defaultLetters[index];
         }
@@ -78,7 +78,7 @@ export class WindDirectionLettersConverter {
             return 'CALM';
         }
         if (direction === '' || isNaN(+direction) || +direction < 0) {
-            Log.warn('Windrichtung kann nicht in Himmelsrichtungsbuchstaben umgewandelt werden; Wert: ', direction);
+            Log.warn('Can not convert wind direction to cardinal letters, direction: ', direction);
             return 'CALM';
         }
         let deling =  22.5 //DefaultLetters is 4
@@ -104,7 +104,7 @@ export class WindDirectionLettersConverter {
         for (let i = 0; i < direction.length; i++) {
             const index = this.defaultLetters.indexOf(direction[i])
             if (index < 0) {
-                Log.info('Windrichtung konnte nicht umgewandelt werden; Buchstaben fehlen in wind_direction_entity.direction_letters.');
+                Log.info('Could not translate cardinal direction, letters not found in config wind_direction_entity.direction_letters');
             }
             convertedDirection += this.windDirectionLetters![index];
         }

@@ -16,7 +16,7 @@ export class WindDirectionEntity {
 
         if (entityConfig) {
             if (entityConfig.entity === undefined) {
-                throw new Error("WindRoseCard: wind_direction_entity.entity wurde nicht konfiguriert.");
+                throw new Error("WindRoseCard: No wind_direction_entity.entity configured.");
             }
             const entity = entityConfig.entity;
             const useStatistics = ConfigCheckUtils.checkBooleanDefaultFalse(entityConfig.use_statistics);
@@ -26,12 +26,12 @@ export class WindDirectionEntity {
             this.checkAttribuutStatsCombi(useStatistics, entityConfig.attribute);
             return new WindDirectionEntity(entity, entityConfig.attribute, useStatistics, statsPeriod, directionCompensation, directionLetters);
         }
-        throw new Error("WindRoseCard: wind_direction_entity wurde nicht konfiguriert.");
+        throw new Error("WindRoseCard: No wind_direction_entity configured.");
     }
 
     private static checkDirectionCompensation(directionCompensation: number): number {
         if (directionCompensation && isNaN(directionCompensation)) {
-            throw new Error('WindRoseCard: direction_compensation muss eine Zahl zwischen 0 und 360 Grad sein.');
+            throw new Error('WindRoseCard: Invalid direction compensation, should be a number in degress between 0 and 360.');
         } else if (directionCompensation) {
             return directionCompensation;
         }
@@ -44,7 +44,7 @@ export class WindDirectionEntity {
             if (directionLetters && directionLetters.length === 5) {
                 return directionLetters.toUpperCase();
             } else {
-                throw new Error('WindRoseCard: direction_letters muss fünf Buchstaben enthalten.');
+                throw new Error('WindRoseCard: direction_letters config should be 5 letters.');
             }
         }
         return undefined;
@@ -52,7 +52,7 @@ export class WindDirectionEntity {
 
     private static checkAttribuutStatsCombi(useStatistics: boolean, attribute: string) {
         if (useStatistics && attribute) {
-            throw new Error("Statistiken werden für Attributwerte nicht unterstützt.");
+            throw new Error("Statistics not supported for attribute values.");
         }
     }
 }

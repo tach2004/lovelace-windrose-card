@@ -44,7 +44,7 @@ export class ButtonsConfig {
             return undefined;
         }
         if (buttonsConfig.buttons === undefined || buttonsConfig.buttons.length === 0) {
-            throw new Error("WindRoseCard: Im Block buttons_config sind keine Schaltflächen konfiguriert.")
+            throw new Error("WindRoseCard: No buttons configured in buttons_config block.")
         }
         const location = this.checkLocation(buttonsConfig.location);
         const defaultColors = ButtonColors.fromConfig(buttonsConfig.default_colors, undefined);
@@ -64,7 +64,7 @@ export class ButtonsConfig {
                 case 'windrose_speed_selector':
                     buttons.push(WindRoseSpeedSelectButton.fromConfig(button, defaultColors));
                     break;
-                default: throw new Error('WindRoseCard: Der Schaltflächentyp muss period_selector, period_shift, period_shift_play oder windrose_speed_selector sein.')
+                default: throw new Error('WindRoseCard: button type should be period_selector, period_shift, period_shift_play or windrose_speed_selector')
             }
         }
 
@@ -74,7 +74,7 @@ export class ButtonsConfig {
     private static checkLocation(location: string | undefined) {
         if (location) {
             if (location !== 'top' && location !== 'bottom' && location !== 'top-below-text' && location !== 'bottom-above-text') {
-                throw new Error('WindRoseCard: Ungültige Schaltflächenposition; erlaubt sind top, top-below-text, bottom oder bottom-above-text, nicht ' + location);
+                throw new Error('WindRoseCard: Buttons location should be top, top-below-text, bottom or bottom-above-text, not ' + location);
             }
             return location;
         }

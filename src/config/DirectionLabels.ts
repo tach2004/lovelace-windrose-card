@@ -134,7 +134,7 @@ export class DirectionLabels {
         if (letters || letters === '') {
             const length = letters.length
             if (length > 0 && length < 4) {
-                throw new Error("Die Option cardinal_direction_letters muss vier Buchstaben, eine leere Zeichenfolge oder vier durch Kommas getrennte Wörter enthalten.");
+                throw new Error("Cardinal direction letters option should contain 4 letters, empty string or 4 comma seperated words.");
             } else if (length === 0) {
                 return ['', '', '', ''];
             } else if (length === 4) {
@@ -148,7 +148,7 @@ export class DirectionLabels {
     private static checkCardinalDirectionLetters(letters: string | undefined): string[] {
         if (letters && letters.length > 0) {
             if (letters.length !== 4) {
-                throw new Error("Die Option cardinal_direction_letters muss vier Buchstaben enthalten.");
+                throw new Error("Cardinal direction letters option should contain 4 letters.");
             }
             return letters.split('')
         }

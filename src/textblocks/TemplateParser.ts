@@ -98,7 +98,7 @@ export class TemplateParser {
         
         // Weather-style description using IQR
         const maxSpeed = Math.round(matchedMeasurements.maxSpeed);
-        const gustText = maxSpeed > q3 * 1.3 ? ` Böen bis ${maxSpeed}` : '';
+        const gustText = maxSpeed > q3 * 1.3 ? ` gusts to ${maxSpeed}` : '';
         this.addOrUpdateValue('wind-description', `${Math.round(q1)}-${Math.round(q3)}${gustText}`);
     }
 

@@ -17,7 +17,7 @@ export class PeriodCodeHelper {
     static checkInPast(configName: string, periodCode: string | undefined): boolean {
         if (PeriodCodeHelper.check(configName, periodCode)) {
             if (isFuture(PeriodCodeHelper.move(periodCode!, new Date()))) {
-                throw new Error(`WindRoseCard: ${configName} muss auf einen Zeitpunkt in der Vergangenheit verweisen.`);
+                throw new Error(`WindRoseCard: ${configName} should point to a date in the past`);
             }
             return true;
         }
@@ -28,7 +28,7 @@ export class PeriodCodeHelper {
         if (periodCode) {
             PeriodCodeHelper.CHECK_REGEX.lastIndex = 0;
             if (!PeriodCodeHelper.CHECK_REGEX.test(periodCode)) {
-                throw new Error(`WindRoseCard: Ungültiger Zeitraumausdruck für ${configName}; '-2w-5h' bedeutet zwei Wochen und fünf Stunden zurück.`);
+                throw new Error(`WindRoseCard: wrong ${configName} code, example '-2w-5h' means minus 2 weeks and 5 hours`);
             }
             return true;
         }

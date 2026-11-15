@@ -23,7 +23,7 @@ export class CompassConfig {
                     entity = compassConfig.entity;
                     attribute = compassConfig.attribute;
                 } else {
-                    throw new Error('WindRoseCard: Die automatische Kompassdrehung ist aktiviert, aber keine Entität konfiguriert.');
+                    throw new Error('WindRoseCard: compass direction auto rotate set to true, but no entity configured.');
                 }
             }
         }

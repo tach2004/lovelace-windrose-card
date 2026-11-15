@@ -66,10 +66,10 @@ export class Period {
             this.startTime.setHours(this.fromHourOfDay, 0, 0, 0);
             this.endTime = now;
         } else {
-            throw new Error("Keine gültige Einstellung für den Datenzeitraum vorhanden.");
+            throw new Error("No data period config option available.");
         }
 
-        Log.info('Verwende Zeitraum für die Datenabfrage', this.startTime, this.endTime);
+        Log.info('Using time range for data query', this.startTime, this.endTime);
     }
 
     movePeriod(period: string): boolean {
@@ -116,10 +116,10 @@ export class Period {
                 optionsSet++;
             }
             if (optionsSet === 0) {
-                throw new Error('Es wurden keine Optionen für den Datenzeitraum angegeben.');
+                throw new Error('No data period config options set.');
             }
             if (optionsSet > 1) {
-                throw new Error('Mehrere Zeitraummethoden konfiguriert. Verwende nur eine: preset_period, period_back, from_hour_of_day, relatives Zeitfenster oder Datumsangaben.')
+                throw new Error('Multiple period types set, use one type: preset-period, period_back, from_hours_of_day, time window, or date options.')
             }
             return new Period(type, useStatistics, statsPeriod, statsType, config.preset_period, config.period_back, config.from_hour_of_day, config.from_period_ago,
                 config.to_period_ago, fromDate, toDate);
@@ -130,19 +130,19 @@ export class Period {
     static determineActivePeriod(dataPeriod: Period | undefined, buttonsConfig: ButtonsConfig | undefined): Period {
         const activeButton = ButtonsConfig.getActivePeriodSelector(buttonsConfig);
         if (activeButton && dataPeriod) {
-            throw new Error('data_period und eine aktive period_selector-Schaltfläche sind gleichzeitig konfiguriert. Entferne data_period.');
+            throw new Error('Data_period and active period_selector button configured. Data_period can be removed from config.');
         }
         if (activeButton) {
             return (activeButton as PeriodSelectorButton).period.clone() as Period;
         } else if (dataPeriod) {
             return dataPeriod.clone();
         }
-        throw new Error('Es muss data_period oder eine aktive period_selector-Schaltfläche konfiguriert sein.')
+        throw new Error('Data_period or an active period_selector button should be configured.')
     }
 
     private static checkFromHourOfDay(fromHourOfDay: number | undefined): boolean {
         if (fromHourOfDay && (isNaN(fromHourOfDay) || fromHourOfDay < 0 || fromHourOfDay > 23)) {
-            throw new Error('Ungültiger Wert für from_hour_of_day; erwartet wird eine Stunde zwischen 0 und 23.');
+            throw new Error('Invalid rom_hour_of_day, should be a number between 0 and 23, hour of the day.');
         } else if (fromHourOfDay != null && fromHourOfDay >= 0) {
             return true
         }
@@ -154,22 +154,22 @@ export class Period {
         const hasToHoursAgo = PeriodCodeHelper.check('to_period_ago', toPeriodAgo);
         const now = new Date();
         if (hasFromHoursAgo && !hasToHoursAgo) {
-            throw new Error('WindRoseCard: from_period_ago erfordert auch to_period_ago.');
+            throw new Error('WindRoseCard: from_period_ago requires to_period_ago to be set.');
         }
         if (!hasFromHoursAgo && hasToHoursAgo) {
-            throw new Error('WindRoseCard: to_period_ago erfordert auch from_period_ago.');
+            throw new Error('WindRoseCard: to_period_ago requires from_period_ago to be set.');
         }
         if (hasFromHoursAgo && hasToHoursAgo) {
             const fromDate = PeriodCodeHelper.move(fromPeriodAgo!, now);
             const toDate = PeriodCodeHelper.move(toPeriodAgo!, now);
             if (fromDate >= now) {
-                throw new Error('WindRoseCard: from_period_ago muss einen Zeitpunkt in der Vergangenheit ergeben.');
+                throw new Error('WindRoseCard: from_period_ago should result in a date in the past.');
             }
             if (toDate > now) {
-                throw new Error('WindRoseCard: to_period_ago muss einen Zeitpunkt in der Vergangenheit oder Gegenwart ergeben.');
+                throw new Error('WindRoseCard: to_period_ago should result in a date in the past or now.');
             }
             if (fromDate >= toDate) {
-                throw new Error('WindRoseCard: from_period_ago muss vor to_period_ago liegen.');
+                throw new Error('WindRoseCard: from_period_ago must be before to_period_ago.');
             }
             return true;
         }
@@ -191,16 +191,16 @@ export class Period {
             return true;
         }
         if (hasFromDate && !hasToDate) {
-            throw new Error('WindRoseCard: from_date erfordert auch to_date.');
+            throw new Error('WindRoseCard: from_date requires to_date to be set.');
         }
         if (!hasFromDate && hasToDate) {
-            throw new Error('WindRoseCard: to_date erfordert auch from_date.');
+            throw new Error('WindRoseCard: to_date requires from_date to be set.');
         }
         if (hasFromDate && !fromDateOk) {
-            throw new Error('WindRoseCard: from_date hat kein gültiges ISO-Datumsformat: ' + fromDate);
+            throw new Error('WindRoseCard: from_date not in correct ISO format: ' + fromDate);
         }
         if (hasToDate && !toDateOk) {
-            throw new Error('WindRoseCard: to_date hat kein gültiges ISO-Datumsformat: ' + toDate);
+            throw new Error('WindRoseCard: to_date not in correct ISO format: ' + toDate);
         }
 
         return false;
@@ -208,22 +208,22 @@ export class Period {
 
     private static checkDeprecations(config: CardConfigDataPeriod) {
         if (ConfigCheckUtils.checkHasProperty(config, 'period_selector')) {
-            throw new Error('Die Option period_selector wurde durch buttons_config auf oberster Ebene ersetzt. Siehe README.md.')
+            throw new Error('period_selector option is replace to buttons_config on root level, see readme.md for details.')
         }
         if (ConfigCheckUtils.checkHasProperty(config, 'time_interval')) {
-            throw new Error('Die Option time_interval wurde in das Objekt matching_strategy auf oberster Ebene verschoben.')
+            throw new Error('time_interval option is moved to matching-strategy object on root level.')
         }
         if (ConfigCheckUtils.checkHasProperty(config, 'log_measurement_counts')) {
-            throw new Error('Die Option log_measurement_counts wurde in das Objekt matching_strategy auf oberster Ebene verschoben.')
+            throw new Error('log_measurement_counts option is moved to matching-strategy object on root level.')
         }
         if (ConfigCheckUtils.checkHasProperty(config, 'hours_to_show')) {
-            throw new Error('Die Option hours_to_show wurde durch period_back ersetzt. Siehe den Abschnitt zu Zeitraumausdrücken in der README.')
+            throw new Error('hours_to_show option is changed to period_back option, see readme "Period code explained".')
         }
         if (ConfigCheckUtils.checkHasProperty(config, 'from_hours_ago')) {
-            throw new Error('Die Option from_hours_ago wurde durch from_period_ago ersetzt. Siehe den Abschnitt zu Zeitraumausdrücken in der README.')
+            throw new Error('from_hours_ago option is changed to from_period_ago option, see readme "Period code explained".')
         }
         if (ConfigCheckUtils.checkHasProperty(config, 'to_hours_ago')) {
-            throw new Error('Die Option to_hours_ago wurde durch to_period_ago ersetzt. Siehe den Abschnitt zu Zeitraumausdrücken in der README.')
+            throw new Error('to_hours_ago option is changed to to_period_ago option, see readme "Period code explained".')
         }
     }
 }

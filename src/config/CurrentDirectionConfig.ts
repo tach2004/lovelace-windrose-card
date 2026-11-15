@@ -42,7 +42,7 @@ export class CurrentDirectionConfig {
         } else if (arrowDirection === "in" || arrowDirection === "out") {
             return arrowDirection
         }
-        throw new Error(`WindRoseCard: Ungültiger Wert für arrow_direction (${arrowDirection}); zulässig sind in und out.`);
+        throw new Error(`WindRoseCard: arrow_direction ${arrowDirection} is invalid, should be in or out`);
     }
 
     static checkArrowLocation(arrowLocation: string | undefined): string {
@@ -51,6 +51,6 @@ export class CurrentDirectionConfig {
         } else if (arrowLocation === "from" || arrowLocation === "to") {
             return arrowLocation
         }
-        throw new Error(`WindRoseCard: Ungültiger Wert für arrow_location (${arrowLocation}); zulässig sind from und to.`);
+        throw new Error(`WindRoseCard: arrow_location ${arrowLocation} is invalid, should be from or to`);
     }
 }

@@ -21,7 +21,7 @@ export class SpeedRangeService {
     }
 
     generateRanges(averageSpeed?: number): void {
-        Log.info(`Geschwindigkeitsbereiche erzeugen, Mittelwert: ${averageSpeed}, Konfiguration: `, this.dynamicSpeedRangeConfig);
+        Log.info(`Generate speed ranges, average: ${averageSpeed}, config: `, this.dynamicSpeedRangeConfig);
         if (this.dynamicSpeedRangeConfig.length > 0) {
             if (averageSpeed) {
                 for (let i = this.dynamicSpeedRangeConfig.length - 1; i >= 0; i--) {
@@ -35,11 +35,11 @@ export class SpeedRangeService {
                 const maxConfig = this.dynamicSpeedRangeConfig[this.dynamicSpeedRangeConfig.length - 1];
                 this.speedRanges = SpeedRangeFactory.generateStepMax(maxConfig.step, maxConfig.max);
             }
-            Log.info("Dynamische Geschwindigkeitsbereiche bestimmt: ", this.speedRanges);
+            Log.info("Dynamic speed ranges determined: ", this.speedRanges);
         } else {
             if (this.speedRanges.length === 0) {
                 this.speedRanges = SpeedRangeFactory.generateSpeedRanges(this.outputSpeedUnit, this.windSpeedEntity);
-                Log.info("Geschwindigkeitsbereiche bestimmt: ", this.speedRanges);
+                Log.info("Speed ranges determined: ", this.speedRanges);
             }
         }
     }
@@ -57,7 +57,7 @@ export class SpeedRangeService {
         if (speedRange) {
             return speedRange.range;
         }
-        throw new Error("Geschwindigkeit liegt außerhalb aller Geschwindigkeitsbereiche: " + speed + " Einheit: " + this.outputSpeedUnit.name);
+        throw new Error("Speed is not in a speedrange: " + speed + " unit: " + this.outputSpeedUnit.name);
     }
 
 }

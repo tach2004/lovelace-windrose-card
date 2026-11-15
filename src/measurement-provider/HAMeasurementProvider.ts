@@ -77,7 +77,7 @@ export class HAMeasurementProvider {
         const measurements: Measurement[] = [];
         let ignoreCounter = 0;
         if (historyData === undefined || historyData.length === 0) {
-            throw new Error('Keine Verlaufsdaten für die Entität gefunden: ' + entity);
+            throw new Error('No history data found for entity ' + entity);
         }
         Measurement.initHistory(attribute);
         for (const data of historyData) {
@@ -86,20 +86,20 @@ export class HAMeasurementProvider {
                 if (HAMeasurementProvider.hasValue(value) && HAMeasurementProvider.isNumeric(value)) {
                     measurements.push(Measurement.fromHistory(data));
                 } else {
-                    Log.info(`Wert von ${entity} ignoriert: `, data);
+                    Log.info(`Value from ${entity} ignored: `, data);
                     ignoreCounter++;
                 }
             } else {
                 if (HAMeasurementProvider.hasValue(value)) {
                     measurements.push(Measurement.fromHistory(data));
                 } else {
-                    Log.info(`Wert von ${entity} ignoriert: `, data);
+                    Log.info(`Value from ${entity} ignored: `, data);
                     ignoreCounter++;
                 }
             }
         }
         if (ignoreCounter > 10) {
-            Log.warn(`Mehr als 10 Werte von ${entity} wurden ignoriert. Zur Analyse log_level auf INFO setzen.`);
+            Log.warn(`More then 10 values from ${entity} are ignored, sest log_level to INFO to investigate.`);
         }
         return measurements;
     }
@@ -108,7 +108,7 @@ export class HAMeasurementProvider {
         const measurements: Measurement[] = [];
         let ignoreCounter = 0;
         if (statisticsData === undefined || statisticsData.length === 0) {
-            throw new Error('Keine Statistikdaten für die Entität gefunden: ' + entity);
+            throw new Error('No statistics data found for entity ' + entity);
         }
         Measurement.initStats(statisticsData[0]);
         for (const data of statisticsData) {
@@ -117,20 +117,20 @@ export class HAMeasurementProvider {
                 if (HAMeasurementProvider.hasValue(value) && HAMeasurementProvider.isNumeric(value)) {
                     measurements.push(Measurement.fromStats(data));
                 } else {
-                    Log.info(`Wert von ${entity} ignoriert: `, data);
+                    Log.info(`Value from ${entity} ignored: `, data);
                     ignoreCounter++;
                 }
             } else {
                 if (HAMeasurementProvider.hasValue(value)) {
                     measurements.push(Measurement.fromStats(data));
                 } else {
-                    Log.info(`Wert von ${entity} ignoriert: `, data);
+                    Log.info(`Value from ${entity} ignored: `, data);
                     ignoreCounter++;
                 }
             }
         }
         if (ignoreCounter > 10) {
-            Log.warn(`Mehr als 10 Werte von ${entity} wurden ignoriert. Zur Analyse log_level auf INFO setzen. Anzahl: ${ignoreCounter}`);
+            Log.warn(`More then 10 values from ${entity} are ignored, set log_level to INFO to investigate. Count: ${ignoreCounter}`);
         }
         return measurements;
     }
