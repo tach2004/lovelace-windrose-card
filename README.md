@@ -24,6 +24,13 @@ New cards created in the card picker include `localize_defaults: true`, which le
 
 ## Install
 
+### German/English fork from repository (no release required)
+
+The localized fork ships the ready-to-install `windrose-card.js` in the repository root. In HACS, add `tach2004/lovelace-windrose-card` as a custom **Dashboard** repository and select the **main** branch (the old `v2.8.0` fork release predates localization and has no JS asset). Do not install both the upstream and fork card resources at the same time.
+
+After updating TypeScript code or merging upstream changes, run `npm ci` and `npm run build:repo`, and commit the updated root `windrose-card.js` alongside the source changes. CI checks that both versions match. No GitHub Release is necessary for the branch-based HACS installation.
+
+
 ### HACS (recommended)
 
 This card is available in [HACS](https://hacs.xyz/) (Home Assistant Community Store).
@@ -31,7 +38,7 @@ This card is available in [HACS](https://hacs.xyz/) (Home Assistant Community St
 
 ### Manual install
 
-1. Download and copy `windrose-card.js` from the [latest release](https://github.com/aukedejong/ha-windrose-card/releases/latest) into your `config/www` directory.
+1. Download and copy the [localized `windrose-card.js`](https://raw.githubusercontent.com/tach2004/lovelace-windrose-card/main/windrose-card.js) into your `config/www` directory.
 
 2. Add the resource reference as decribed below.
 
@@ -43,7 +50,7 @@ This card is available in [HACS](https://hacs.xyz/) (Home Assistant Community St
 2. Grab `windrose-card.js`:
 
   ```
-  $ wget https://github.com/aukedejong/lovelace-windrose-card/releases/latest/download/windrose-card.js
+  $ wget https://raw.githubusercontent.com/tach2004/lovelace-windrose-card/main/windrose-card.js
   ```
 
 3. Add the resource reference as decribed below.

@@ -24,6 +24,13 @@ Neue Karten aus dem Karten-Dialog erhalten automatisch `localize_defaults: true`
 
 ## Installation
 
+### Deutsche/englische Fork-Version direkt aus dem Repository
+
+Die fertige `windrose-card.js` liegt im Hauptverzeichnis dieses Forks. In HACS das benutzerdefinierte Repository `tach2004/lovelace-windrose-card` vom Typ **Dashboard** hinzufügen und als Version den Branch **main** wählen. Das alte Fork-Release `v2.8.0` enthält keine JS-Datei und stammt von vor der Übersetzung. Original- und Fork-Karte nicht gleichzeitig als Dashboard-Ressource laden.
+
+Nach Änderungen am TypeScript-Code oder nach der Übernahme neuer Original-Commits `npm ci` und `npm run build:repo` ausführen und die aktualisierte `windrose-card.js` zusammen mit den Quellcode-Änderungen committen. Die CI-Prüfung stellt sicher, dass beide übereinstimmen. Für die Installation vom Branch ist **kein GitHub-Release** erforderlich.
+
+
 ### HACS (empfohlen)
 
 Diese Karte ist über [HACS](https://hacs.xyz/) (Home Assistant Community Store) verfügbar.
@@ -31,7 +38,7 @@ Diese Karte ist über [HACS](https://hacs.xyz/) (Home Assistant Community Store)
 
 ### Manuelle Installation
 
-1. Lade `windrose-card.js` aus dem [neuesten Release](https://github.com/aukedejong/ha-windrose-card/releases/latest) herunter und kopiere die Datei nach `config/www`.
+1. Lade die [deutsche `windrose-card.js`](https://raw.githubusercontent.com/tach2004/lovelace-windrose-card/main/windrose-card.js) herunter und kopiere die Datei nach `config/www`.
 
 2. Füge die Ressource wie unten beschrieben hinzu.
 
@@ -43,7 +50,7 @@ Diese Karte ist über [HACS](https://hacs.xyz/) (Home Assistant Community Store)
 2. Lade `windrose-card.js` herunter:
 
   ```
-  $ wget https://github.com/aukedejong/lovelace-windrose-card/releases/latest/download/windrose-card.js
+  $ wget https://raw.githubusercontent.com/tach2004/lovelace-windrose-card/main/windrose-card.js
   ```
 
 3. Füge die Ressource wie unten beschrieben hinzu.

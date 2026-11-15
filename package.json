@@ -9,6 +9,7 @@
     "lint": "npx eslint .",
     "typecheck": "tsc --noEmit",
     "esbuild": "esbuild src/card/WindRoseCard.ts --bundle --minify --target=es2017 --outfile=build/windrose-card.js",
+    "build:repo": "npm run esbuild && node -e \"require('node:fs').copyFileSync('build/windrose-card.js','windrose-card.js')\"",
     "esbuild-watch": "esbuild src/card/WindRoseCard.ts --bundle --minify --target=es2017 --outfile=build/windrose-card.js --watch",
     "test": "jest --runInBand"
   },
