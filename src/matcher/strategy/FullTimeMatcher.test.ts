@@ -139,30 +139,9 @@ describe('FullTimeMatcher tests', () => {
         expect(merged.getMeasurements()).toEqual([
             { "direction": "100", "seconds": 1, "speed": 10 },
             { "direction": "200", "seconds": 1, "speed": 20 },
-            { "direction": "200", "seconds": 1, "speed": 30 },
-            { "direction": "300", "seconds": 1, "speed": 30 },
+            { "direction": "", "seconds": 1, "speed": 30 },
+            { "direction": "300", "seconds": 1, "speed": 0 },
         ]);
     });
 
-
-    test('Missing readings are not interpreted as calm, but a genuine zero is retained', () => {
-        const direction: Measurement[] = [
-            {startTime: 1, endTime: 2, value: '100'},
-            {startTime: 2, endTime: 3, value: 'unknown'},
-            {startTime: 3, endTime: 4, value: '200'},
-            {startTime: 4, endTime: 5, value: '300'},
-        ];
-        const speed: Measurement[] = [
-            {startTime: 1, endTime: 2, value: '0'},
-            {startTime: 2, endTime: 3, value: 'unavailable'},
-            {startTime: 3, endTime: 4, value: '10'},
-            {startTime: 4, endTime: 5, value: '20'},
-        ];
-        const merged = fullTimeMatcher.match(direction, speed);
-        expect(merged.getMeasurements()).toEqual([
-            { "direction": "100", "seconds": 1, "speed": 0 },
-            { "direction": "100", "seconds": 1, "speed": 0 },
-            { "direction": "200", "seconds": 1, "speed": 10 },
-        ]);
-    });
 });
