@@ -69,7 +69,7 @@ Wenn du den grafischen Editor bevorzugst, kannst du die Ressource über das Men�
 
 ### Kartenoptionen
 
-| Name                      |                  Type                   | Default | Required | Description                                                                                                                                                                                                            |
+| Name                      |                  Typ                   | Standard | Pflicht | Beschreibung                                                                                                                                                                                                            |
 |---------------------------|:---------------------------------------:|:-------:|:--------:|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | type                      |                 string                  |         |    x     | `custom:windrose-card`.                                                                                                                                                                                                |
 | title                     |                 string                  |         |    -     | Titel der Karte. |
@@ -98,7 +98,7 @@ Wenn du den grafischen Editor bevorzugst, kannst du die Ressource über das Men�
 
 Einstellungen für die Darstellung des Windrosendiagramms.
 
-| Name                                |               Type               |      Default       | Required | Description                                                                                                                                         |
+| Name                                |               Typ               |      Standard       | Pflicht | Beschreibung                                                                                                                                         |
 |-------------------------------------|:--------------------------------:|:------------------:|:-------:|-----------------------------------------------------------------------------------------------------------------------------------------------------|
 | wind_direction_count                |              string              |         16         |    -    | Anzahl der darstellbaren Windrichtungen, mindestens 4 und höchstens 32. |
 | background_image                    |              string              |                    |    -    | Zeigt ein quadratisches Hintergrundbild genau hinter dem äußeren Kreis der Windrose. |
@@ -121,7 +121,7 @@ Da `center_calm_percentage` standardmäßig `true` war, ergibt die neue Standard
 Wird `center_circle` nicht angegeben, werden die Standardwerte verwendet. Bestehende Karten ohne besondere Einstellungen ändern ihr Aussehen deshalb nicht.
 
 
-| Name      |               Type               |       Default       | Required | Description                                                                                                                |
+| Name      |               Typ               |       Standard       | Pflicht | Beschreibung                                                                                                                |
 |-----------|:--------------------------------:|:-------------------:|:--------:|----------------------------------------------------------------------------------------------------------------------------|
 | enabled   |              string              |        true         |    -     | Ob der Mittelkreis angezeigt wird. |
 | size      |              string              |         60          |    -     | Größe des Mittelkreises. |
@@ -142,7 +142,7 @@ rose_config:
 Es darf jeweils nur eine der Optionen zur Zeitraumauswahl verwendet werden.
 Die Statistikoptionen in diesem Objekt überschreiben die entsprechenden Einstellungen einzelner Entitäten.
 
-| Name                                      |                      Type                      | Default | Required | Description                                                                                                                                                                                         |
+| Name                                      |                      Typ                      | Standard | Pflicht | Beschreibung                                                                                                                                                                                         |
 |-------------------------------------------|:----------------------------------------------:|:-------:|:--------:|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | use_statistics                            |                    boolean                     |  false  |    -     | Verwendet Home-Assistant-Statistikdaten in 5-Minuten-Schritten, sofern verfügbar. Dies kann den Abruf beschleunigen und überschreibt die Einstellung einzelner Sensoren. |
 | statistics_period                         |                     string                     | 5minute |    -     | Statistikintervall: `5minute`, `hour`, `day`, `week`, `month` oder `year`. Siehe [Datenspeicherung](#datenspeicherung-in-home-assistant). |
@@ -173,7 +173,7 @@ Die Statistikoptionen in diesem Objekt überschreiben die entsprechenden Einstel
 
 Zeigt Schaltflächen mit unterschiedlichen Funktionen an.
 
-| Name            |               Type               | Default | Required | Description                                                                      |
+| Name            |               Typ               | Standard | Pflicht | Beschreibung                                                                      |
 |-----------------|:--------------------------------:|:-------:|:--------:|----------------------------------------------------------------------------------|
 | location        |              string              |   top   |    -     | Position der Schaltflächen: `top`, `bottom`, `top-below-text`, `bottom-above-text`. |
 | buttons         |     [object](#objekt-button)     |         |    -     | Liste der Schaltflächen. |
@@ -188,7 +188,7 @@ Weitere Informationen und Konfigurationsmöglichkeiten findest du in den folgend
 Mit diesem Typ wählst du einen anderen Datenzeitraum aus. Es gelten dieselben Optionen wie für `data_period`.
 Ist eine Schaltfläche dieses Typs aktiv, brauchst du das Objekt `data_period` nicht.
 
-| Name                       |              Type               | Default | Required | Description                                                           |
+| Name                       |              Typ               | Standard | Pflicht | Beschreibung                                                           |
 |----------------------------|:-------------------------------:|:-------:|:--------:|-----------------------------------------------------------------------|
 | type                       |             string              |         |    x     | Fester Wert: `period_selector`. |
 | button_text                |             string              |         |    x     | Text der Schaltfläche. |
@@ -211,7 +211,7 @@ Durch erneutes Klicken auf die Schaltfläche `period_selector` wird der Zeitraum
 Der Zeitraum kann nicht in die Zukunft verschoben werden.
 Beim Wechsel werden keine Übergangsanimationen verwendet.
 
-| Name         |                      Type                      | Default | Required | Description                                                                    |
+| Name         |                      Typ                      | Standard | Pflicht | Beschreibung                                                                    |
 |--------------|:----------------------------------------------:|:-------:|:--------:|--------------------------------------------------------------------------------|
 | type         |                     string                     |         |    x     | Fester Wert: `period_shift`. |
 | button_text  |                     string                     |         |    x     | Text der Schaltfläche. |
@@ -236,7 +236,7 @@ Der unter den Datenzeitraumoptionen eingestellte Zeitraum bestimmt den gesamten 
 `step_period` verschiebt dieses Zeitfenster schrittweise, bis das Ende des eingestellten Zeitraums erreicht ist.
 Für den Wechsel zwischen den Zeitfenstern werden keine zusätzlichen Übergangsanimationen verwendet.
 
-| Name                       |                      Type                      | Default | Required | Description                                                                      |
+| Name                       |                      Typ                      | Standard | Pflicht | Beschreibung                                                                      |
 |----------------------------|:----------------------------------------------:|:-------:|:--------:|----------------------------------------------------------------------------------|
 | type                       |                     string                     |         |    x     | Fester Wert: `period_shift_play`. |
 | button_text                |                     string                     |         |    x     | Text der Schaltfläche. |
@@ -267,7 +267,7 @@ Mit dieser Schaltfläche lässt sich der verwendete Windgeschwindigkeitssensor a
 Die Eigenschaft `use_for_windrose` unter `windspeed_entities` bestimmt den anfangs verwendeten Sensor.
 Beim Sensorwechsel werden keine Übergangsanimationen verwendet.
 
-| Name                       |              Type               | Default | Required | Description                                                                    |
+| Name                       |              Typ               | Standard | Pflicht | Beschreibung                                                                    |
 |----------------------------|:-------------------------------:|:-------:|:--------:|--------------------------------------------------------------------------------|
 | type                       |             string              |         |    x     | Fester Wert: `windrose_speed_selector`. |
 | button_text                |             string              |         |    x     | Text der Schaltfläche. |
@@ -292,7 +292,7 @@ buttons_config:
 Auf Ebene von `buttons_config` lassen sich Standardfarben für alle Schaltflächen festlegen.
 Einzelne Schaltflächen können über ihre eigene Konfiguration abweichende Farben verwenden.
 
-| Name                |              Type               | Default | Required | Description                                   |
+| Name                |              Typ               | Standard | Pflicht | Beschreibung                                   |
 |---------------------|:-------------------------------:|:-------:|:--------:|-----------------------------------------------|
 | active_color        |             string              |   red   |    -     | Textfarbe der aktiven Schaltfläche. |
 | active_bg_color     |             string              | inherit |    -     | Hintergrundfarbe der aktiven Schaltfläche. |
@@ -381,7 +381,7 @@ Weitere Informationen zu Statistikdaten: [Home Assistant Data Science Portal](ht
 Seit Version 1.8.2 wird die Einheit der Windrichtung automatisch erkannt.
 Bei numerischen Zuständen nimmt die Karte Gradwerte an. Besteht der Zustand aus Buchstaben, wird die Windrichtung anhand der Buchstabenkombination ermittelt.
 
-| Name                   |  Type   | Default | Required | Description                                                                                                                                                                                                                               |
+| Name                   |  Typ   | Standard | Pflicht | Beschreibung                                                                                                                                                                                                                               |
 |------------------------|:-------:|:-------:|:--------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | entity                 | string  |         |    x     | Windrichtungsentität. |
 | attribute              | string  |         |    -     | Bei Angabe eines Attributs wird dessen Wert statt des Entitätszustands verwendet. |
@@ -395,7 +395,7 @@ Bei numerischen Zuständen nimmt die Karte Gradwerte an. Besteht der Zustand aus
 
 [Hier](#beispiele-mit-eigenen-geschwindigkeitsbereichen) findest du Beispiele für die Konfiguration eigener Geschwindigkeitsbereiche.
 
-| Name                         |                  Type                  |           Default            | Required | Description                                                                                                                                                                                          |
+| Name                         |                  Typ                  |           Standard            | Pflicht | Beschreibung                                                                                                                                                                                          |
 |------------------------------|:--------------------------------------:|:----------------------------:|:--------:|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | entity                       |                 string                 |                              |    x     | Entität für die Windgeschwindigkeit. |
 | attribute                    |                 string                 |                              |    -     | Bei Angabe eines Attributs wird dessen Wert statt des Zustands angezeigt. |
@@ -529,9 +529,9 @@ windspeed_entities:
 
 ### Objekt direction_labels
 
-| Name                                         |  Type   | Default | Required | Description                                                                                                                                                                          |
+| Name                                         |  Typ   | Standard | Pflicht | Beschreibung                                                                                                                                                                          |
 |----------------------------------------------|:-------:|:-------:|:--------:|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| cardinal_direction_letters                   | number  |  NESW   |          | Legt die sichtbaren Richtungsbeschriftungen fest. Erlaubt sind vier Buchstaben. Diese Option dient nicht zur Auswertung der Sensorzustände; dafür wird `direction_letters` verwendet. |
+| cardinal_direction_letters                   | number  |  NOSW   |          | Legt die sichtbaren Richtungsbeschriftungen fest. Erlaubt sind vier Buchstaben. Diese Option dient nicht zur Auswertung der Sensorzustände; dafür wird `direction_letters` verwendet. |
 | show_cardinal_directions                     | boolean |  true   |          | Zeigt die Haupthimmelsrichtungen an. |
 | show_intercardinal_directions                | boolean |  false  |          | Zeigt die Zwischenhimmelsrichtungen an. |
 | show_secondary_intercardinal_directions      | boolean |  false  |          | Zeigt die Nebenhimmelsrichtungen an. |
@@ -580,7 +580,7 @@ Zeigt die aktuelle Windrichtung an. Der Pfeil zeigt wahlweise in die eingestellt
 Wenn der Sensorzustand keine gültige Richtung enthält, erscheint in der Mitte ein roter Punkt.
 Einige Sensoren melden beispielsweise `CALM` oder `VRB`, wenn keine eindeutige Windrichtung vorliegt.
 
-| Name                       |  Type   | Default | Required | Description                                                                                                                                     |
+| Name                       |  Typ   | Standard | Pflicht | Beschreibung                                                                                                                                     |
 |----------------------------|:-------:|:-------:|:--------:|-------------------------------------------------------------------------------------------------------------------------------------------------|
 | show_arrow                 | boolean |  false  |    x     | Aktiviert die Anzeige des Pfeils. |
 | arrow_direction            | string  |   in    |          | Pfeilrichtung: `in` nach innen zur Mitte, `out` nach außen. |
@@ -596,7 +596,7 @@ Diese Konfiguration wird nur benötigt, wenn sich die Windrose entsprechend eine
 Dies ist beispielsweise auf einem Boot nützlich.
 Alternativ kannst du über einen Home-Assistant-Zahlenhelfer eine manuelle Drehung vorgeben.
 
-| Name        |  Type   | Default | Required | Description                                                   |
+| Name        |  Typ   | Standard | Pflicht | Beschreibung                                                   |
 |-------------|:-------:|:-------:|:--------:|---------------------------------------------------------------|
 | auto_rotate | boolean |         |    x     | Aktiviert die automatische Drehung (`false` zum Deaktivieren). |
 | entity      | string  |         |    x     | Kompass- oder Richtungsentität mit Gradwerten. |
@@ -608,7 +608,7 @@ Alternativ kannst du über einen Home-Assistant-Zahlenhelfer eine manuelle Drehu
 
 Konfiguration der Informationen in den Ecken rund um die Windrose.
 
-| Name         |  Type  | Default | Required | Description                          |
+| Name         |  Typ  | Standard | Pflicht | Beschreibung                          |
 |--------------|:------:|:-------:|:--------:|--------------------------------------|
 | top_left     | object |         |          | Konfiguration für die Ecke oben links. |
 | top_right    | object |         |          | Konfiguration für die Ecke oben rechts. |
@@ -617,7 +617,7 @@ Konfiguration der Informationen in den Ecken rund um die Windrose.
 
 ### Objekt top_left, top_right, bottom_left und bottom_right
 
-| Name              |  Type  |       Default        | Required | Description                                                                                                                   |
+| Name              |  Typ  |       Standard        | Pflicht | Beschreibung                                                                                                                   |
 |-------------------|:------:|:--------------------:|:--------:|-------------------------------------------------------------------------------------------------------------------------------|
 | label             | string |                      |          | Beschriftung. |
 | unit              | string |                      |          | Einheit, die ohne automatisch eingefügtes Leerzeichen hinter dem Zustand angezeigt wird. Ein benötigtes Leerzeichen muss im Wert enthalten sein. |
@@ -683,39 +683,39 @@ corner_info:
 
 ### Objekt text_blocks
 
-Configuration for displaying information above and below the windrose.
-The buttons can be configured above or below the text.
+Konfiguriert Informationen oberhalb und unterhalb der Windrose.
+Schaltflächen lassen sich oberhalb oder unterhalb des Textes platzieren.
 
-Specific values can be displayed in the text.
+Im Text können bestimmte Messwerte und berechnete Werte angezeigt werden.
 
 
-| Name         |  Type  | Default | Required | Description                               |
+| Name         |  Typ  | Standard | Pflicht | Beschreibung                               |
 |--------------|:------:|:-------:|:--------:|-------------------------------------------|
-| top          | object |         |          | Configration for text above the windrose. |
-| bottom       | object |         |          | Configration for text below the windrose. |
+| top          | object |         |          | Konfiguration des Textes oberhalb der Windrose. |
+| bottom       | object |         |          | Konfiguration des Textes unterhalb der Windrose. |
 
 
 ### Objekt top und bottom
 
-| Name              |  Type  |       Default        | Required | Description                                             |
+| Name              |  Typ  |       Standard        | Pflicht | Beschreibung                                             |
 |-------------------|:------:|:--------------------:|:--------:|---------------------------------------------------------|
-| text              | string |                      |          | Text to show, more info below on how to display values. |
-| text_size         | string |                      |          | Text size in css pixels                                 |
-| text_color        | string | --primary-text-color |          | Text color, css value                                   |
+| text              | string |                      |          | Anzuzeigender Text. Die Verwendung von Platzhaltern wird im nächsten Abschnitt erklärt. |
+| text_size         | string |                      |          | Textgröße in CSS-Pixeln. |
+| text_color        | string | --primary-text-color |          | CSS-Farbwert des Textes. |
 
 ### Einzelne Werte anzeigen
 
-You can use the values in the table below and any Home Assistant entity state or attribute.
-The name should be wrapped like this:
+Du kannst die Werte aus der folgenden Tabelle sowie beliebige Entitätszustände oder Attribute aus Home Assistant verwenden.
+Die Namen werden in der folgenden Schreibweise eingesetzt:
 
-Values table below: ```${match-count}```
+Wert aus der folgenden Tabelle: ```${match-count}```
 
-For entity state: ```${sensor.windspeed}```
+Entitätszustand: ```${sensor.windspeed}```
 
-For entity attribute: ```${sensor.windspeed.unit_of_measurement}```
+Entitätsattribut: ```${sensor.windspeed.unit_of_measurement}```
 
-Html and styling is supported in the text. A HTML table is used in the example below.
-To prevent HA from reformating your config, use |-
+HTML und CSS-Formatierungen sind im Text erlaubt. Im folgenden Beispiel wird eine HTML-Tabelle verwendet.
+Damit Home Assistant die Konfiguration nicht umformatiert, verwende `|-`.
 
 ```yaml
 text_blocks:
@@ -761,30 +761,30 @@ text_blocks:
          </table>
 ```
 
-Available values:
+Verfügbare Platzhalter:
 
-| Name                                                                                          | Description                                                                                                                                         |
+| Name | Beschreibung |
 |-----------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| start-time<br/>start-date                                                                     | Start date and time 0f the active period, taking into account changes with the time_shift button.                                                   |
-| end-time<br/>end-date                                                                         | End date and time 0f the active period, taking into account changes with the time_shift button.                                                     |
-| date-first-direction<br/>time-first-direction<br/>date-last-direction<br/>time-last-direction | Date and time of the first and last direction measurements.                                                                                         |
-| direction-count                                                                               | Amount of measurement used by the windrose.                                                                                                         |
-| date-first-speed-x</br>time-first-speed-x<br/>date-last-speed-x<br/>time-last-speed-x         | Date and time of the first and last speed measurements. The x should be the index of the windspeed sensor. Index meaning 0 for the first.           | 
-| speed-x-count                                                                                 | Amount of measurements used by the windrose. The x should be the index of the windspeed sensor. Index meaning 0 for the first.                      |
-| date-first-match<br/>time-first-match<br/>date-last-matc<br/>time-last-match                  | Date and time of the first and last matched direction and speed measurements.<br/>These times should be close to the configured or selected period. |
-| match-count                                                                                   | Amount of matches between direction and speed measurements. These values are used in the calculations for the windrose.                             |
-| period-minutes                                                                                | Amount of minutes in the selected period.                                                                                                           |                                                                                                                |
-| period-hours                                                                                  | Amount of hours in the selected period.                                                                                                             | 
-| match-period-minutes                                                                          | Amount of minutes between the first and last matched measurements. This should be close to the configured or selected period.                       |                                                                                                                |
-| match-period-hours                                                                            | Amount of hours between the first and last matched measuremetns.                                                                                    | 
-| min-speed<br/>max-speed<br/>average-speed                                                     | Wind speed statistics. The first wind speed sensor is used. The first is also used for the windrose.                                                | 
-| calm-percentage                                                                               | Percentage of matched measurements in the first speed range. Usually this is the speed range with calm windspeeds.                                  |
-| median-speed                                                                                  | Median windspeed (50th percentile)                                                                                                                  |
-| q1-speed                                                                                      | Interquartile range (25th percentile)                                                                                                               |
-| q3-speed                                                                                      | Interquartile range (75th percentile)                                                                                                               |
-| iqr-range                                                                                     | Interquartile range (25th to 75th percentile) - excludes outliers                                                                                   |
-| p90-speed                                                                                     | 90th percentile for gusts (excludes the highest 10% outliers)                                                                                       |
-| wind-description                                                                              | Weather-style description using IQR                                                                                                                 |
+| start-time<br/>start-date                                                                     | Beginn des aktiven Zeitraums (Datum und Uhrzeit), einschließlich Verschiebungen über `period_shift`. |
+| end-time<br/>end-date                                                                         | Ende des aktiven Zeitraums (Datum und Uhrzeit), einschließlich Verschiebungen über `period_shift`. |
+| date-first-direction<br/>time-first-direction<br/>date-last-direction<br/>time-last-direction | Datum und Uhrzeit der ersten und letzten Richtungsmessung. |
+| direction-count                                                                               | Anzahl der Richtungs-Messwerte für die Windrose. |
+| date-first-speed-x</br>time-first-speed-x<br/>date-last-speed-x<br/>time-last-speed-x         | Datum und Uhrzeit der ersten und letzten Geschwindigkeitsmessung. `x` ist der Index des Sensors, beginnend bei 0. | 
+| speed-x-count                                                                                 | Anzahl der Geschwindigkeitsmessungen für Sensor `x`; der erste Sensor hat den Index 0. |
+| date-first-match<br/>time-first-match<br/>date-last-matc<br/>time-last-match                  | Datum und Uhrzeit der ersten und letzten Zuordnung von Richtungs- und Geschwindigkeitsmessungen. Sie sollten ungefähr dem ausgewählten Zeitraum entsprechen. |
+| match-count                                                                                   | Anzahl der zugeordneten Richtungs- und Geschwindigkeitsmessungen, die der Windrosenberechnung zugrunde liegen. |
+| period-minutes                                                                                | Amount of minutes in the selected period.                                                                                                           | Dauer des ausgewählten Zeitraums in Minuten. |
+| period-hours                                                                                  | Dauer des ausgewählten Zeitraums in Stunden. | 
+| match-period-minutes                                                                          | Amount of minutes between the first and last matched measurements. This should be close to the configured or selected period.                       | Dauer zwischen der ersten und letzten zugeordneten Messung in Minuten; sollte etwa dem gewählten Zeitraum entsprechen. |
+| match-period-hours                                                                            | Dauer zwischen der ersten und letzten zugeordneten Messung in Stunden. | 
+| min-speed<br/>max-speed<br/>average-speed                                                     | Statistik der Windgeschwindigkeit anhand des ersten Geschwindigkeitssensors, der standardmäßig auch die Windrose bestimmt. | 
+| calm-percentage                                                                               | Anteil der zugeordneten Messungen im ersten Geschwindigkeitsbereich; dies entspricht üblicherweise der Windstille. |
+| median-speed                                                                                  | Median der Windgeschwindigkeit (50. Perzentil). |
+| q1-speed                                                                                      | Unteres Quartil der Windgeschwindigkeit (25. Perzentil). |
+| q3-speed                                                                                      | Oberes Quartil der Windgeschwindigkeit (75. Perzentil). |
+| iqr-range                                                                                     | Interquartilsbereich (25. bis 75. Perzentil) ohne Ausreißer. |
+| p90-speed                                                                                     | 90. Perzentil als Hinweis auf Böen; oberste zehn Prozent bleiben unberücksichtigt. |
+| wind-description                                                                              | Wetterähnliche Beschreibung des Windes anhand des Interquartilsbereichs. |
 
 ### YAML-Beispiel für text_blocks
 
@@ -825,28 +825,28 @@ text_blocks:
 
 ### Objekt actions
 
-The hold, tap and double-tap actions described in the Home Assistant documentation are supported. See link:
-[Home Assistant action documentation](https://www.home-assistant.io/dashboards/actions/)
+Die in Home Assistant dokumentierten Aktionen für Tippen, langes Drücken und Doppeltippen werden unterstützt. Siehe:
+[Dokumentation der Home-Assistant-Aktionen](https://www.home-assistant.io/dashboards/actions/)
 
-See example yaml below on how to use.
-Btw, you can only configure actions for the first 2 speed bars.
+Das folgende YAML-Beispiel zeigt die Verwendung.
+Beachte, dass Aktionen nur für die ersten beiden Geschwindigkeitsbalken konfiguriert werden können.
 
-| Name         |  Type  | Default | Required | Description                          |
+| Name | Typ | Standard | Pflicht | Beschreibung |
 |--------------|:------:|:-------:|:--------:|--------------------------------------|
-| top_left     | object |         |          | Configration for top left corner     |
-| top_right    | object |         |          | Configration for top right corner    |
-| bottom_left  | object |         |          | Configration for bottom left corner  |
-| bottom_right | object |         |          | Configration for bottom right corner |
-| windrose     | object |         |          | Configration for the windrose        |
-| speed_bar_1  | object |         |          | Configration for the first speedbar  |
-| speed_bar_2  | object |         |          | Configration for the second speedbar |
+| top_left     | object |         |          | Konfiguration der Ecke oben links. |
+| top_right    | object |         |          | Konfiguration der Ecke oben rechts. |
+| bottom_left  | object |         |          | Konfiguration der Ecke unten links. |
+| bottom_right | object |         |          | Konfiguration der Ecke unten rechts. |
+| windrose     | object |         |          | Aktionen für die Windrose. |
+| speed_bar_1  | object |         |          | Aktionen für den ersten Geschwindigkeitsbalken. |
+| speed_bar_2  | object |         |          | Aktionen für den zweiten Geschwindigkeitsbalken. |
 
 
-Examples:
-- **top_right**: toggle light
-- **windrose**: navigate to an other page within Home Assitant.
-- **buttom_left**: open an url in an other browser tab.
-- **others**: show popup with more info about the entity.
+Beispiele:
+- **top_right**: Licht umschalten.
+- **windrose**: Zu einer anderen Seite in Home Assistant navigieren.
+- **bottom_left**: Eine URL in einem neuen Browser-Tab öffnen.
+- **weitere Bereiche**: Einen Dialog mit zusätzlichen Informationen zur Entität anzeigen.
 
 ### YAML-Beispiel für actions
 ```yaml
@@ -887,51 +887,51 @@ actions:
 
 ### Objekt matching_strategy
 
-| Name                   |  Type   | Default | Required | Description                                                                                                                                                         |
+| Name | Typ | Standard | Pflicht | Beschreibung |
 |------------------------|:-------:|:-------:|:--------:|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| name                   | string  |         |    -     | How to match direction and speed measurements. Find a speed with each direction or a direction with each speed measurement. More info below.                        |
-| time_interval          | number  |   60    |    -     | Time interval in seconds. Only used by the time-frame matching strategy. More info below.                                                                           |
-| log_measurement_counts | boolean |  false  |    -     | When set to true, will log measurement and match counts to the browsers console. Can be useful to check the data where the graph is based on. Example output below. |
+| name                   | string  |         |    -     | Zuordnung zwischen Richtungs- und Geschwindigkeitsmessungen. Weitere Informationen stehen unten. |
+| time_interval          | number  |   60    |    -     | Zeitintervall in Sekunden; nur für die Zuordnungsstrategie `time-frame`. |
+| log_measurement_counts | boolean |  false  |    -     | Bei `true` werden Messwertzahlen und Zuordnungen in die Browserkonsole geschrieben, um die Datenbasis des Diagramms zu prüfen. |
 
-The matching strategies can result in a different graph, depending on your sensors. How many state updates they get.
+Die Wahl der Zuordnungsstrategie kann das Diagramm beeinflussen, insbesondere wenn die Sensoren unterschiedlich häufig neue Zustände melden.
 
 #### Windrichtung zuerst
 
-Config value: 'direction-first'
+Konfigurationswert: `direction-first`
 
-Every direction state during the configuration time frame is used for the graph. The algorithm searches for the last speed state at the time of the direction state measurment.
-It's possible not all speed state are used in the graph.
+Jede gemessene Windrichtung im ausgewählten Zeitraum geht in das Diagramm ein. Dazu wird jeweils der letzte zum Messzeitpunkt bekannte Geschwindigkeitswert gesucht.
+Nicht alle Geschwindigkeitswerte müssen dabei verwendet werden.
 
 #### Windgeschwindigkeit zuerst
 
-Config value: 'speed-first'
+Konfigurationswert: `speed-first`
 
-Every speed state during the configuration time frame is used for the graph. The algorithm searches for the last direction state at the time of the direction state measurement.
-It's possible not all direction states are used in the graph.
+Jeder Geschwindigkeitsmesswert im ausgewählten Zeitraum geht in das Diagramm ein. Dazu wird jeweils der letzte zum Messzeitpunkt bekannte Richtungswert gesucht.
+Nicht alle Richtungswerte müssen dabei verwendet werden.
 
-It's probably best to choose the sensor that reports the most updates as first.
+Als führenden Sensor wählst du am besten denjenigen, der häufiger Messwerte liefert.
 
 #### Zeitraster
 
-Config value: 'time-frame'
+Konfigurationswert: `time-frame`
 
-Extra config: 'time-interval'
+Zusätzliche Option: `time_interval`
 
-Time is leading. For every moment back in time (default every 60 seocnds) the direction and speed states are determined.
-For data sources that only update state changes, this should result in a better graph.
+Das Zeitraster ist maßgeblich. Für jeden Zeitpunkt in der Vergangenheit (standardmäßig alle 60 Sekunden) werden Richtung und Geschwindigkeit bestimmt.
+Bei Datenquellen, die nur auf Änderungen reagieren, kann dies zu einem besseren Diagramm führen.
 
-For the first two strategies, a percentage in the graph is a percentage of the measurement count not a percentage of time.
+Bei den ersten beiden Strategien beziehen sich die Prozentwerte auf die Anzahl der Messungen und nicht auf die gemessene Zeitdauer.
 
 ### Gesamte Zeitdauer
 
-Config value: 'full-time'
+Konfigurationswert: `full-time`
 
-For every speed measurement the wind direction at that timestamp is determined.
-The same is done for every direction measurement.
-Then for every measurement combination the amount of seconds that combination was active is determined.
-With that data the wind rose percentages are calculated.
+Für jede Geschwindigkeitsmessung wird die zum jeweiligen Zeitpunkt gültige Windrichtung bestimmt.
+Dies geschieht ebenso für jede Richtungsmessung.
+Anschließend wird ermittelt, wie viele Sekunden jede Kombination aus Richtung und Geschwindigkeit aktiv war.
+Aus diesen Zeitanteilen werden die Prozentwerte der Windrose berechnet.
 
-I think this strategy results in the best graph, but it possibly takes to much CPU power to calculate on some devices.
+Diese Strategie liefert voraussichtlich ein besonders aussagekräftiges Diagramm, kann aber auf manchen Geräten mehr Rechenleistung benötigen.
 
 #### Beispielausgabe der Konsole bei aktiviertem log_measurement_counts
 ```
@@ -943,25 +943,25 @@ Matches:    1213 - min: 0 - max: 67.3 - average: 24.972333 - strategy: direction
 
 
 ### Objekt colors
-For some values the theme variable --primary-text-color is used. This is needed if HA switches theme and light/dark mode.
-CSS color values are allowed.
+Für einige Farben wird die Theme-Variable `--primary-text-color` verwendet. Dadurch passt sich die Karte an einen Wechsel zwischen hellem und dunklem Home-Assistant-Design an.
+CSS-Farbwerte sind erlaubt.
 
-| Name                                          |  Type  |       Default        | Required | Description                                                                                     |
+| Name | Typ | Standard | Pflicht | Beschreibung |
 |-----------------------------------------------|:------:|:--------------------:|:--------:|:------------------------------------------------------------------------------------------------|
-| rose_lines                                    | string |  rgb(160, 160, 160)  |          | Circles, borders and the cross color                                                            |
-| rose_direction_letters (DEPRECATED)           | string | --primary-text-color |          | Direction labels colors                                                                         |
-| rose_cardinal_direction_labels                | string | --primary-text-color |          | Cardinal direction labels color                                                                 |
-| rose_intercardinal_direction_labels           | string | --primary-text-color |          | Intercardinal direction labels color                                                            |
-| rose_secondary_intercardinal_direction_labels | string | --primary-text-color |          | Secondary intercardinal direction labels color                                                  |
-| rose_center_percentage                        | string |         auto         |          | Center circle text color. Auto means black or white depending on background color.              |
-| rose_center_background                        | string |         auto         |          | Center circle background. Auto means the same as the background color of the first bar segment. |
-| rose_percentages                              | string |         auto         |          | Percentage legend color. Auto means using browsers css mix-blend-mode option.                   |
-| rose_current_direction_arrow                  | string |         red          |          | Current direction arrow color                                                                   |
-| bar_border                                    | string |  rgb(160, 160, 160)  |          | Bar border color                                                                                |
-| bar_unit_name                                 | string | --primary-text-color |          | Unit name color                                                                                 |
-| bar_name                                      | string | --primary-text-color |          | Entity name color                                                                               |
-| bar_unit_values                               | string | --primary-text-color |          | Unit value color                                                                                |
-| bar_percentages                               | string |         auto         |          | Percentage color. Auto means black or white depending on background color.                      |
+| rose_lines                                    | string |  rgb(160, 160, 160)  |          | Farbe der Kreise, Umrandungen und Kreuzlinien. |
+| rose_direction_letters (DEPRECATED)           | string | --primary-text-color |          | Veraltet: Farbe der Richtungsbeschriftungen. |
+| rose_cardinal_direction_labels                | string | --primary-text-color |          | Farbe der Haupthimmelsrichtungen. |
+| rose_intercardinal_direction_labels           | string | --primary-text-color |          | Farbe der Zwischenhimmelsrichtungen. |
+| rose_secondary_intercardinal_direction_labels | string | --primary-text-color |          | Farbe der Nebenhimmelsrichtungen. |
+| rose_center_percentage                        | string |         auto         |          | Textfarbe im Mittelkreis. `auto` wählt Schwarz oder Weiß abhängig vom Hintergrund. |
+| rose_center_background                        | string |         auto         |          | Hintergrund des Mittelkreises. Bei `auto` entspricht er dem ersten Balkensegment. |
+| rose_percentages                              | string |         auto         |          | Farbe der Prozentbeschriftung. `auto` verwendet die CSS-Mischmethode `mix-blend-mode` des Browsers. |
+| rose_current_direction_arrow                  | string |         red          |          | Farbe des Pfeils für die aktuelle Windrichtung. |
+| bar_border                                    | string |  rgb(160, 160, 160)  |          | Farbe der Balkenumrandung. |
+| bar_unit_name                                 | string | --primary-text-color |          | Textfarbe des Einheitennamens. |
+| bar_name                                      | string | --primary-text-color |          | Textfarbe des Sensornamens. |
+| bar_unit_values                               | string | --primary-text-color |          | Farbe der Einheitenwerte am Balken. |
+| bar_percentages                               | string |         auto         |          | Farbe der Prozentangaben. `auto` wählt abhängig vom Hintergrund Schwarz oder Weiß. |
 _
 ### YAML-Beispiel für colors
 ```yaml
@@ -984,7 +984,7 @@ colors:
 
 ### Eigene Geschwindigkeitsbereiche mit fester Schrittweite:
 
-Uses speed_range_step and speed_range_max.
+Verwendet `speed_range_step` und `speed_range_max`.
 
 <img alt="Pevriew" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/example/speedbar_step_5_max_25.png?raw=true" width="415"/>
 
@@ -1007,9 +1007,9 @@ windspeed_entities:
 
 ### Individuelle Geschwindigkeitsbereiche
 
-Uses speed_ranges configuration, custom ranges and colors.
+Verwendet `speed_ranges` mit individuell festgelegten Grenzen und Farben.
 
-Always make sure there is a speedrange starting from 0, otherwise you get this error:
+Achte darauf, einen Geschwindigkeitsbereich ab 0 zu definieren. Andernfalls erscheint eine Fehlermeldung.
 
 ```Speed is not in a speedrange: 0.6 unit: mps```
 
@@ -1042,13 +1042,13 @@ windspeed_entities:
 ```
 
 ## Fehlermeldungen und Probleme
-Make sure you have `javascript_version: latest` in your `configuration.yaml` under `frontend:`.
+Stelle sicher, dass unter `frontend:` in deiner `configuration.yaml` die Option `javascript_version: latest` gesetzt ist.
 
-Make sure you have the latest versions of `windrose-card.js`.
+Prüfe, ob du die neueste Version von `windrose-card.js` verwendest.
 
-If you have issues after updating the card, try clearing your browser cache.
+Falls nach einem Update Probleme auftreten, leere den Cache deines Browsers.
 
-If you have issues displaying the card in older browsers, try changing `type: module` to `type: js` at the card reference in `ui-lovelace.yaml`.
+Wenn die Karte in älteren Browsern nicht angezeigt wird, versuche in `ui-lovelace.yaml` beim Ressourceneintrag `type: module` durch `type: js` zu ersetzen.
 
 ## Lizenz
-This project is under the MIT license.
+Dieses Projekt steht unter der MIT-Lizenz.
