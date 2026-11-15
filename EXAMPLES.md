@@ -2,7 +2,7 @@
 ## Konfigurationsbeispiele
 
 ## Minimale Kartenkonfiguration
-<img alt="Example for config yaml" float="right" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/examples/minimal-right.png?raw=true" width="482"/>
+<img alt="Vorschau einer YAML-Konfiguration" float="right" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/examples/minimal-right.png?raw=true" width="482"/>
 
 ```yaml
 type: custom:windrose-card
@@ -22,7 +22,7 @@ current_direction:
 ```
 
 ## Zeitraum-Schaltflächen und Eckinformationen
-<img alt="Peview bars bottom" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/examples/maximal-bottom-button.png?raw=true" width="482"/>
+<img alt="Vorschau: Geschwindigkeitsbalken unten" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/examples/maximal-bottom-button.png?raw=true" width="482"/>
 
 ```yaml
 type: custom:windrose-card
@@ -100,7 +100,7 @@ direction_labels:
 ```
 
 ## Text mit Statistiken und Datumsangaben
-<img alt="Peview bars bottom" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/examples/maximal-right-button-stats.png?raw=true" width="482"/>
+<img alt="Vorschau: Geschwindigkeitsbalken unten" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/examples/maximal-right-button-stats.png?raw=true" width="482"/>
 
 ```yaml
 type: custom:windrose-card
@@ -239,7 +239,7 @@ direction_labels:
 ```
 
 ## Farben und eigene Richtungsbeschriftungen
-<img alt="Peview bars bottom" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/examples/max-colors-bottom-compass.png?raw=true" width="482"/>
+<img alt="Vorschau: Geschwindigkeitsbalken unten" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/examples/max-colors-bottom-compass.png?raw=true" width="482"/>
 
 ```yaml
 type: custom:windrose-card
@@ -383,7 +383,7 @@ colors:
 ```
 
 ## Schaltflächen zum Verschieben und Abspielen von Zeiträumen
-<img alt="Peview bars bottom" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/examples/period_shift_play_buttons.png?raw=true" width="482"/>
+<img alt="Vorschau: Geschwindigkeitsbalken unten" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/examples/period_shift_play_buttons.png?raw=true" width="482"/>
 
 ```yaml
 type: custom:windrose-card
