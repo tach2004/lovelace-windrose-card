@@ -1,12 +1,12 @@
-# Lovelace Windrose card 
-## Configuration examples
+# Lovelace-Windrosen-Karte 
+## Konfigurationsbeispiele
 
-## Minimal card
+## Minimale Kartenkonfiguration
 <img alt="Example for config yaml" float="right" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/examples/minimal-right.png?raw=true" width="482"/>
 
 ```yaml
 type: custom:windrose-card
-title: Minimal configuration
+title: Minimale Konfiguration
 windspeed_bar_location: right
 data_period:
   period_back: -200h
@@ -14,36 +14,36 @@ wind_direction_entity:
   entity: sensor.wind_direction_azimuth
 windspeed_entities:
   - entity: sensor.wind_speed
-    name: Speed
+    name: Geschwindigkeit
     windspeed_bar_full: false
     speed_range_beaufort: false
 current_direction:
   show_arrow: true
 ```
 
-## Wind period selectors and corner info
+## Zeitraum-Schaltflächen und Eckinformationen
 <img alt="Peview bars bottom" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/examples/maximal-bottom-button.png?raw=true" width="482"/>
 
 ```yaml
 type: custom:windrose-card
-title: Wind direction
+title: Windrichtung
 refresh_interval: 300
 windspeed_bar_location: bottom
 buttons_config:
   location: top
   buttons:
     - type: period_selector
-      button_text: 1 Hour
+      button_text: 1 Stunde
       period_back: -1h
     - type: period_selector
-      button_text: 8 Hours
+      button_text: 8 Stunden
       period_back: -8h
     - type: period_selector
       active: true
-      button_text: 1 Day
+      button_text: 1 Tag
       period_back: -1d
     - type: period_selector
-      button_text: 10 Days
+      button_text: 10 Tage
       period_back: -10d
 wind_direction_entity:
   entity: sensor.wind_direction_azimuth
@@ -51,14 +51,14 @@ wind_direction_entity:
   direction_compensation: 0
 windspeed_entities:
   - entity: sensor.wind_speed
-    name: Speed
+    name: Geschwindigkeit
     speed_unit: auto
     windspeed_bar_full: false
     speed_range_beaufort: true
     current_speed_arrow: true
     use_statistics: false
   - entity: sensor.wind_gust
-    name: Gust
+    name: Böen
     speed_unit: auto
     output_speed_unit: kph
     speed_range_beaufort: false
@@ -77,20 +77,20 @@ compass_direction:
   entity: input_number.compass
 corner_info:
   top_left:
-    label: Current Gust
+    label: Aktuelle Böe
     unit: null
     entity: sensor.wind_gust
   top_right:
-    label: Direction
+    label: Windrichtung
     unit: °
     color: red
     entity: sensor.wind_direction_azimuth
   bottom_left:
-    label: Compass
+    label: Kompass
     unit: °
     entity: input_number.compass
 direction_labels:
-  cardinal_direction_letters: NESW
+  cardinal_direction_letters: NOSW
   show_cardinal_directions: true
   show_intercardinal_directions: true
   show_secondary_intercardinal_directions: true
@@ -99,29 +99,29 @@ direction_labels:
   secondary_intercardinal_directions_text_size: 30
 ```
 
-## Text with stats and dates.
+## Text mit Statistiken und Datumsangaben
 <img alt="Peview bars bottom" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/examples/maximal-right-button-stats.png?raw=true" width="482"/>
 
 ```yaml
 type: custom:windrose-card
-title: Wind Direction
+title: Windrichtung
 refresh_interval: 300
 windspeed_bar_location: right
 buttons_config:
   location: bottom
   buttons:
     - type: period_selector
-      button_text: 1 Hour
+      button_text: 1 Stunde
       period_back: -1h
     - type: period_selector
-      button_text: 8 Hours
+      button_text: 8 Stunden
       period_back: -8h
     - type: period_selector
       active: true
-      button_text: 1 Day
+      button_text: 1 Tag
       period_back: -1d
     - type: period_selector
-      button_text: 10 Days
+      button_text: 10 Tage
       period_back: -10d
 wind_direction_entity:
   entity: sensor.wind_direction_azimuth
@@ -129,7 +129,7 @@ wind_direction_entity:
   direction_compensation: 0
 windspeed_entities:
   - entity: sensor.wind_speed
-    name: Speed
+    name: Geschwindigkeit
     speed_unit: auto
     output_speed_unit: kph
     windspeed_bar_full: false
@@ -149,7 +149,7 @@ windspeed_entities:
       - from_value: 40
         color: red
   - entity: sensor.wind_gust
-    name: Gust
+    name: Böen
     speed_unit: auto
     output_speed_unit: kph
     speed_range_beaufort: false
@@ -161,41 +161,41 @@ text_blocks:
     text: |-
       <table>
           <tr>
-              <td>Direction measure’s:</td>
+              <td>Richtungsmessungen:</td>
               <td>${direction-count}</td>
-              <td>Minimal speed:</td>
+              <td>Minimale Geschwindigkeit:</td>
               <td>${min-speed}</td>
           </tr>
           <tr>
-              <td>Speed measure’s.:</td>
+              <td>Geschwindigkeitsmessungen:</td>
               <td>${speed-1-count}</td>
-              <td>Maximum speed:</td>
+              <td>Maximale Geschwindigkeit:</td>
               <td>${max-speed}</td>
           </tr>
           <tr>
-              <td>Match count:</td>
+              <td>Zugeordnete Messungen:</td>
               <td>${match-count}</td>
-              <td>Average speed:</td>
+              <td>Durchschnittsgeschwindigkeit:</td>
               <td>${average-speed}</td>
           </tr>
           <tr>
-              <td>Period hours</td>
+              <td>Zeitraum (Stunden)</td>
               <td>${period-hours}</td>
-              <td>Calm percentage:</td>
+              <td>Windstille:</td>
               <td>${calm-percentage}%</td>
           </tr>
           <tr>
-              <td>Temperature</td>
+              <td>Temperatur</td>
               <td>${weather.home.temperature} °C</td>
-              <td>Wind speed</td>
+              <td>Windgeschwindigkeit</td>
               <td>${sensor.wind_speed} Bft</td>
           </tr>
 
           <tr>
-              <td>First match time</td><td colspan="2">${date-first-match}, ${time-first-match}</td>
+              <td>Erster zugeordneter Messzeitpunkt</td><td colspan="2">${date-first-match}, ${time-first-match}</td>
           </tr>
           <tr>
-              <td>Last match time</td><td colspan="2">${date-last-match}, ${time-last-match}</td>
+              <td>Letzter zugeordneter Messzeitpunkt</td><td colspan="2">${date-last-match}, ${time-last-match}</td>
           </tr>
       </table>
     text_color: gray
@@ -208,16 +208,16 @@ compass_direction:
   entity: input_number.compass
 corner_info:
   top_left:
-    label: Current Gust
+    label: Aktuelle Böe
     unit: null
     entity: sensor.wind_gust
   top_right:
-    label: Direction
+    label: Windrichtung
     unit: °
     color: red
     entity: sensor.wind_direction_azimuth
   bottom_left:
-    label: Compass
+    label: Kompass
     unit: °
     entity: input_number.compass
 matching_strategy:
@@ -238,7 +238,7 @@ direction_labels:
   secondary_intercardinal_directions_text_size: 30
 ```
 
-## Color options and custom direction labels
+## Farben und eigene Richtungsbeschriftungen
 <img alt="Peview bars bottom" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/examples/max-colors-bottom-compass.png?raw=true" width="482"/>
 
 ```yaml
@@ -254,14 +254,14 @@ wind_direction_entity:
   direction_letters: NOZWX
 windspeed_entities:
   - entity: sensor.wind_speed
-    name: Speed
+    name: Geschwindigkeit
     speed_unit: auto
     use_statistics: false
     windspeed_bar_full: true
     output_speed_unit: mps
     speed_range_beaufort: true
   - entity: sensor.wind_gust
-    name: Gust
+    name: Böen
     speed_unit: auto
     use_statistics: false
     windspeed_bar_full: false
@@ -291,7 +291,7 @@ compass_direction:
   entity: input_number.compass
 corner_info:
   top_left:
-    label: Gust (Bft)
+    label: Böen (Bft)
     unit: " Bft"
     entity: sensor.wind_gust
     label_text_size: 50
@@ -300,17 +300,17 @@ corner_info:
     input_unit: kph
     output_unit: mps
   top_right:
-    label: Gust (kph)
+    label: Böen (km/h)
     unit: " kph"
     color: red
     entity: sensor.wind_gust
   bottom_left:
-    label: Compass
+    label: Kompass
     unit: °
     entity: input_number.compass
     label_text_size: 40
   bottom_right:
-    label: Outside light
+    label: Außenlicht
     entity: light.keukenlamp
     label_text_size: 40
 actions:
@@ -343,7 +343,7 @@ actions:
       entity: sensor.livingroom_sensor_air_temperature
       action: more-info
 direction_labels:
-  cardinal_direction_letters: NESW
+  cardinal_direction_letters: NOSW
   show_cardinal_directions: true
   show_intercardinal_directions: true
   show_secondary_intercardinal_directions: true
@@ -382,12 +382,12 @@ colors:
   bar_percentages: auto
 ```
 
-## Period shift and play buttons.
+## Schaltflächen zum Verschieben und Abspielen von Zeiträumen
 <img alt="Peview bars bottom" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/examples/period_shift_play_buttons.png?raw=true" width="482"/>
 
 ```yaml
 type: custom:windrose-card
-title: Time shift/play buttons
+title: Zeitraum verschieben und abspielen
 refresh_interval: 300
 windspeed_bar_location: right
 disable_animations: false
@@ -414,7 +414,7 @@ buttons_config:
         bg_color: inherit
     - type: period_shift_play
       period_back: "-10w"
-      button_text: Play
+      button_text: Abspielen
       step_period: +3h
       window_period: +10d
       delay: 50
@@ -422,11 +422,11 @@ buttons_config:
       statistics_period: hour
     - type: period_selector
       active: true
-      button_text: 7 Days
+      button_text: 7 Tage
       preset_period: last_30_days
     - type: period_selector
       active: false
-      button_text: This month
+      button_text: Dieser Monat
       preset_period: this_month
       use_statistics: true
       statistics_period: 5minute
@@ -438,7 +438,7 @@ wind_direction_entity:
   direction_letters: NOZWX
 windspeed_entities:
   - entity: sensor.gorredijk_wind_speed
-    name: Speed
+    name: Geschwindigkeit
     speed_unit: auto
     use_statistics: false
     statistics_period: hour
@@ -453,7 +453,7 @@ current_direction:
   center_circle_size: 30
   hide_direction_below_speed: 3
 direction_labels:
-  cardinal_direction_letters: NESW
+  cardinal_direction_letters: NOSW
   show_cardinal_directions: true
   show_intercardinal_directions: true
 matching_strategy:
@@ -465,28 +465,28 @@ text_blocks:
     text: |-
       <table>
           <tr>
-              <td>Direction measure’s:</td>
+              <td>Richtungsmessungen:</td>
               <td>${direction-count}</td>
-              <td>Match count:</td>
+              <td>Zugeordnete Messungen:</td>
               <td>${match-count}</td>
           </tr>
           <tr>
-              <td>Speed measure’s.:</td>
+              <td>Geschwindigkeitsmessungen:</td>
               <td>${speed-0-count}</td>
-              <td>Period hours</td>
+              <td>Zeitraum (Stunden)</td>
               <td>${period-hours}</td>
           </tr>
           <tr>
-              <td>First match time</td><td colspan="2">${date-first-match}, ${time-first-match}</td>
+              <td>Erster zugeordneter Messzeitpunkt</td><td colspan="2">${date-first-match}, ${time-first-match}</td>
           </tr>
           <tr>
-              <td>Last match time</td><td colspan="2">${date-last-match} - ${time-last-match}</td>
+              <td>Letzter zugeordneter Messzeitpunkt</td><td colspan="2">${date-last-match} - ${time-last-match}</td>
           </tr>
           <tr>
-              <td>Period start</td><td colspan="2">${start-date} - ${start-time}</td>
+              <td>Zeitraumbeginn</td><td colspan="2">${start-date} - ${start-time}</td>
           </tr>
           <tr>
-              <td>Period end</td><td colspan="2">${end-date} - ${end-time}</td>
+              <td>Zeitraumende</td><td colspan="2">${end-date} - ${end-time}</td>
           </tr>
       </table>
     text_color: gray
