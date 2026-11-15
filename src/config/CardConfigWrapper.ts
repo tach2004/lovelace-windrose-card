@@ -16,6 +16,7 @@ import { MatchingStrategy } from "./MatchingStrategy";
 import { Period } from "./buttons/Period";
 import { RoseConfig } from "./RoseConfig";
 import { cardinalDirectionLetters, localize } from "../localization/localize";
+import { localizeDefaultConfig } from "../localization/defaultConfig";
 
 
 export class CardConfigWrapper {
@@ -47,6 +48,7 @@ export class CardConfigWrapper {
     static exampleConfig(language: string = "en"): Record<string, unknown>  {
         return {
             title: localize(language, "cardTitle"),
+            localize_defaults: true,
             data_period: {
                 period_back: GlobalConfig.defaultPeriodBack
             },
@@ -129,6 +131,8 @@ export class CardConfigWrapper {
     }
 
     constructor(private readonly cardConfig: CardConfig, language?: string) {
+        cardConfig = localizeDefaultConfig(cardConfig, language);
+        this.cardConfig = cardConfig;
         this.title = this.cardConfig.title;
         this.checkDeprecations(cardConfig)
         this.windspeedBarLocation = this.checkWindspeedBarLocation();

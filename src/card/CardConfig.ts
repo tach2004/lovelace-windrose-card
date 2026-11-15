@@ -15,6 +15,8 @@ import {CardConfigRose} from "./CardConfigRose";
 export interface CardConfig {
     type: string;
     title: string;
+    /** Auto-translate generated default texts when the HA language changes. */
+    localize_defaults?: boolean;
 
     data_period: CardConfigDataPeriod;
     buttons_config: CardConfigButtonsConfig;

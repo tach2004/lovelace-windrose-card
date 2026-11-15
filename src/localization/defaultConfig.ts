@@ -16,14 +16,14 @@ export function localizeDefaultConfig(config: CardConfig, language?: string): Ca
         }
         return value;
     };
-    const buttons = config.buttons_config?.buttons?.map(button => {
+    const buttons = config.buttons_config?.buttons.map(button => {
         let key: "today" | "last7Days" | "last30Days" | undefined;
         if (button.type === "period_selector") {
             if (button.preset_period === "today") key = "today";
             if (button.preset_period === "last_7_days") key = "last7Days";
             if (button.preset_period === "last_30_days") key = "last30Days";
         }
-        return key ? { ...button, button_text: defaultText(button.button_text, key) } : button;
+        return key ? { ...button, button_text: defaultText(button.button_text, key) ?? button.button_text } : button;
     });
     const topText = config.text_blocks?.top?.text;
     const localizedText = topText?.replace(/<td>(Period:|Zeitraum:)<\/td>/g, `<td>${localize(language, "period")}</td>`);

@@ -22,7 +22,6 @@ import { PeriodShiftPlayButton } from "../config/buttons/types/PeriodShiftPlayBu
 import { MeasurementHolder } from "../measurement-provider/MeasurementHolder";
 import { DateTimeFormatter } from "../formatter/DateTimeFormatter";
 import { getLanguage, localizeError } from "../localization/localize";
-import { DirectionLabels } from "../config/DirectionLabels";
 
 (window as any).customCards = (window as any).customCards || [];
 (window as any).customCards.push({
@@ -93,7 +92,7 @@ export class WindRoseCard extends LitElement {
     set hass(hass: HomeAssistant) {
         const language = getLanguage(hass);
         if (this.config && this.cardConfig && getLanguage(this._hass) !== language) {
-            this.cardConfig.directionLabels = DirectionLabels.fromConfig(this.config.direction_labels, language);
+            this.cardConfig = new CardConfigWrapper(this.config, language);
             this.refreshCardConfigOnHass = true;
         }
         this.log.method('hass', 'refreshCardConfigOnHass', this.refreshCardConfigOnHass, 'connected', this._hass?.connection.connected);
