@@ -252,7 +252,7 @@ buttons_config:
   buttons:
     - type: period_shift_play
       preset_period: last_6_months
-      button_text: Play
+      button_text: Abspielen
       step_hours: 12
       period_hours: 240
       delay: 50
@@ -281,10 +281,10 @@ buttons_config:
     - type: windrose_speed_selector
       windspeed_entity_index: 0
       active: true
-      button_text: Windspeed
+      button_text: Windgeschwindigkeit
     - type: windrose_speed_selector
       windspeed_entity_index: 1
-      button_text: Gust
+      button_text: Böen
 ```
 
 ### Objekt button_colors
@@ -428,9 +428,9 @@ Bei numerischen Zuständen nimmt die Karte Gradwerte an. Besteht der Zustand aus
 
 | Name | Beschreibung | Standard | Default |
 |---------------------|-----------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-------:|
-| absolute            | Evenly distributes the segments.                          | <img alt="Pevriew" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/example/windbar-example-absolute.png?raw=true" width="412"/>            | Die Segmente werden gleichmäßig verteilt. | 
-| windspeed_relative  | Renders the segments relative to the speedrange size.     | <img alt="Pevriew" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/example/windbar-example-windspeed-relative.png?raw=true" width="412"/>  | Die Segmentbreite richtet sich nach der Größe des jeweiligen Geschwindigkeitsbereichs. | 
-| percentage_relative | Renders the segments relative to the percentage measured. | <img alt="Pevriew" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/example/windbar-example-percentage-relative.png?raw=true" width="412"/> | Die Segmentbreite richtet sich nach dem gemessenen Prozentanteil. | 
+| absolute            | Die Segmente werden gleichmäßig verteilt. | <img alt="Pevriew" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/example/windbar-example-absolute.png?raw=true" width="412"/>            |    | 
+| windspeed_relative  | Renders the segments relative to the speedrange size.     | <img alt="Vorschau" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/example/windbar-example-windspeed-relative.png?raw=true" width="412"/>  | Die Segmentbreite richtet sich nach der Größe des jeweiligen Geschwindigkeitsbereichs. | 
+| percentage_relative | Die Segmentbreite richtet sich nach dem gemessenen Prozentanteil. | <img alt="Pevriew" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/example/windbar-example-percentage-relative.png?raw=true" width="412"/> |    | 
 
 
 ### Unterstützte Windgeschwindigkeitseinheiten:
@@ -442,7 +442,7 @@ Falls dein Sensor eine Einheit verwendet, die in der folgenden Tabelle fehlt, er
 
 | Name | Beschreibung | Eingabe | Ausgabe | Erkannte HA-Einheiten |
 |----------|:------------------:|:-----:|:------:|-------------------------------------|
-| auto     |     automatic      |   x   |        | Automatisch. |
+| auto     | Automatisch. |   x   |        |                                     |
 | Beaufort |      Beaufort      |   x   |        | Beaufort. |
 | mps      | metres per second  |   x   |   x    | Meter pro Sekunde. |
 | kph      | kilometer per hour |   x   |   x    | Kilometer pro Stunde. |
@@ -467,7 +467,7 @@ Lege zusätzlich die obere und untere Grenze sowie die Schrittweite der Bereiche
 ```yaml
 windspeed_entities:
   - entity: sensor.wind_speed
-    name: Speed
+    name: Geschwindigkeit
     speed_range_beaufort: false
     speed_ranges:
       - from_value: 0
@@ -513,7 +513,7 @@ Bei dynamischen Geschwindigkeitsbereichen muss `speed_range_beaufort` auf `false
 ```yaml
 windspeed_entities:
   - entity: sensor.wind_speed
-    name: Speed
+    name: Geschwindigkeit
     speed_range_beaufort: false
     dynamic_speed_ranges:
       - average_above: 0
@@ -587,7 +587,7 @@ Einige Sensoren melden beispielsweise `CALM` oder `VRB`, wenn keine eindeutige W
 | arrow_locatoin             | string  |  from   |          | Pfeilposition: `from` am Ursprung der Windrichtung, `to` am Ziel (wohin der Wind weht). |
 | arrow_size                 | number  |   50    |          | Größe des Pfeils. |
 | center_circle_size         | number  |   30    |          | Größe des Mittelkreises, wenn `center_calm_percentage` nicht verwendet wird. Dann erscheint ein roter Kreis um die Prozentangabe. |
-| hide_direction_below_speed | number  |         |          | When current windspeed (output speed unit is used) is equal or below this value, the arrow is hidden and the center red dot or circle is shown. | Wenn die aktuelle Windgeschwindigkeit kleiner oder gleich diesem Wert ist, wird der Pfeil ausgeblendet und stattdessen ein roter Punkt oder Kreis angezeigt. |
+| hide_direction_below_speed | number  |         |          | Wenn die aktuelle Windgeschwindigkeit kleiner oder gleich diesem Wert ist, wird der Pfeil ausgeblendet und stattdessen ein roter Punkt oder Kreis angezeigt. |                                                                                                                                      |
 
 
 ### Objekt compass_direction
@@ -668,7 +668,7 @@ corner_info:
     output_unit: mps
     precision: 2
   top_right:
-    label: Wind direction
+    label: Windrichtung
     unit: °
     color: red
     entity: sensor.gorredijk_wind_direction_azimuth
@@ -676,7 +676,7 @@ corner_info:
     output_unit: letters
     direction_letters: NOZWX
   bottom_left:
-    label: Compass
+    label: Kompass
     unit: °
     entity: input_number.compass
 ```
@@ -723,40 +723,40 @@ text_blocks:
       text: |-
          <table>
              <tr>
-                 <td>Direction measure’s:</td>
+                 <td>Richtungsmessungen:</td>
                  <td>${direction-count}</td>
-                 <td>Minimal speed:</td>
+                 <td>Minimale Geschwindigkeit:</td>
                  <td>${min-speed}</td>
              </tr>
              <tr>
-                 <td>Speed measure’s.:</td>
+                 <td>Geschwindigkeitsmessungen:</td>
                  <td>${speed-1-count}</td>
-                 <td>Maximum speed:</td>
+                 <td>Maximale Geschwindigkeit:</td>
                  <td>${max-speed}</td>
              </tr>
              <tr>
-                 <td>Match count:</td>
+                 <td>Zugeordnete Messungen:</td>
                  <td>${match-count}</td>
-                 <td>Average speed:</td>
+                 <td>Durchschnittsgeschwindigkeit:</td>
                  <td>${average-speed}</td>
              </tr>
              <tr>
-                 <td>Period hours</td>
+                 <td>Zeitraum (Stunden)</td>
                  <td>${period-hours}</td>
-                 <td>Calm percentage:</td>
+                 <td>Windstille:</td>
                  <td>${calm-percentage}%</td>
              </tr>
              <tr>
-                 <td>Temperature</td>
+                 <td>Temperatur</td>
                  <td>${weather.home.temperature} °C</td>
-                 <td>Wind speed</td>
+                 <td>Windgeschwindigkeit</td>
                  <td>${sensor.home_wind_speed} Bft</td>
              </tr>
              <tr>
-                 <td>First match time</td><td colspan="2">${date-first-match}, ${time-first-match}</td>
+                 <td>Erster zugeordneter Messzeitpunkt</td><td colspan="2">${date-first-match}, ${time-first-match}</td>
              </tr>
              <tr>
-                 <td>Last match time</td><td colspan="2">${date-last-match}, ${time-last-match}</td>
+                 <td>Letzter zugeordneter Messzeitpunkt</td><td colspan="2">${date-last-match}, ${time-last-match}</td>
              </tr>
          </table>
 ```
@@ -773,9 +773,9 @@ Verfügbare Platzhalter:
 | speed-x-count                                                                                 | Anzahl der Geschwindigkeitsmessungen für Sensor `x`; der erste Sensor hat den Index 0. |
 | date-first-match<br/>time-first-match<br/>date-last-matc<br/>time-last-match                  | Datum und Uhrzeit der ersten und letzten Zuordnung von Richtungs- und Geschwindigkeitsmessungen. Sie sollten ungefähr dem ausgewählten Zeitraum entsprechen. |
 | match-count                                                                                   | Anzahl der zugeordneten Richtungs- und Geschwindigkeitsmessungen, die der Windrosenberechnung zugrunde liegen. |
-| period-minutes                                                                                | Amount of minutes in the selected period.                                                                                                           | Dauer des ausgewählten Zeitraums in Minuten. |
+| period-minutes                                                                                | Dauer des ausgewählten Zeitraums in Minuten. |                                                                                                                |
 | period-hours                                                                                  | Dauer des ausgewählten Zeitraums in Stunden. | 
-| match-period-minutes                                                                          | Amount of minutes between the first and last matched measurements. This should be close to the configured or selected period.                       | Dauer zwischen der ersten und letzten zugeordneten Messung in Minuten; sollte etwa dem gewählten Zeitraum entsprechen. |
+| match-period-minutes                                                                          | Dauer zwischen der ersten und letzten zugeordneten Messung in Minuten; sollte etwa dem gewählten Zeitraum entsprechen. |                                                                                                                |
 | match-period-hours                                                                            | Dauer zwischen der ersten und letzten zugeordneten Messung in Stunden. | 
 | min-speed<br/>max-speed<br/>average-speed                                                     | Statistik der Windgeschwindigkeit anhand des ersten Geschwindigkeitssensors, der standardmäßig auch die Windrose bestimmt. | 
 | calm-percentage                                                                               | Anteil der zugeordneten Messungen im ersten Geschwindigkeitsbereich; dies entspricht üblicherweise der Windstille. |
@@ -788,7 +788,7 @@ Verfügbare Platzhalter:
 
 ### YAML-Beispiel für text_blocks
 
-<img alt="Text block pevriew" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/example/text-block-example.png?raw=true" width="412"/>
+<img alt="Vorschau des Textblocks" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/example/text-block-example.png?raw=true" width="412"/>
 
 
 ```yaml
@@ -797,21 +797,21 @@ text_blocks:
     text: |-
        <table>
            <tr>
-               <td>Direction measure’s:</td>
+               <td>Richtungsmessungen:</td>
                <td>${direction-count}</td>
-               <td>Minimal speed:</td>
+               <td>Minimale Geschwindigkeit:</td>
                <td>${min-speed}</td>
            </tr>
            <tr>
-               <td>Speed measure’s.:</td>
+               <td>Geschwindigkeitsmessungen:</td>
                <td>${speed-1-count}</td>
-               <td>Maximum speed:</td>
+               <td>Maximale Geschwindigkeit:</td>
                <td>${max-speed}</td>
            </tr>
            <tr>
-               <td>Match count:</td>
+               <td>Zugeordnete Messungen:</td>
                <td>${match-count}</td>
-               <td>Average speed:</td>
+               <td>Durchschnittsgeschwindigkeit:</td>
                <td>${average-speed}</td>
            </tr>
            <tr>
@@ -986,18 +986,18 @@ colors:
 
 Verwendet `speed_range_step` und `speed_range_max`.
 
-<img alt="Pevriew" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/example/speedbar_step_5_max_25.png?raw=true" width="415"/>
+<img alt="Vorschau" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/example/speedbar_step_5_max_25.png?raw=true" width="415"/>
 
 ```yaml
 type: custom:windrose-card
-title: Wind direction
+title: Windrichtung
 data_period:
   period_back: -24h
 wind_direction_entity:
   entity: sensor.wind_direction
 windspeed_entities:
   - entity: sensor.wind_speed
-    name: Average
+    name: Durchschnitt
     windspeed_bar_full: true
     speed_range_beaufort: false
     output_speed_unit: mps
@@ -1013,18 +1013,18 @@ Achte darauf, einen Geschwindigkeitsbereich ab 0 zu definieren. Andernfalls ersc
 
 ```Speed is not in a speedrange: 0.6 unit: mps```
 
-<img alt="Pevriew" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/example/speedbar_speed_ranges_custom.png?raw=true" width="412"/>
+<img alt="Vorschau" src="https://raw.githubusercontent.com/aukedejong/ha-windrose-card/main/example/speedbar_speed_ranges_custom.png?raw=true" width="412"/>
 
 ```yaml
 type: custom:windrose-card
-title: Wind direction
+title: Windrichtung
 data_period:
   period_back: -24h
 wind_direction_entity:
   entity: sensor.wind_direction
 windspeed_entities:
   - entity: sensor.wind_speed
-    name: Average
+    name: Durchschnitt
     windspeed_bar_full: true
     output_speed_unit: mps
     speed_range_beaufort: false
